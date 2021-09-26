@@ -1,0 +1,34 @@
+class Images {
+  const Images();
+  static final home = "assets/images/home.svg";
+  static final user = "assets/images/user.svg";
+  static final document = "assets/images/document.svg";
+  static final initialAvater = "assets/images/initial_avater_icon.svg";
+  static final initial_group = "assets/images/initial_group_icon.svg";
+  static final shoppingCart = "assets/images/shopping-cart.svg";
+  static final welcome_screen_img = "assets/images/welcome_screen_img.png";
+  static final food_yours_logo = "assets/images/food_yours_logo.svg";
+  static final splash_screen_bg_img = "assets/images/splash_screen_bg_img.png";
+  static final registration_pattern_design = "assets/images/registration_pattern_design.svg";
+  static final food_category = "assets/images/food_category.png";
+  static final popular_chef = "assets/images/popular_chef.png";
+  static final ad_banner = "assets/images/ad_banner.svg";
+  static final large_order_banner = "assets/images/large_order_banner.png";
+  static final warning_symbol = "assets/images/warning_symbol.svg";
+  static final notification_symbol = "assets/images/notification_symbol.svg";
+  static final settings = "assets/images/settings.svg";
+  static final search_result = "assets/images/search_result.jpg";
+  static final chef = "assets/images/chef.jpg";
+  static final back = "assets/images/back.svg";
+  static final cart = "assets/images/cart.svg";
+  static final chef_bg_image = "assets/images/chef_bg_image.jpg";
+  static final minus_circle = "assets/images/minus_circle.svg";
+  static final plus_circle = "assets/images/plus_circle.svg";
+  static final anonymous_chef_reviewer = "assets/images/anonymous_chef_reviewer.svg";
+  static final success_check = "assets/images/success_check.svg";
+  static final qr_image = "assets/images/qr_image.png";
+  static final qr_overlay = "assets/images/qr_overlay.png";
+  static final alert_success_check = "assets/images/alert_success_check.svg";
+  static final female_chef = "assets/images/female_chef.jpg";
+  static final calender = "assets/images/calender.svg";
+}
