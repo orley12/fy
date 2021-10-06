@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/cart/controller/cart_order_summary_controlller.dart';
 import 'package:food_yours_customer/cart/widget/order_quantity_item.dart';
+import 'package:food_yours_customer/cart/widget/place_order_button.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
 import 'package:food_yours_customer/common/widget/secondary_app_bar.dart';
 import 'package:food_yours_customer/resources/colors.dart';
@@ -87,22 +88,8 @@ class CartOrderSummaryScreen extends StatelessWidget {
             ],
           ),
           SizedBox(height: sh(27)),
-          TextButton(
-            onPressed: widgetCtrl.gotoPaymentMethodScreen,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: sw(24)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Pay N9,400",
-                    style: context.theme.textTheme.button!.copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w800),
-                  ),
-                  Icon(Icons.arrow_forward_ios, color: Colors.white, size: sh(12))
-                ],
-              ),
-            ),
-          ),
+          PlaceOrderButton(widgetCtrl),
+          SizedBox(height: sh(16)),
         ],
       ),
     );

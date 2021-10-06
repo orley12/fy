@@ -9,14 +9,17 @@ class FYSwitch extends StatefulWidget {
   final Color inactiveColor;
   final Widget inactiveWidget;
   final Widget activeWidget;
+  final Color switchCircleColor;
 
-  const FYSwitch(
-      {required this.value,
-      required this.onChanged,
-      this.activeColor = const Color(0xFF06C270),
-      this.inactiveColor = const Color(0xFFF5F5F5),
-      this.inactiveWidget = const SizedBox(),
-      this.activeWidget = const SizedBox()});
+  const FYSwitch({
+    required this.value,
+    required this.onChanged,
+    this.activeColor = const Color(0xFF06C270),
+    this.inactiveColor = const Color(0xFFF5F5F5),
+    this.inactiveWidget = const SizedBox(),
+    this.activeWidget = const SizedBox(),
+    this.switchCircleColor = Colors.white,
+  });
 
   @override
   _FYSwitchState createState() => _FYSwitchState();
@@ -69,7 +72,7 @@ class _FYSwitchState extends State<FYSwitch> with SingleTickerProviderStateMixin
                     child: Container(
                       width: 25.0,
                       height: 25.0,
-                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: widget.switchCircleColor),
                     ),
                   ),
                   _circleAnimation.value == Alignment.centerLeft

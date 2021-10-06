@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
-import 'package:food_yours_customer/common/widget/local_theme.dart';
-import 'package:food_yours_customer/common/widget/text_button.dart';
+import 'package:food_yours_customer/common/widget/twin_buttons.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get.dart';
 
-showAlertDialog(
-    [String? notificationIcon,
-    String title = "Location Access",
-    String message =
-        "Foodyours is asking for permission to access your device location to give you best ordering experience.This permission is required for ordering.",
-    isSuccess = false]) {
+showAlertDialog([
+  String? notificationIcon,
+  String title = "Location Access",
+  String message =
+      "Foodyours is asking for permission to access your device location to give you best ordering experience.This permission is required for ordering.",
+  String buttonText = "Grant Access",
+  isSuccess = false,
+]) {
   final Function sh = sHeight(Get.context!);
   final Function sw = sWidth(Get.context!);
 
@@ -54,7 +54,13 @@ showAlertDialog(
                             style: Get.context!.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12)),
                           )),
                       SizedBox(height: sh(Dimens.k24)),
-                      buildActionButtons(isSuccess),
+                      FYTwinButton(
+                          isSuccess: isSuccess,
+                          firstBtnText: "Discard",
+                          firstBtnTextColor: Color(0xFF6C6E90),
+                          firstBtnColor: Colors.white,
+                          secondBtnText: buttonText,
+                          secondBtnColor: FYColors.mainRed)
                     ],
                   ),
                 )),
@@ -79,29 +85,4 @@ FYButton buildCancelButton(Function sw, Function sh) {
     ),
     onTap: pop,
   );
-}
-
-Row buildActionButtons(isSuccess) {
-  final Function sh = sHeight(Get.context!);
-  final Function sw = sWidth(Get.context!);
-
-  return Row(mainAxisAlignment: isSuccess ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween, children: [
-    Center(
-      child: LocalTheme(
-        child: FYTextButton(text: "Discard", onPressed: pop),
-        buttonStyle: whiteTextButtonStyle.copyWith(minimumSize: MaterialStateProperty.all<Size>(Size(sw(133), sh(Dimens.k47)))),
-        buttonTextStyle: Get.context!.theme.textTheme.caption!.copyWith(fontWeight: FontWeight.w600),
-      ),
-    ),
-    isSuccess
-        ? Container()
-        : Center(
-            child: LocalTheme(
-              child: FYTextButton(text: "Grant Access"),
-              buttonStyle: Get.context!.theme.textButtonTheme.style!
-                  .copyWith(minimumSize: MaterialStateProperty.all<Size>(Size(sw(133), sh(Dimens.k47)))),
-              buttonTextStyle: Get.context!.theme.textTheme.button!.copyWith(fontWeight: FontWeight.w400),
-            ),
-          ),
-  ]);
 }

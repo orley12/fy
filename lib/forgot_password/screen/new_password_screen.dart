@@ -91,11 +91,15 @@ class NewPasswordScreen extends StatelessWidget {
                 PrimaryTextField(
                   labelText: "New Password",
                   hintText: "****************",
+                  suffixIcon:
+                      Padding(padding: EdgeInsets.symmetric(horizontal: sw(16.0)), child: SvgPicture.asset(Images.eye_on)),
                 ),
                 SizedBox(height: sh(Dimens.k12)),
                 PrimaryTextField(
                   labelText: "Confirm New Password",
                   hintText: "****************",
+                  suffixIcon:
+                      Padding(padding: EdgeInsets.symmetric(horizontal: sw(16.0)), child: SvgPicture.asset(Images.eye_on)),
                 ),
                 SizedBox(height: sh(Dimens.k40)),
                 Center(

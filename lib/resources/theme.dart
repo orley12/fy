@@ -30,6 +30,7 @@ class Themes {
     radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(FYColors.mainRed)),
     checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.all<Color>(Colors.white),
+        side: BorderSide(color: FYColors.darkerBlack6),
         fillColor: MaterialStateProperty.all<Color>(FYColors.mainRed)),
     chipTheme: ChipThemeData(
       selectedColor: FYColors.mainBlue,

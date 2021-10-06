@@ -127,11 +127,15 @@ class RegistrationScreen extends StatelessWidget {
                 PrimaryTextField(
                   labelText: "Password",
                   hintText: "****************",
+                  suffixIcon:
+                      Padding(padding: EdgeInsets.symmetric(horizontal: sw(16.0)), child: SvgPicture.asset(Images.eye_on)),
                 ),
                 SizedBox(height: sh(Dimens.k8)),
                 PrimaryTextField(
                   labelText: "Confirm Password",
                   hintText: "****************",
+                  suffixIcon:
+                      Padding(padding: EdgeInsets.symmetric(horizontal: sw(16.0)), child: SvgPicture.asset(Images.eye_on)),
                 ),
                 SizedBox(height: sh(Dimens.k22)),
                 Center(

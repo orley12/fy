@@ -31,4 +31,22 @@ class Images {
   static final alert_success_check = "assets/images/alert_success_check.svg";
   static final female_chef = "assets/images/female_chef.jpg";
   static final calender = "assets/images/calender.svg";
+  static final pay_stack = "assets/images/pay_stack.png";
+  static final pen = "assets/images/pen.svg";
+  static final whatsapp = "assets/images/whatsapp.svg";
+  static final facebook = "assets/images/facebook.svg";
+  static final instagram = "assets/images/instagram.svg";
+  static final twitter = "assets/images/twitter.svg";
+  static final copy = "assets/images/copy.svg";
+  static final eye_off = "assets/images/eye_off.svg";
+  static final pen_2 = "assets/images/pen_2.svg";
+  static final question_mark = "assets/images/question_mark.svg";
+  static final head_phone = "assets/images/head_phone.svg";
+  static final question = "assets/images/question.svg";
+  static final clarity_list = "assets/images/clarity_list.svg";
+  static final document_2 = "assets/images/document_2.svg";
+  static final male_chef = "assets/images/male_chef.png";
+  static final courier = "assets/images/courier.jpg";
+  static final eye_on = "assets/images/eye_on.svg";
+  static final card_chip = "assets/images/card_chip.svg";
 }

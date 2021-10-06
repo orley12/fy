@@ -5,6 +5,7 @@ class FYColors {
   static final mainRed = Color(0xFFE20612);
   static final darkerRed = Color(0xFFB90811);
   static final lighterRed = Color(0xFFFF5A63);
+  static final lighterRed2 = Color(0xFFF0376E);
   static final subtleRed = Color(0xFFFFECEC);
   static final subtleRed2 = Color(0xFFFF9A9F);
 
@@ -26,13 +27,21 @@ class FYColors {
   static final lighterBlue = Color(0xFF5B8DEF);
   static final subtleBlue = Color(0xFF9DBFF9);
   static final subtleBlue1 = Color(0xFFF4F8FF);
+  static final subtleBlue2 = Color(0xFFEFF4FE);
+  static final subtleBlue3 = Color(0xFFF7F8FF);
+  static final subtleBlue4 = Color(0xFFA2C7FF);
+  static final subtleBlue5 = Color(0xFF00C3F7);
+  static final subtleBlue6 = Color(0xFF55ACEE);
+  static final subtleBlue7 = Color(0xFFE1E2FF);
 
   //Success Color
   static final mainGreen = Color(0xFF06C270);
   static final darkerGreen = Color(0xFF05A660);
   static final lighterGreen = Color(0xFF39D98A);
+  static final lighterGreen2 = Color(0xFF00E676);
   static final subtleGreen = Color(0xFF57EBA1);
   static final subtleGreen1 = Color(0xFFE4FFF3);
+  static final subtleGreen2 = Color(0xFFEDFFF7);
 
   //Black Color
   static final mainBlack = Color(0xFF3A3A3C);
@@ -50,10 +59,11 @@ class FYColors {
   static final subtleBlack7 = Color(0xffB0B1CE);
   static final subtleBlack8 = Color(0xffE5E5E5);
   static final darkerBlack3 = Color(0xff3D4C69);
+  static final darkerBlack4 = Color(0xffB2B3B9);
+  static final darkerBlack5 = Color(0xff395185);
+  static final darkerBlack6 = Color(0xffC7C9D9);
 
   //Background Color
   static final mainBackground = Color(0xFFFAFAFC);
   static final subtleBackground = Color(0xFFFFF6F7);
-  static final subtleBlue2 = Color(0xFFEFF4FE);
-  static final subtleBlue3 = Color(0xFFF7F8FF);
 }

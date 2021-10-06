@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
+import 'package:food_yours_customer/home/widget/food_category_label.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
@@ -45,6 +46,30 @@ class SearchResultCard extends StatelessWidget {
                     bottom: -25,
                     right: 7,
                     child: buildChefImage(sh, sw, context),
+                  ),
+                  Positioned(
+                    top: sh(11),
+                    left: -sw(6),
+                    child: Container(
+                        width: sw(92.86),
+                        height: sh(22.74),
+                        child: CardStripe(
+                          RichText(
+                            textAlign: TextAlign.start,
+                            text: TextSpan(children: <TextSpan>[
+                              TextSpan(
+                                style: context.theme.textTheme.caption!
+                                    .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+                                text: "DD: ",
+                              ),
+                              TextSpan(
+                                style: context.theme.textTheme.headline3!
+                                    .copyWith(fontSize: sh(Dimens.k12), color: FYColors.mainBlue),
+                                text: "T, W,F,S",
+                              ),
+                            ]),
+                          ),
+                        )),
                   ),
                 ],
               ),

@@ -93,7 +93,15 @@ class PopularChefItem extends StatelessWidget {
 
   Row buildFoodCategoryAndStartPriceWidget(BuildContext context, Function sh, Function sw) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-      FoodCategoryLabel(popularChef.foodCategory),
+      Container(
+        child: CardStripe(AutoSizeText(
+          popularChef.foodCategory,
+          minFontSize: 8,
+          style: context.theme.textTheme.headline3!.copyWith(fontSize: sh(9.85)),
+        )),
+        height: sh(16.42),
+        width: sw(46.79),
+      ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [

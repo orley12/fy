@@ -4,7 +4,6 @@ import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
 
