@@ -1,12 +1,18 @@
 import 'dart:async';
 
+import 'package:food_yours_customer/auth/login/screen/login_screen.dart';
+import 'package:food_yours_customer/common/repository/preference_repository.dart';
+import 'package:food_yours_customer/resources/enums.dart';
 import 'package:food_yours_customer/resources/integers.dart';
+import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
 import 'package:food_yours_customer/welcome/screen/welcome_screen.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
 
 class SplashScreenController extends GetxController {
   late Timer timer;
+  late PreferenceRepository preferenceRepository = Get.find();
 
   @override
   void onReady() {
@@ -15,6 +21,12 @@ class SplashScreenController extends GetxController {
   }
 
   void gotoNextScreen() {
-    timer = Timer(Duration(seconds: Integers.dashBoardTabLength), () => push(page: WelcomeScreen()));
+    timer = Timer(Duration(seconds: Integers.dashBoardTabLength), () {
+      if (preferenceRepository.getBooleanPref(Strings.stageOfUSage) == StageOfUsage.REGISTERED.toString()) {
+        pushUntil(page: LoginScreen());
+      } else {
+        pushUntil(page: WelcomeScreen());
+      }
+    });
   }
 }

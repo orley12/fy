@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/login/screen/login_screen.dart';
-import 'package:food_yours_customer/registration/screen/registration_screen.dart';
+import 'package:food_yours_customer/auth/login/screen/login_screen.dart';
+import 'package:food_yours_customer/auth/registration/screen/registration_screen.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';

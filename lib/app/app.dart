@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_yours_customer/app/app_bindings.dart';
 import 'package:food_yours_customer/app/controller/app_controller.dart';
 import 'package:food_yours_customer/config/app_config.dart';
 import 'package:food_yours_customer/resources/theme.dart';
@@ -11,7 +12,6 @@ class App extends StatelessWidget {
   final AppController appController = Get.put(AppController());
 
   App(AppConfig config);
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -23,6 +23,7 @@ class App extends StatelessWidget {
       onTap: appController.closeKeyBoard,
       child: GetMaterialApp(
         title: 'Food Yours',
+        initialBinding: AppBindings(),
         theme: Themes.light,
         home: SplashScreen(),
       ),

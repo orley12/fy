@@ -1,14 +1,16 @@
+import 'dart:ui';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/common/widget/local_theme.dart';
 import 'package:food_yours_customer/home/view_model/popular_chef_view_model.dart';
 import 'package:food_yours_customer/home/widget/food_category_label.dart';
 import 'package:food_yours_customer/home/widget/rating.dart';
+import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PopularChefItem extends StatelessWidget {
   final PopularChefViewModel popularChef;
@@ -79,9 +81,11 @@ class PopularChefItem extends StatelessWidget {
           Row(
             children: [
               Text("DD: ",
+                  maxLines: 1,
                   style: context.theme.textTheme.caption!
                       .copyWith(color: FYColors.subtleBlack3, fontSize: sh(Dimens.k10), fontWeight: FontWeight.w600)),
-              Text(popularChef.daysOfWeek.join(", "),
+              Text("",
+                  maxLines: 1,
                   style: context.theme.textTheme.button!.copyWith(fontSize: sh(Dimens.k10), fontWeight: FontWeight.w600)),
             ],
           ),
@@ -111,5 +115,28 @@ class PopularChefItem extends StatelessWidget {
         ],
       ),
     ]);
+  }
+}
+
+class PopularChefLoadingItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Function sh = sHeight(context);
+    final Function sw = sWidth(context);
+
+    return Shimmer.fromColors(
+      child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: Container(
+              height: sh(141.18),
+              width: sh(142),
+              decoration: BoxDecoration(
+                color: Color(0xffeaf0f0),
+                borderRadius: BorderRadius.circular(Dimens.k4),
+                image: DecorationImage(image: AssetImage(Images.food_category), fit: BoxFit.fill),
+              ))),
+      baseColor: Color(0xffeaf0f0),
+      highlightColor: Colors.white,
+    );
   }
 }
