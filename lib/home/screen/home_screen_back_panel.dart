@@ -1,13 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
 import 'package:food_yours_customer/common/widget/secondary_text_input_field.dart';
 import 'package:food_yours_customer/home/controller/home_tab_back_panel_controller.dart';
-import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/home/widget/food_category_item.dart';
 import 'package:food_yours_customer/home/widget/fy_chip.dart';
-import 'package:food_yours_customer/home/widget/suggestion_card.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';

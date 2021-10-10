@@ -1,7 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_yours_customer/common/fy_drop_down.dart';
+import 'package:food_yours_customer/common/widget/fy_drop_down.dart';
 import 'package:food_yours_customer/common/widget/fy_country_code_picker.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
 import 'package:food_yours_customer/common/widget/local_theme.dart';
@@ -66,7 +67,13 @@ class SpecialOrderScreen extends StatelessWidget {
                     child: LocalTheme(
                       buttonTextStyle: context.theme.textTheme.bodyText1,
                       bodyStyle2: context.theme.textTheme.bodyText2,
-                      child: FYCountryCodePicker(),
+                      child: FYCountryCodePicker(
+                          selectedCountryCode: CountryCode(
+                        flagUri: Images.ng,
+                        name: "Nigeria",
+                        code: "NG",
+                        dialCode: "+234",
+                      )),
                       //     SizedBox(
                     ),
                   ),

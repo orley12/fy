@@ -72,7 +72,7 @@ class HomeScreenFrontPanel extends StatelessWidget {
         Container(
           child: AdSpace(widgetCrtl.homeTabCrtl.openAlertDialog),
           width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: sw(24)),
+          margin: EdgeInsets.symmetric(horizontal: sw(24)),
         ),
         SizedBox(height: sh(13)),
         Container(

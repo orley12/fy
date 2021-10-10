@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:food_yours_customer/config/app_config.dart';
 import 'package:food_yours_customer/main/main_common.dart';
 

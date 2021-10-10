@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/widget/fy_country_code_picker.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
@@ -48,7 +49,13 @@ class NewAddressScreen extends StatelessWidget {
                 child: LocalTheme(
                   buttonTextStyle: context.theme.textTheme.bodyText1,
                   bodyStyle2: context.theme.textTheme.bodyText2,
-                  child: FYCountryCodePicker(),
+                  child: FYCountryCodePicker(
+                      selectedCountryCode: CountryCode(
+                    flagUri: Images.ng,
+                    name: "Nigeria",
+                    code: "NG",
+                    dialCode: "+234",
+                  )),
                   //     SizedBox(
                 ),
               ),

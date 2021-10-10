@@ -13,30 +13,31 @@ class AllAddressesScreen extends StatelessWidget {
     final Function sw = sWidth(context);
 
     return Container(
-        color: context.theme.backgroundColor,
-        child: Scaffold(
-          backgroundColor: FYColors.subtleBlack5,
-          appBar: PreferredSize(preferredSize: Size(sw(20), sh(46.41)), child: SecondaryAppBar(title: "My Addresses")),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: sh(24)),
-              Padding(
+      color: context.theme.backgroundColor,
+      child: Scaffold(
+        backgroundColor: FYColors.subtleBlack5,
+        appBar: PreferredSize(preferredSize: Size(sw(20), sh(46.41)), child: SecondaryAppBar(title: "My Addresses")),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: sh(24)),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: sw(24)),
+              child: Text("You can have up to 4 saved addresses",
+                  style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12))),
+            ),
+            SizedBox(height: sh(8)),
+            Expanded(
+              child: ListView.separated(
                 padding: EdgeInsets.symmetric(horizontal: sw(24)),
-                child: Text("You can have up to 4 saved addresses",
-                    style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12))),
+                itemBuilder: (BuildContext context, int index) => AddressItem(),
+                separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(16)),
+                itemCount: 3,
               ),
-              SizedBox(height: sh(8)),
-              Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.symmetric(horizontal: sw(24)),
-                  itemBuilder: (BuildContext context, int index) => AddressItem(),
-                  separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(16)),
-                  itemCount: 3,
-                ),
-              ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

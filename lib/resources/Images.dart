@@ -49,4 +49,6 @@ class Images {
   static final courier = "assets/images/courier.jpg";
   static final eye_on = "assets/images/eye_on.svg";
   static final card_chip = "assets/images/card_chip.svg";
+  static final loading = "assets/images/loading.gif";
+  static final ng = "assets/images/ng.png";
 }

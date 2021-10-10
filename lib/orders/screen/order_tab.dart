@@ -24,30 +24,35 @@ class OrdersTab extends StatelessWidget {
           appBar: PreferredSize(preferredSize: Size(20, sh(46.41)), child: PrimaryAppBar(title: "My Orders")),
           body: Container(
             padding: EdgeInsets.symmetric(horizontal: sw(Dimens.k24), vertical: sh(Dimens.k16)),
-            child: ListView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Ongoing Order", style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16))),
+                Text("Ongoing Order",
+                    style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16), color: FYColors.mainBlue)),
                 SizedBox(height: sh(Dimens.k8)),
-                ListView.separated(
-                  padding: EdgeInsets.zero,
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) => OrderCard(),
-                  separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(Dimens.k24)),
-                  itemCount: 1,
+                Expanded(
+                  flex: 30,
+                  child: ListView.separated(
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (BuildContext context, int index) => OrderCard(),
+                    separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(Dimens.k24)),
+                    itemCount: 10,
+                  ),
                 ),
                 SizedBox(height: sh(24)),
                 Text("Order History", style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16))),
                 Text("Re-order your favourite meals here",
                     style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12)),
                 SizedBox(height: sh(8)),
-                ListView.separated(
-                  padding: EdgeInsets.zero,
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) => OrderCard(),
-                  separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(Dimens.k24)),
-                  itemCount: 10,
+                Expanded(
+                  flex: 70,
+                  child: ListView.separated(
+                    padding: EdgeInsets.zero,
+                    // shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) => OrderCard(),
+                    separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(Dimens.k24)),
+                    itemCount: 10,
+                  ),
                 ),
               ],
             ),

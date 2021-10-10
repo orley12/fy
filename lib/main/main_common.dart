@@ -1,8 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:food_yours_customer/api/api.dart';
 import 'package:food_yours_customer/app/app.dart';
 import 'package:food_yours_customer/config/app_config.dart';
 
-void mainCommon(AppConfig config) => runApp(App(config));
+late ApiClient api;
+
+void mainCommon(AppConfig config) {
+  api = ApiClient(Dio())
+    ..setBaseOptions()
+    ..setInterceptors();
+
+  runApp(App(config));
+}
 
 
 // flutter build apk --release -t lib/main_tst.dart --build-name=1.0.0 --build-number=1 --flavor tst 

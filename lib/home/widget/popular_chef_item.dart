@@ -1,12 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/common/widget/local_theme.dart';
 import 'package:food_yours_customer/home/view_model/popular_chef_view_model.dart';
 import 'package:food_yours_customer/home/widget/food_category_label.dart';
 import 'package:food_yours_customer/home/widget/rating.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 

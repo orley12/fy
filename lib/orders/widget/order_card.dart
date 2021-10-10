@@ -27,74 +27,79 @@ class OrderCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.01), blurRadius: 8, offset: Offset(0, 1))],
         ),
-        child: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Center(
-                child: Container(
-                  height: sh(82),
-                  width: sh(86),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage(Images.search_result), fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(4)),
-                ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Center(
+                    child: Container(
+                      height: sh(82),
+                      width: sh(86),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(image: AssetImage(Images.search_result), fit: BoxFit.cover),
+                          borderRadius: BorderRadius.circular(4)),
+                    ),
+                  ),
+                  SizedBox(height: sh(7)),
+                  Container(
+                    width: sw(212),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                              style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
+                              text: "Order Items: ",
+                            ),
+                            TextSpan(
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
+                              text: "Ofada Rice(1x), Zobo(2x), Doughnuts(5x).",
+                            ),
+                          ]),
+                        ),
+                        SizedBox(height: sh(8)),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                              style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
+                              text: "Price: ",
+                            ),
+                            TextSpan(
+                              style: context.theme.textTheme.headline3!.copyWith(fontSize: Dimens.k12),
+                              text: "N 5,600",
+                            ),
+                          ]),
+                        ),
+                        SizedBox(height: sh(8)),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                              style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
+                              text: "Chef: ",
+                            ),
+                            TextSpan(
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
+                              text: "Omowunmi O",
+                            ),
+                          ]),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: sh(7)),
-              Container(
-                width: sw(212),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(children: <TextSpan>[
-                        TextSpan(
-                          style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
-                          text: "Order Items: ",
-                        ),
-                        TextSpan(
-                          style: context.theme.textTheme.caption!
-                              .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                          text: "Ofada Rice(1x), Zobo(2x), Doughnuts(5x).",
-                        ),
-                      ]),
-                    ),
-                    SizedBox(height: sh(8)),
-                    RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(children: <TextSpan>[
-                        TextSpan(
-                          style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
-                          text: "Price: ",
-                        ),
-                        TextSpan(
-                          style: context.theme.textTheme.headline3!.copyWith(fontSize: Dimens.k12),
-                          text: "N 5,600",
-                        ),
-                      ]),
-                    ),
-                    SizedBox(height: sh(8)),
-                    RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(children: <TextSpan>[
-                        TextSpan(
-                          style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
-                          text: "Chef: ",
-                        ),
-                        TextSpan(
-                          style: context.theme.textTheme.caption!
-                              .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                          text: "Omowunmi O",
-                        ),
-                      ]),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

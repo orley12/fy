@@ -30,7 +30,7 @@ class AddressItem extends StatelessWidget {
               children: [
                 buildTransactionDetailAndPriceRow(context, sh, sw),
                 SizedBox(height: sh(6)),
-                buildDateAndTransactionCategoryRow(context, sh)
+                buildDateAndTransactionCategoryRow(context, sh),
               ],
             ),
           ),

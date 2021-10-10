@@ -18,17 +18,26 @@ class AdSpace extends StatelessWidget {
     Function sh = sHeight(context);
     Function sw = sWidth(context);
 
-    return Stack(
-      children: [
-        Container(
-          child: SvgPicture.asset(Images.ad_banner, height: sh(Dimens.k89), fit: BoxFit.fill),
-        ),
-        Container(
-          padding: EdgeInsets.only(left: sw(Dimens.k15), right: sw(Dimens.k19)),
-          height: sh(Dimens.k89),
-          child: buildAdContent(context, sw, sh),
-        ),
-      ],
+    return Expanded(
+      child: Stack(
+        children: [
+          Container(
+            width: sw(500),
+            child: SvgPicture.asset(
+              Images.ad_banner,
+              fit: BoxFit.fitWidth,
+              height: sh(Dimens.k89),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.zero,
+            padding: EdgeInsets.only(left: sw(Dimens.k15), right: sw(Dimens.k19)),
+            height: sh(Dimens.k89),
+            width: sw(500),
+            child: buildAdContent(context, sw, sh),
+          ),
+        ],
+      ),
     );
   }
 

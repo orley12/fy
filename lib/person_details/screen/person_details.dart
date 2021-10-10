@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/widget/fy_country_code_picker.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
@@ -7,6 +8,7 @@ import 'package:food_yours_customer/common/widget/secondary_text_input_field.dar
 import 'package:food_yours_customer/common/widget/square_image.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/person_details/widget/image_editing_button.dart';
+import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
@@ -58,7 +60,13 @@ class PersonalDetailsScreen extends StatelessWidget {
                 child: LocalTheme(
                   buttonTextStyle: context.theme.textTheme.bodyText1,
                   bodyStyle2: context.theme.textTheme.bodyText2,
-                  child: FYCountryCodePicker(),
+                  child: FYCountryCodePicker(
+                      selectedCountryCode: CountryCode(
+                    flagUri: Images.ng,
+                    name: "Nigeria",
+                    code: "NG",
+                    dialCode: "+234",
+                  )),
                   //     SizedBox(
                 ),
               ),
