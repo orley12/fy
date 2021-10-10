@@ -1,0 +1,14 @@
+//
+//  prod.xcconfig
+//  Runner
+//
+//  Created by Oluwatosin Solarin on 20/10/2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "Generated.xcconfig"
+BUNDLE_ID_SUFFIX=.dev
+PRODUCT_BUNDLE_IDENTIFIER=com.foodyours
+FLUTTER_TARGET=lib/main_prod.dart
+APP_NAME=Flavor PROD

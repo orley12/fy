@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
@@ -7,6 +8,7 @@ import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:food_yours_customer/resources/enums.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get.dart';
 
@@ -85,4 +87,52 @@ FYButton buildCancelButton(Function sw, Function sh) {
     ),
     onTap: pop,
   );
+}
+
+showFYSnackBar({
+  String message = "",
+  Function()? action,
+  String actionText = "",
+  ResponseGrades responseGrades = ResponseGrades.ERROR,
+}) {
+  final Function sh = sHeight(Get.context!);
+  final Function sw = sWidth(Get.context!);
+
+  final snackBar = SnackBar(
+    content: Container(
+      height: sh(30),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: AutoSizeText(message, textAlign: TextAlign.center)),
+        ],
+      ),
+    ),
+    action: action == null
+        ? null
+        : SnackBarAction(
+            label: actionText,
+            textColor: Colors.white,
+            onPressed: action,
+          ),
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.k8)),
+    backgroundColor: getSnackBarColor(responseGrades),
+  );
+
+  ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+}
+
+Color getSnackBarColor(ResponseGrades responseGrades) {
+  if (responseGrades == ResponseGrades.ERROR) {
+    return FYColors.mainOrange;
+  } else if (responseGrades == ResponseGrades.INFO) {
+    return FYColors.mainBlue;
+  } else if (responseGrades == ResponseGrades.WARNING) {
+    return FYColors.mainYellow;
+  } else {
+    return FYColors.mainGreen;
+  }
 }

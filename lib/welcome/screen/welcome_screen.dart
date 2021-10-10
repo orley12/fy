@@ -10,6 +10,7 @@ import 'package:food_yours_customer/welcome/controller/welcome_screen_controller
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
+import 'package:flutter/animation.dart' as animation;
 
 class WelcomeScreen extends StatelessWidget {
   final WelcomeScreenController widgetController = Get.put(WelcomeScreenController());
@@ -25,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             Obx(() => AnimatedSlide(
-                  duration: const Duration(seconds: 1),
+                  duration: Duration(seconds: 1),
                   offset: widgetController.slideOffset.value,
                   curve: Curves.bounceOut,
                   child: Image.asset(Images.welcome_screen_img, height: sh(455), width: double.infinity, fit: BoxFit.fill),

@@ -13,6 +13,7 @@ class PrimaryAppBar extends StatelessWidget {
   final Function()? backAction;
 
   PrimaryAppBar({this.showBackBtn = true, required this.title, this.elevation = 8.0, this.backAction});
+
   @override
   Widget build(BuildContext context) {
     Function sh = sHeight(context);

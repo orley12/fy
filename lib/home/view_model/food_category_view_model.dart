@@ -2,16 +2,18 @@ import 'package:food_yours_customer/resources/Images.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class FoodCategoryViewModel {
-  String categoryImagePath = "";
-  String categoryName = "";
+  String categoryImage;
+  String categoryName;
+  String categoryId;
 
-  FoodCategoryViewModel();
+  FoodCategoryViewModel({this.categoryImage = "", this.categoryName = "", this.categoryId = ""});
 
   FoodCategoryViewModel.fromJson(Map<String, dynamic>? json)
-      : categoryName = json?["categoryName"] ?? "",
-        categoryImagePath = json?["categoryImagePath"] ?? "";
+      : categoryId = json?["categoryID"] ?? "",
+        categoryName = json?["category"] ?? "",
+        categoryImage = /* json?["categoryImage"] ?? */ "https://foodyours.com/views/assets/img/bg.png";
 
-  static getList(List<dynamic>? json) {
+  static getList(List? json) {
     List<Map<String, dynamic>> foodCategories = List<Map<String, dynamic>>.from(json ?? categories);
     return List.generate(foodCategories.length, (index) => FoodCategoryViewModel.fromJson(foodCategories[index])).obs;
   }

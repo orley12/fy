@@ -6,19 +6,24 @@ import 'package:food_yours_customer/common/widget/local_theme.dart';
 import 'package:food_yours_customer/common/widget/secondary_text_input_field.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/home/widget/fy_chip.dart';
+import 'package:food_yours_customer/product_screen/controller/product_screen_controller.dart';
 import 'package:food_yours_customer/product_screen/widget/article.dart';
 import 'package:food_yours_customer/product_screen/widget/food_header.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/icons.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class ProductScreen extends StatelessWidget {
+  late ProductScreenController widgetCtrl;
+
+  ProductScreen() {
+    if (Get.isRegistered<ProductScreenController>()) Get.delete<ProductScreenController>();
+    widgetCtrl = Get.put(ProductScreenController());
+  }
   @override
   Widget build(BuildContext context) {
     final Function sh = sHeight(context);
@@ -72,7 +77,8 @@ class ProductScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Jollof Rice", style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16))),
+                              Obx(() => Text(widgetCtrl.meal.value.productName,
+                                  style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16)))),
                               SizedBox(height: sh(10)),
                               Row(
                                 children: [
@@ -117,10 +123,11 @@ class ProductScreen extends StatelessWidget {
                       ),
                       Divider(color: FYColors.subtleBlack2.withOpacity(0.8), thickness: 0.5),
                       SizedBox(height: sh(Dimens.k32)),
-                      Article(
-                        title: "Descriptions",
-                        description:
-                            "The nigerian jollof rice is known all over for it’s sweet sentilating and peppery feel, a must taste.",
+                      Obx(
+                        () => Article(
+                          title: "Descriptions",
+                          description: widgetCtrl.meal.value.productDetails,
+                        ),
                       ),
                       SizedBox(height: sh(Dimens.k32)),
                       Article(

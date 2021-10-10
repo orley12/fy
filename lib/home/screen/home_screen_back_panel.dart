@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
@@ -7,7 +6,6 @@ import 'package:food_yours_customer/home/controller/home_tab_back_panel_controll
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/home/widget/food_category_item.dart';
 import 'package:food_yours_customer/home/widget/fy_chip.dart';
-import 'package:food_yours_customer/home/widget/suggestion_card.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
@@ -18,7 +16,8 @@ import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
 
 class HomeScreenBackPanel extends StatelessWidget {
-  final HomeTabBackPanelController widgetCtrl = Get.put(HomeTabBackPanelController());
+  final HomeTabBackPanelController homeTabBackPanelCrtl = Get.put(HomeTabBackPanelController());
+  final HomeTabController homeTabCrtl = Get.find<HomeTabController>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +58,8 @@ class HomeScreenBackPanel extends StatelessWidget {
                       crossAxisCount: 3,
                       physics: NeverScrollableScrollPhysics(),
                       semanticChildCount: 6,
-                      children: List.generate(
-                          widgetCtrl.resentSearches.length, (index) => FYChip(widgetCtrl.resentSearches.value[index])),
+                      children: List.generate(homeTabBackPanelCrtl.resentSearches.length,
+                          (index) => FYChip(homeTabBackPanelCrtl.resentSearches.value[index])),
                     ),
                   ),
                   SizedBox(height: sh(Dimens.k50)),
@@ -77,10 +76,10 @@ class HomeScreenBackPanel extends StatelessWidget {
                       physics: NeverScrollableScrollPhysics(),
                       semanticChildCount: 6,
                       children: List.generate(
-                          widgetCtrl.homeTabCrtl.foodCategories.length,
-                          (index) => FoodCategoryItem(widgetCtrl.homeTabCrtl.foodCategories.value[index],
-                              onSelected: widgetCtrl.homeTabCrtl.onCategorySelected,
-                              isSelected: index == widgetCtrl.homeTabCrtl.selectedFoodCategoryIndex.value,
+                          homeTabBackPanelCrtl.homeTabCrtl.foodCategories.length,
+                          (index) => FoodCategoryItem(homeTabBackPanelCrtl.homeTabCrtl.foodCategories.value[index],
+                              onSelected: homeTabBackPanelCrtl.homeTabCrtl.onCategorySelected,
+                              isSelected: index == homeTabBackPanelCrtl.homeTabCrtl.selectedFoodCategoryIndex.value,
                               selectedFoodCategoryIndex: index)),
                     ),
                   ),
@@ -99,12 +98,11 @@ class HomeScreenBackPanel extends StatelessWidget {
                         SizedBox(width: sw(14.67)),
                         FYButton(
                           child: SvgPicture.asset(Images.settings, width: sw(26.67), height: sh(30.01)),
-                          onTap: widgetCtrl.gotoFilterScreen,
+                          onTap: () {},
                         ),
                       ],
                     ),
                     Container(),
-                    // SuggestionCard(widgetCtrl),
                   ],
                 ),
               ),
