@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_yours_customer/resources/colors.dart';
+import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class PrimaryTextField extends StatelessWidget {
   final String? hintText;
@@ -78,7 +81,7 @@ class PrimaryTextField extends StatelessWidget {
         labelText: labelText,
         errorText: errorMessage == "" || errorMessage == null ? null : errorMessage,
         counterText: "",
-        errorStyle: TextStyle(fontSize: sh(12)),
+        errorStyle: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12), color: FYColors.mainOrange),
         // contentPadding: EdgeInsets.fromLTRB(sw(0), sh(16), sw(0), sh(16)),
         hintText: hintText,
         suffixIcon: suffixIcon,

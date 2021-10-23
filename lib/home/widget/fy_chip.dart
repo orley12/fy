@@ -23,6 +23,7 @@ class FYChip extends StatelessWidget {
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: backgroundColor,
         label: SizedBox(
+          height: sh(20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

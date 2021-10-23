@@ -27,74 +27,79 @@ class CartCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.01), blurRadius: 8, offset: Offset(0, 1))],
         ),
-        child: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Center(
-                child: Container(
-                  height: sh(82),
-                  width: sh(86),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage(Images.female_chef), fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(4)),
-                ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Center(
+                    child: Container(
+                      height: sh(82),
+                      width: sh(86),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(image: AssetImage(Images.female_chef), fit: BoxFit.cover),
+                          borderRadius: BorderRadius.circular(4)),
+                    ),
+                  ),
+                  SizedBox(height: sh(7)),
+                  Container(
+                    width: sw(212),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                              style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
+                              text: "Order Chef: ",
+                            ),
+                            TextSpan(
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
+                              text: "Omowunmi O.",
+                            ),
+                          ]),
+                        ),
+                        SizedBox(height: sh(8)),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                              style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
+                              text: "Total Price: ",
+                            ),
+                            TextSpan(
+                              style: context.theme.textTheme.headline3!.copyWith(fontSize: sh(Dimens.k12)),
+                              text: "N 9,400",
+                            ),
+                          ]),
+                        ),
+                        SizedBox(height: sh(8)),
+                        RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                              style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
+                              text: "Default Address: ",
+                            ),
+                            TextSpan(
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
+                              text: "23 Barnawa, Kaduna Nigeria.",
+                            ),
+                          ]),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: sh(7)),
-              Container(
-                width: sw(212),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(children: <TextSpan>[
-                        TextSpan(
-                          style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
-                          text: "Order Chef: ",
-                        ),
-                        TextSpan(
-                          style: context.theme.textTheme.caption!
-                              .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                          text: "Omowunmi O.",
-                        ),
-                      ]),
-                    ),
-                    SizedBox(height: sh(8)),
-                    RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(children: <TextSpan>[
-                        TextSpan(
-                          style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
-                          text: "Total Price: ",
-                        ),
-                        TextSpan(
-                          style: context.theme.textTheme.headline3!.copyWith(fontSize: sh(Dimens.k12)),
-                          text: "N 9,400",
-                        ),
-                      ]),
-                    ),
-                    SizedBox(height: sh(8)),
-                    RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(children: <TextSpan>[
-                        TextSpan(
-                          style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
-                          text: "Default Address: ",
-                        ),
-                        TextSpan(
-                          style: context.theme.textTheme.caption!
-                              .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                          text: "23 Barnawa, Kaduna Nigeria.",
-                        ),
-                      ]),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

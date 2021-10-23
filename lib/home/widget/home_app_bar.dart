@@ -3,12 +3,17 @@ import 'package:food_yours_customer/common/widget/app_button.dart';
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';
+import 'package:food_yours_customer/user/view_model/user_view_model.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
 
 class HomeAppBar extends StatelessWidget {
   final HomeTabController widgetController = Get.put(HomeTabController());
+
+  final UserViewModel user;
+
+  HomeAppBar(this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class HomeAppBar extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Text(
-            "Hello, Mike",
+            "Hello, ${user.firstName}",
             style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16)),
           ),
           Expanded(child: Container()),
