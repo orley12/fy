@@ -1,4 +1,4 @@
-import 'package:food_yours_customer/common/repository/preference_repository.dart';
+import 'package:food_yours_customer/common/repository/preference_repository/preference_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceRepositoryImpl implements PreferenceRepository {
@@ -7,7 +7,8 @@ class PreferenceRepositoryImpl implements PreferenceRepository {
   PreferenceRepositoryImpl._();
 
   static Future<PreferenceRepository> getInstance() async {
-    PreferenceRepositoryImpl preferenceRepository = PreferenceRepositoryImpl._();
+    PreferenceRepositoryImpl preferenceRepository =
+        PreferenceRepositoryImpl._();
     await preferenceRepository._init();
     return preferenceRepository;
   }

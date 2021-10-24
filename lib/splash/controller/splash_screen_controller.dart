@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_yours_customer/auth/login/screen/login_screen.dart';
-import 'package:food_yours_customer/common/repository/preference_repository.dart';
+import 'package:food_yours_customer/common/repository/preference_repository/preference_repository.dart';
 import 'package:food_yours_customer/resources/enums.dart';
 import 'package:food_yours_customer/resources/integers.dart';
 import 'package:food_yours_customer/resources/strings.dart';
@@ -21,7 +21,7 @@ class SplashScreenController extends GetxController {
   String linkThatOpenedTheApp = "";
 
   @override
-  void onReady(){
+  void onReady() {
     gotoNextScreen();
     checkIfAppWasOpenedViaLink();
     setUpLinkslistenerForWhenAppIsInBackground();
@@ -30,7 +30,7 @@ class SplashScreenController extends GetxController {
 
   void gotoNextScreen() {
     timer = Timer(Duration(seconds: Integers.dashBoardTabLength), () {
-      if(linkThatOpenedTheApp == ""){
+      if (linkThatOpenedTheApp == "") {
         gotoNextScreenWhenAppIsOpenedWithoutLinks();
       } else {
         gotoNextScreenWhenAppIsOpenedWithLinks();
@@ -44,7 +44,8 @@ class SplashScreenController extends GetxController {
   }
 
   void gotoNextScreenWhenAppIsOpenedWithoutLinks() {
-    if (preferenceRepository.getBooleanPref(Strings.stageOfUSage) == StageOfUsage.REGISTERED.toString()) {
+    if (preferenceRepository.getBooleanPref(Strings.stageOfUSage) ==
+        StageOfUsage.REGISTERED.toString()) {
       pushUntil(page: LoginScreen());
     } else {
       pushUntil(page: WelcomeScreen());
@@ -52,7 +53,7 @@ class SplashScreenController extends GetxController {
   }
 
   Future<void> checkIfAppWasOpenedViaLink() async {
-    try{
+    try {
       linkThatOpenedTheApp = await getInitialLink() ?? "";
       debugPrint("WWWWWWWWWWWWWWWWWWWWW${linkThatOpenedTheApp}");
     } on PlatformException {
@@ -69,7 +70,6 @@ class SplashScreenController extends GetxController {
       }, onError: (err) {
         debugPrint("unable to getInitialLink");
       });
-    }  
-  
+    }
   }
 }

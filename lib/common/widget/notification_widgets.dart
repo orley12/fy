@@ -89,41 +89,56 @@ FYButton buildCancelButton(Function sw, Function sh) {
   );
 }
 
-showFYSnackBar({
-  String message = "",
+void showFYSnackBar({ResponseGrades responseGrades = ResponseGrades.ERROR,  String message = "",
   Function()? action,
-  String actionText = "",
-  ResponseGrades responseGrades = ResponseGrades.ERROR,
-}) {
-  final Function sh = sHeight(Get.context!);
-  final Function sw = sWidth(Get.context!);
+  String actionText = "",}) {
+    Get.showSnackbar(GetBar(
+      backgroundColor:getSnackBarColor(responseGrades),
+      // title: type == AlertType.ERROR ? 'Error' : 'Success',
+      icon: Icon(Icons.error_outline_rounded),
+      message: '$message',
+      duration: Duration(seconds: 3),
+      snackPosition: SnackPosition.TOP,
+      isDismissible: true,
+      onTap: (obj) => action != null ? action() : pop(),
+    ));
+  }
 
-  final snackBar = SnackBar(
-    content: Container(
-      height: sh(30),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: AutoSizeText(message, textAlign: TextAlign.center)),
-        ],
-      ),
-    ),
-    action: action == null
-        ? null
-        : SnackBarAction(
-            label: actionText,
-            textColor: Colors.white,
-            onPressed: action,
-          ),
-    behavior: SnackBarBehavior.floating,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.k8)),
-    backgroundColor: getSnackBarColor(responseGrades),
-  );
+// showFYSnackBar({
+//   String message = "",
+//   Function()? action,
+//   String actionText = "",
+//   ResponseGrades responseGrades = ResponseGrades.ERROR,
+// }) {
+//   final Function sh = sHeight(Get.context!);
+//   final Function sw = sWidth(Get.context!);
 
-  ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
-}
+//   final snackBar = SnackBar(
+//     content: Container(
+//       height: sh(30),
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Expanded(child: AutoSizeText(message, textAlign: TextAlign.center)),
+//         ],
+//       ),
+//     ),
+//     action: action == null
+//         ? null
+//         : SnackBarAction(
+//             label: actionText,
+//             textColor: Colors.white,
+//             onPressed: action,
+//           ),
+//     behavior: SnackBarBehavior.floating,
+//     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.k8)),
+//     backgroundColor: getSnackBarColor(responseGrades),
+//   );
+
+//   ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+// }
 
 Color getSnackBarColor(ResponseGrades responseGrades) {
   if (responseGrades == ResponseGrades.ERROR) {

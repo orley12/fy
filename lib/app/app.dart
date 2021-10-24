@@ -11,7 +11,6 @@ import 'package:get/instance_manager.dart';
 
 class App extends StatelessWidget {
   final AppController appController = Get.put(AppController());
-  final Future<FirebaseApp> firebaseApp = Firebase.initializeApp();
 
   App(AppConfig config);
   @override
@@ -21,21 +20,14 @@ class App extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
-    return FutureBuilder(
-      future: firebaseApp,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) print(snapshot.error);
-        
-        return GestureDetector(
-          onTap: appController.closeKeyBoard,
-          child: GetMaterialApp(
-            title: 'Food Yours',
-            initialBinding: AppBindings(),
-            theme: Themes.light,
-            home: SplashScreen(),
-          ),
-        );
-      }
+    return GestureDetector(
+      onTap: appController.closeKeyBoard,
+      child: GetMaterialApp(
+        title: 'Food Yours',
+        initialBinding: AppBindings(),
+        theme: Themes.light,
+        home: SplashScreen(),
+      ),
     );
   }
 }
