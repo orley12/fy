@@ -1,11 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:food_yours_customer/common/repository/hive_repository/hive_repository.dart';
+import 'package:food_yours_customer/common/service/hive_service.dart';
 import 'package:food_yours_customer/common/widget/notification_widgets.dart';
 import 'package:food_yours_customer/notification/model/notification_view_model.dart';
 import 'package:food_yours_customer/notification/screen/notification_screen.dart';
 import 'package:food_yours_customer/resources/enums.dart';
+import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/util/date_time_util.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:hive/hive.dart';
 
 class FCMService {
   requestPermission() async {
@@ -41,22 +45,24 @@ class FCMService {
     FirebaseMessaging.onMessage.listen((RemoteMessage remoteMessage) {
       // Parse the message received
       if (remoteMessage.notification != null) {
-        NotificationViewModel(
+        NotificationViewModel notificationViewModel = NotificationViewModel(
+          remoteMessage.messageId,
           remoteMessage.notification!.title,
           remoteMessage.notification!.body,
           DateTimeUtil.dateTimeToString(remoteMessage.sentTime),
         );
+        final box = Hive.box(Strings.NOTIFICATIONS_BOX).put(notificationViewModel.id!, notificationViewModel);
 
-        print(
-            'Message also contained a notification: ${remoteMessage.notification}');
+        // HiveRepository<NotificationViewModel>(Strings.NOTIFICATIONS_BOX);
+        // hs.put(notificationViewModel.id!, notificationViewModel);
+        print('Message also contained a notification: ${remoteMessage.notification}');
         showNotification(remoteMessage.notification!);
       }
     });
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-    RemoteMessage? initialMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
+    RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
       NotificationViewModel(
@@ -74,8 +80,7 @@ class FCMService {
           remoteMessage.notification!.body,
           DateTimeUtil.dateTimeToString(remoteMessage.sentTime),
         );
-        print(
-            'Message also contained a notification: ${remoteMessage.notification}');
+        print('Message also contained a notification: ${remoteMessage.notification}');
         showNotification(remoteMessage.notification!);
       }
     });

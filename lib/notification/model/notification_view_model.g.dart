@@ -20,18 +20,21 @@ class NotificationViewModelAdapter extends TypeAdapter<NotificationViewModel> {
       fields[0] as String?,
       fields[1] as String?,
       fields[2] as String?,
+      fields[3] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, NotificationViewModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.message)
+      ..write(obj.title)
       ..writeByte(2)
+      ..write(obj.message)
+      ..writeByte(3)
       ..write(obj.date);
   }
 

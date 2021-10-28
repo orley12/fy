@@ -8,6 +8,6 @@ class HiveService {
   }
 
   static openHiveBoxes() async {
-    await Hive.openLazyBox(Strings.NOTIFICATIONS_BOX);
+    await Hive.openBox(Strings.NOTIFICATIONS_BOX);
   }
 }
