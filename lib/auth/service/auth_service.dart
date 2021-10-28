@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:food_yours_customer/api/app_response.dart';
 import 'package:food_yours_customer/auth/repository/auth_repository.dart';
-import 'package:food_yours_customer/common/repository/preference_repository.dart';
+import 'package:food_yours_customer/common/repository/preference_repository/preference_repository.dart';
 import 'package:food_yours_customer/common/view_model/view_model.dart';
 import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/resources/enums.dart';
@@ -18,13 +18,16 @@ class AuthService {
 
     if (responseBody["code"] >= 200 && responseBody["code"] <= 300) {
       updateStageOfUsage();
-      return AppResponse(ResponseGrades.SUCCESS, responseBody["code"], responseBody["message"]);
+      return AppResponse(ResponseGrades.SUCCESS, responseBody["code"],
+          responseBody["message"]);
     }
-    return AppResponse(ResponseGrades.ERROR, responseBody["code"], responseBody["message"]);
+    return AppResponse(
+        ResponseGrades.ERROR, responseBody["code"], responseBody["message"]);
   }
 
   void updateStageOfUsage() {
-    preferenceRepository.setStringPref(Strings.stageOfUSage, StageOfUsage.REGISTERED.toString());
+    preferenceRepository.setStringPref(
+        Strings.stageOfUSage, StageOfUsage.REGISTERED.toString());
   }
 
   login(Map<String, dynamic> loginInformation) async {
@@ -40,11 +43,13 @@ class AuthService {
         responseBody["idToken"],
       );
     }
-    return AppResponse(ResponseGrades.ERROR, responseBody["code"], responseBody["message"]);
+    return AppResponse(
+        ResponseGrades.ERROR, responseBody["code"], responseBody["message"]);
   }
 
   initiatePasswordReset(Map<String, dynamic> passwordResetInformation) async {
-    Response response = await authRepository.initiatePasswordReset(passwordResetInformation);
+    Response response =
+        await authRepository.initiatePasswordReset(passwordResetInformation);
 
     Map<String, dynamic> responseBody = response.data;
 
@@ -55,6 +60,7 @@ class AuthService {
         responseBody["message"],
       );
     }
-    return AppResponse(ResponseGrades.ERROR, responseBody["code"], responseBody["message"]);
+    return AppResponse(
+        ResponseGrades.ERROR, responseBody["code"], responseBody["message"]);
   }
 }

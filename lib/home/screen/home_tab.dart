@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/common/widget/loader.dart';
 import 'package:food_yours_customer/common/widget/primary_app_bar.dart';
 import 'package:food_yours_customer/controller/dashbard/dashboard_screen_controller.dart';
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
@@ -32,7 +31,8 @@ class HomeTab extends StatelessWidget {
                       title: "Search",
                       backAction: homeTabCtrl.closeSearchBackDrop,
                     ))),
-          body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+          body: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
             return Container(
               child: Stack(
                 children: <Widget>[

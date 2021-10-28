@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1029208625498",
+    "project_id": "foodyours",
+    "storage_bucket": "foodyours.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029208625498:android:24efb8434585ab2a24a363",
+        "android_client_info": {
+          "package_name": "com.foodyours"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029208625498-t9p5l1guchsvqpqdhs6m5ghhlghmdjhi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.foodyours",
+            "certificate_hash": "15bd72a1895366845644812409023c4f0f9a8448"
+          }
+        },
+        {
+          "client_id": "1029208625498-sjfudlmiulerp98tpoplt6ukea64c0so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTTVOb99aBvEHQQyQZCa2TP3Vb_iH0TOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029208625498-sjfudlmiulerp98tpoplt6ukea64c0so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

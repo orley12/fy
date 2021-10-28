@@ -31,7 +31,6 @@ class LoginScreenController extends GetxController {
   clearPasswordError(_) => passwordError.value = "";
 
   RxBool isLoading = false.obs;
-
   RxBool obscurePassword = true.obs;
 
   toggleObscurePassword() => obscurePassword.value = !obscurePassword.value;
@@ -59,7 +58,8 @@ class LoginScreenController extends GetxController {
 
     isLoading.value = false;
 
-    showFYSnackBar(message: response.message, responseGrades: response.responseGrades);
+    showFYSnackBar(
+        message: response.message, responseGrades: response.responseGrades);
 
     if (response.responseGrades == ResponseGrades.ERROR) return;
 
