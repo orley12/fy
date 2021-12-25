@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
@@ -8,6 +7,7 @@ import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:get/route_manager.dart';
 import 'package:food_yours_customer/resources/enums.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get.dart';
@@ -40,20 +40,26 @@ showAlertDialog([
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(height: sh(Dimens.k20)),
-                      SvgPicture.asset(notificationIcon ?? Images.notification_symbol, width: sw(40), height: sh(40)),
+                      SvgPicture.asset(
+                          notificationIcon ?? Images.notification_symbol,
+                          width: sw(40),
+                          height: sh(40)),
                       SizedBox(height: sh(Dimens.k16)),
                       Text(title,
-                          style: Get.context!.theme.textTheme.headline5!.copyWith(
-                              fontSize: sh(Dimens.k16),
-                              fontWeight: FontWeight.w700,
-                              color: isSuccess ? FYColors.mainGreen : null)),
+                          style: Get.context!.theme.textTheme.headline5!
+                              .copyWith(
+                                  fontSize: sh(Dimens.k16),
+                                  fontWeight: FontWeight.w700,
+                                  color:
+                                      isSuccess ? FYColors.mainGreen : null)),
                       SizedBox(height: sh(Dimens.k24)),
                       Container(
                           width: sw(293),
                           child: Text(
                             message,
                             textAlign: TextAlign.center,
-                            style: Get.context!.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12)),
+                            style: Get.context!.theme.textTheme.headline4!
+                                .copyWith(fontSize: sh(Dimens.k12)),
                           )),
                       SizedBox(height: sh(Dimens.k24)),
                       FYTwinButton(
@@ -89,20 +95,23 @@ FYButton buildCancelButton(Function sw, Function sh) {
   );
 }
 
-void showFYSnackBar({ResponseGrades responseGrades = ResponseGrades.ERROR,  String message = "",
+void showFYSnackBar({
+  ResponseGrades responseGrades = ResponseGrades.ERROR,
+  String message = "",
   Function()? action,
-  String actionText = "",}) {
-    Get.showSnackbar(GetBar(
-      backgroundColor:getSnackBarColor(responseGrades),
-      // title: type == AlertType.ERROR ? 'Error' : 'Success',
-      icon: Icon(Icons.error_outline_rounded),
-      message: '$message',
-      duration: Duration(seconds: 3),
-      snackPosition: SnackPosition.TOP,
-      isDismissible: true,
-      onTap: (obj) => action != null ? action() : pop(),
-    ));
-  }
+  String actionText = "",
+}) {
+  Get.showSnackbar(GetBar(
+    backgroundColor: getSnackBarColor(responseGrades),
+    // title: type == AlertType.ERROR ? 'Error' : 'Success',
+    icon: Icon(Icons.error_outline_rounded),
+    message: '$message',
+    duration: Duration(seconds: 3),
+    snackPosition: SnackPosition.TOP,
+    isDismissible: true,
+    onTap: (obj) => action != null ? action() : pop(),
+  ));
+}
 
 // showFYSnackBar({
 //   String message = "",

@@ -1,25 +1,16 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:food_yours_customer/common/widget/option_item.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 
-class FYDropDownItem<T> extends Equatable {
-  final String name;
-  final T value;
-  FYDropDownItem(this.name, this.value);
-
-  @override
-  List<Object> get props => [name, value!];
-}
-
 class FYDropDownButton<T> extends StatelessWidget {
-  final List<FYDropDownItem<T>> options; //
+  final List<FYOptionItem<T>> options; //
 
-  final Function(FYDropDownItem<T>) onChanged; //
+  final Function(FYOptionItem<T>) onChanged; //
 
   final String hintText; //
 
-  final FYDropDownItem<T>? selectedOption;
+  final FYOptionItem<T>? selectedOption;
 
   final String errorMessage;
 
@@ -54,29 +45,39 @@ class FYDropDownButton<T> extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
               border: Border.all(
-                  color: errorMessage.isEmpty ? borderColor : FYColors.lighterOrange, style: BorderStyle.solid, width: 0.3)),
+                  color: errorMessage.isEmpty
+                      ? borderColor
+                      : FYColors.lighterOrange,
+                  style: BorderStyle.solid,
+                  width: 0.3)),
           child: DropdownButtonHideUnderline(
             child: ButtonTheme(
               alignedDropdown: true,
               focusColor: FYColors.lighterRed,
               // disabledColor: gray3,
               // splashColor: yellow,
-              child: DropdownButton<FYDropDownItem<T>>(
+              child: DropdownButton<FYOptionItem<T>>(
                 isExpanded: isExpanded,
                 dropdownColor: Colors.white,
                 focusNode: focusNode,
-                style: Theme.of(context).textTheme.headline5!.copyWith(fontSize: sh(13), fontWeight: FontWeight.w400),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(fontSize: sh(13), fontWeight: FontWeight.w400),
                 onTap: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
                 hint: Text(
                   hintText,
                   maxLines: 1,
-                  style: Theme.of(context).textTheme.headline5!.copyWith(fontSize: sh(16)),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5!
+                      .copyWith(fontSize: sh(16)),
                 ),
                 value: selectedOption,
                 items: _getDropdownItems(context, options, sh, sw),
-                onChanged: (FYDropDownItem<T>? value) => onChanged(value!),
+                onChanged: (FYOptionItem<T>? value) => onChanged(value!),
               ),
             ),
           ),
@@ -84,13 +85,20 @@ class FYDropDownButton<T> extends StatelessWidget {
         SizedBox(
           height: (1),
         ),
-        errorMessage.isEmpty ? Container() : Text(errorMessage, style: TextStyle(fontSize: sh(12), color: FYColors.lighterOrange))
+        errorMessage.isEmpty
+            ? Container()
+            : Text(errorMessage,
+                style:
+                    TextStyle(fontSize: sh(12), color: FYColors.lighterOrange))
       ],
     );
   }
 
-  List<DropdownMenuItem<FYDropDownItem<T>>>? _getDropdownItems(
-      BuildContext context, List<FYDropDownItem<T>> items, Function sh, Function sw) {
+  List<DropdownMenuItem<FYOptionItem<T>>>? _getDropdownItems(
+      BuildContext context,
+      List<FYOptionItem<T>> items,
+      Function sh,
+      Function sw) {
     // ignore: unnecessary_null_comparison
     if (items == null || items.length < 1) {
       return null;
@@ -101,7 +109,10 @@ class FYDropDownButton<T> extends StatelessWidget {
                   item.name,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: Theme.of(context).textTheme.headline5!.copyWith(fontSize: sh(13)),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5!
+                      .copyWith(fontSize: sh(13)),
                 ),
                 value: item,
               ))

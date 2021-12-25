@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
@@ -7,23 +8,25 @@ import 'package:food_yours_customer/common/widget/secondary_text_input_field.dar
 import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/home/widget/fy_chip.dart';
 import 'package:food_yours_customer/product_screen/controller/product_screen_controller.dart';
+import 'package:food_yours_customer/product_screen/widget/meal_customisation_options.dart';
 import 'package:food_yours_customer/product_screen/widget/article.dart';
 import 'package:food_yours_customer/product_screen/widget/food_header.dart';
+import 'package:food_yours_customer/product_screen/widget/meal_quantity_customisation_options.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
+import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:get/route_manager.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ProductScreen extends StatelessWidget {
-  late ProductScreenController widgetCtrl;
+  final ProductScreenController widgetCtrl = Get.put(ProductScreenController());
 
-  ProductScreen() {
-    if (Get.isRegistered<ProductScreenController>()) Get.delete<ProductScreenController>();
-    widgetCtrl = Get.put(ProductScreenController());
-  }
   @override
   Widget build(BuildContext context) {
     final Function sh = sHeight(context);
@@ -41,19 +44,60 @@ class ProductScreen extends StatelessWidget {
               children: [
                 SizedBox(width: sw(24)),
                 FYButton(
-                  child: SvgPicture.asset(Images.back, height: sh(40), width: sw(40)),
+                  child: SvgPicture.asset(Images.back,
+                      height: sh(40), width: sw(40)),
                   onTap: pop,
                 )
               ],
             ),
-            actions: [SvgPicture.asset(Images.cart, height: sh(40), width: sw(40)), SizedBox(width: sw(24))],
+            actions: [
+              FYButton(
+                onTap: widgetCtrl.gotoOrderSummary,
+                child: Stack(
+                  overflow: Overflow.visible,
+                  children: [
+                    SvgPicture.asset(Images.cart,
+                        height: sh(40), width: sw(40)),
+                    Positioned(
+                      right: sw(0),
+                      top: sh(3),
+                      child: ValueListenableBuilder<Box>(
+                        valueListenable:
+                            Hive.box(Strings.RANDOM_INFORMATION_BOX)
+                                .listenable(),
+                        builder: (context, box, _) {
+                          int cartItemsCount =
+                              box.get(Strings.CART_ITEMS_COUNT) ?? 0;
+                          return cartItemsCount < 1
+                              ? Container()
+                              : Text(
+                                  "${cartItemsCount}",
+                                  style: context.theme.textTheme.headline3!
+                                      .copyWith(
+                                    fontWeight: FontWeight.w800,
+                                    color: FYColors.mainBlue,
+                                    fontSize: sh(16),
+                                  ),
+                                );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: sw(24))
+            ],
             expandedHeight: sh(Dimens.k295),
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 color: context.theme.backgroundColor,
                 child: ClipRRect(
-                    child: Image.asset(Images.search_result, fit: BoxFit.cover),
+                    child: Obx(() => FadeInImage.assetNetwork(
+                          placeholder: Images.search_result,
+                          image: widgetCtrl.meal.value.mealPic,
+                          fit: BoxFit.cover,
+                        )),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(8.83),
                       bottomRight: Radius.circular(8.83),
@@ -77,34 +121,38 @@ class ProductScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Obx(() => Text(widgetCtrl.meal.value.productName,
-                                  style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16)))),
+                              Obx(() => Text(widgetCtrl.meal.value.name,
+                                  style: context.theme.textTheme.headline2!
+                                      .copyWith(fontSize: sh(Dimens.k16)))),
                               SizedBox(height: sh(10)),
-                              Row(
-                                children: [
-                                  Transform(
+                              Wrap(
+                                children: List.generate(
+                                  widgetCtrl.meal.value.tags.length,
+                                  (index) => Transform(
                                     transform: Matrix4.identity()..scale(0.8),
-                                    child: FYChip("Spicy",
+                                    child: FYChip(
+                                        widgetCtrl.meal.value.tags[index],
                                         backgroundColor: FYColors.lighterBlack2,
-                                        textColor: context.theme.textTheme.button!.color),
+                                        textColor: context
+                                            .theme.textTheme.button!.color),
                                   ),
-                                  Transform(
-                                    transform: Matrix4.identity()..scale(0.8),
-                                    child: FYChip("African",
-                                        backgroundColor: FYColors.lighterBlack2,
-                                        textColor: context.theme.textTheme.button!.color),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              )
                             ],
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text("Order Amount",
-                                  style: context.theme.textTheme.headline2!.copyWith(
-                                      fontSize: sh(Dimens.k12), color: FYColors.lighterBlack2, fontWeight: FontWeight.w400)),
-                              Text("N 6,600", style: context.theme.textTheme.headline3!.copyWith(fontSize: sh(Dimens.k24))),
+                                  style: context.theme.textTheme.headline2!
+                                      .copyWith(
+                                          fontSize: sh(Dimens.k12),
+                                          color: FYColors.lighterBlack2,
+                                          fontWeight: FontWeight.w400)),
+                              Obx(() => Text(
+                                  "N ${widgetCtrl.meal.value.allPrices.isEmpty ? 0.0 : widgetCtrl.meal.value.allPrices[0].value}",
+                                  style: context.theme.textTheme.headline3!
+                                      .copyWith(fontSize: sh(Dimens.k24)))),
                             ],
                           ),
                         ],
@@ -118,21 +166,25 @@ class ProductScreen extends StatelessWidget {
                           ),
                           Text("Scroll down to customize your order",
                               style: context.theme.textTheme.headline3!
-                                  .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400)),
+                                  .copyWith(
+                                      fontSize: sh(Dimens.k12),
+                                      fontWeight: FontWeight.w400)),
                         ],
                       ),
-                      Divider(color: FYColors.subtleBlack2.withOpacity(0.8), thickness: 0.5),
+                      Divider(
+                          color: FYColors.subtleBlack2.withOpacity(0.8),
+                          thickness: 0.5),
                       SizedBox(height: sh(Dimens.k32)),
                       Obx(
                         () => Article(
                           title: "Descriptions",
-                          description: widgetCtrl.meal.value.productDetails,
+                          description: widgetCtrl.meal.value.description,
                         ),
                       ),
                       SizedBox(height: sh(Dimens.k32)),
                       Article(
                         title: "Ingredients",
-                        description: "Rice, pepper, seasoning, salt, thyme, curry.",
+                        description: widgetCtrl.meal.value.ingerdients,
                       ),
                       SizedBox(height: sh(80)),
                       FoodTableHeader(
@@ -140,86 +192,62 @@ class ProductScreen extends StatelessWidget {
                         trailing: "Single option",
                       ),
                       SizedBox(height: sh(Dimens.k16)),
-                      ListView.separated(
-                        padding: EdgeInsets.zero,
-                        itemCount: 5,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) => ListTile(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                          leading: Text("1 Plate @ N2,500",
-                              style: context.theme.textTheme.headline2!
-                                  .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w600)),
-                          trailing: Radio(
-                            groupValue: null,
-                            onChanged: (Null? value) {},
-                            value: null,
-                          ),
-                        ),
-                        separatorBuilder: (BuildContext context, int index) => Divider(thickness: 0.4, height: 0),
+                      Obx(
+                        () => MealCustomizationQuantityOptions(
+                            listItems: widgetCtrl.meal.value.allPrices,
+                            onSelected: widgetCtrl.onQuantitySelected,
+                            selectedItem: widgetCtrl.selectedQuantity.value),
                       ),
                       Divider(thickness: 0.4, height: 0),
                       SizedBox(height: sh(Dimens.k32)),
-                      FoodTableHeader(leading: "Suppliments", trailing: "Select up to 4 options"),
+                      FoodTableHeader(
+                          leading: "Suppliments",
+                          trailing: "Select up to 4 options"),
                       SizedBox(height: sh(Dimens.k16)),
-                      ListView.separated(
-                        padding: EdgeInsets.zero,
-                        itemCount: 5,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) => ListTile(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                          leading: Text("Chicken @ N700",
-                              style: context.theme.textTheme.headline2!
-                                  .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w600)),
-                          trailing: Checkbox(
-                            value: true,
-                            onChanged: (_) {},
-                          ),
-                        ),
-                        separatorBuilder: (BuildContext context, int index) => Divider(thickness: 0.4, height: 0),
+                      Obx(
+                        () => MealCustomizationOptions(
+                            listItems: widgetCtrl.meal.value.suppliments,
+                            onSelected: widgetCtrl.onSupplimentSelected,
+                            selectedItems:
+                                widgetCtrl.selectedSuppliments.value),
                       ),
                       Divider(thickness: 0.4, height: 0),
                       SizedBox(height: sh(Dimens.k32)),
-                      FoodTableHeader(leading: "Extras", trailing: "Select up to 2 options"),
+                      FoodTableHeader(
+                          leading: "Extras",
+                          trailing: "Select up to 2 options"),
                       SizedBox(height: sh(Dimens.k16)),
-                      ListView.separated(
-                        padding: EdgeInsets.zero,
-                        itemCount: 2,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) => ListTile(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                          leading: Text("Dodo @ N500",
-                              style: context.theme.textTheme.headline2!
-                                  .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w600)),
-                          trailing: Checkbox(
-                            value: true,
-                            onChanged: (_) {},
-                          ),
-                        ),
-                        separatorBuilder: (BuildContext context, int index) => Divider(thickness: 0.4, height: 0),
+                      Obx(
+                        () => MealCustomizationOptions(
+                            listItems: widgetCtrl.meal.value.extras,
+                            onSelected: widgetCtrl.onExtrasSelected,
+                            selectedItems: widgetCtrl.selectedExtras.value),
                       ),
                       Divider(thickness: 0.4, height: 0),
                       SizedBox(height: sh(Dimens.k32)),
                       Text(
                         "Extra Instructions",
-                        style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k14)),
+                        style: context.theme.textTheme.headline2!
+                            .copyWith(fontSize: sh(Dimens.k14)),
                       ),
                       SizedBox(height: sh(7.0)),
                       SecondaryTextField(
                         keyboardType: TextInputType.multiline,
-                        hintText: "Please indicate any allergies or specifications",
+                        controller: widgetCtrl.noteTextController,
+                        hintText:
+                            "Please indicate any allergies or specifications",
                         maxLines: 8,
                       ),
                       SizedBox(height: sh(24.0)),
                       LocalTheme(
                           child: FYTextButton(
                             text: "Add to cart",
-                            onPressed: () {},
+                            onPressed: widgetCtrl.addToCart,
                           ),
-                          buttonStyle: context.theme.textButtonTheme.style!.copyWith(
-                            minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, Dimens.k57)),
+                          buttonStyle:
+                              context.theme.textButtonTheme.style!.copyWith(
+                            minimumSize: MaterialStateProperty.all<Size>(
+                                Size(double.infinity, Dimens.k57)),
                           )),
                       SizedBox(height: sh(20.0)),
                     ],

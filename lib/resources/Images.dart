@@ -9,7 +9,8 @@ class Images {
   static final welcome_screen_img = "assets/images/welcome_screen_img.png";
   static final food_yours_logo = "assets/images/food_yours_logo.svg";
   static final splash_screen_bg_img = "assets/images/splash_screen_bg_img.png";
-  static final registration_pattern_design = "assets/images/registration_pattern_design.svg";
+  static final registration_pattern_design =
+      "assets/images/registration_pattern_design.svg";
   static final food_category = "assets/images/food_category.png";
   static final popular_chef = "assets/images/popular_chef.png";
   static final ad_banner = "assets/images/ad_banner.svg";
@@ -24,7 +25,8 @@ class Images {
   static final chef_bg_image = "assets/images/chef_bg_image.jpg";
   static final minus_circle = "assets/images/minus_circle.svg";
   static final plus_circle = "assets/images/plus_circle.svg";
-  static final anonymous_chef_reviewer = "assets/images/anonymous_chef_reviewer.svg";
+  static final anonymous_chef_reviewer =
+      "assets/images/anonymous_chef_reviewer.svg";
   static final success_check = "assets/images/success_check.svg";
   static final qr_image = "assets/images/qr_image.png";
   static final qr_overlay = "assets/images/qr_overlay.png";
@@ -51,4 +53,5 @@ class Images {
   static final card_chip = "assets/images/card_chip.svg";
   static final loading = "assets/images/loading.gif";
   static final ng = "assets/images/ng.png";
+  static final chef_place_holder = "assets/images/place_holder.jpg";
 }

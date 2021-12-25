@@ -8,11 +8,11 @@ import 'package:food_yours_customer/auth/service/auth_service.dart';
 import 'package:food_yours_customer/common/widget/notification_widgets.dart';
 import 'package:food_yours_customer/resources/enums.dart';
 import 'package:food_yours_customer/resources/strings.dart';
-import 'package:food_yours_customer/util/navigation_util.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_utils/src/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
 
 class ForgetPasswordScreenController extends GetxController {
   final AuthService authService = Get.find();
@@ -34,8 +34,8 @@ class ForgetPasswordScreenController extends GetxController {
     }
   }
 
-  gotoRegistrationScreen() => push(page: RegistrationScreen());
-  gotoNewPasswordScreen() => push(page: NewPasswordScreen());
+  gotoRegistrationScreen() => Get.to(() => RegistrationScreen());
+  gotoNewPasswordScreen() => Get.to(() => NewPasswordScreen());
 
   void initiatePasswordReset() async {
     isLoading.value = true;
@@ -44,18 +44,20 @@ class ForgetPasswordScreenController extends GetxController {
 
     PasswordResetModel passwordResetInformation = setPasswordResetInformation();
 
-    AppResponse response = await authService.initiatePasswordReset(passwordResetInformation.toJSON());
+    AppResponse response = await authService
+        .initiatePasswordReset(passwordResetInformation.toJSON());
 
     isLoading.value = false;
 
-    showFYSnackBar(message: response.message, responseGrades: response.responseGrades);
+    showFYSnackBar(
+        message: response.message, responseGrades: response.responseGrades);
 
     if (response.responseGrades == ResponseGrades.ERROR) return;
 
     return gotoNextScreen();
   }
 
-  void gotoNextScreen() => push(page: LoginScreen());
+  void gotoNextScreen() => Get.to(() => LoginScreen());
 
   PasswordResetModel setPasswordResetInformation() {
     return PasswordResetModel(email: emailTextCtrl.text);

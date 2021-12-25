@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 
-class CardStripe extends StatelessWidget {
+class CardStrip extends StatelessWidget {
   final Widget stripeText;
 
-  CardStripe(this.stripeText);
+  CardStrip(this.stripeText);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,9 @@ class CardStripe extends StatelessWidget {
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(topRight: Radius.circular(Dimens.k50), bottomRight: Radius.circular(Dimens.k50))),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(Dimens.k50),
+                    bottomRight: Radius.circular(Dimens.k50))),
           ),
         ),
       ],

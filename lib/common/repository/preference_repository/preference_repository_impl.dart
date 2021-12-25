@@ -20,12 +20,12 @@ class PreferenceRepositoryImpl implements PreferenceRepository {
   SharedPreferences get value => _pref;
 
   @override
-  void setStringPref(String settingKey, String newChoice) async {
+  void setStringPref(String settingKey, String newChoice) {
     _pref.setString(settingKey, newChoice);
   }
 
   @override
-  Future<String> getStringPref(String settingKey) async {
+  String getStringPref(String settingKey) {
     return _pref.getString(settingKey) ?? "";
   }
 
@@ -35,17 +35,17 @@ class PreferenceRepositoryImpl implements PreferenceRepository {
   }
 
   @override
-  void setBooleanPref(String settingKey, bool newChoice) async {
+  void setBooleanPref(String settingKey, bool newChoice) {
     _pref.setBool(settingKey, newChoice);
   }
 
   @override
-  Future<bool> getBooleanPref(String settingKey) async {
-    return _pref.getBool(settingKey) ?? false;
+  Future<bool?> getBooleanPref(String settingKey) async {
+    return _pref.getBool(settingKey);
   }
 
   @override
-  void setIntPref(String settingKey, int newChoice) async {
+  void setIntPref(String settingKey, int newChoice) {
     _pref.setInt(settingKey, newChoice);
   }
 

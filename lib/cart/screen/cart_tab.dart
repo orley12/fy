@@ -4,9 +4,12 @@ import 'package:food_yours_customer/cart/widget/cart_card.dart';
 import 'package:food_yours_customer/common/widget/secondary_app_bar.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
+import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class CartTab extends StatelessWidget {
   final CartTabController widgetCtrl = Get.put(CartTabController());
@@ -20,7 +23,9 @@ class CartTab extends StatelessWidget {
       color: context.theme.backgroundColor,
       child: Scaffold(
         backgroundColor: FYColors.subtleBlack5,
-        appBar: PreferredSize(preferredSize: Size(20, sh(46.41)), child: SecondaryAppBar(title: "Food Cart")),
+        appBar: PreferredSize(
+            preferredSize: Size(20, sh(46.41)),
+            child: SecondaryAppBar(title: "Food Cart")),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: sw(24)),
           child: Column(
@@ -34,13 +39,20 @@ class CartTab extends StatelessWidget {
                     color: FYColors.lighterBlack2,
                   )),
               SizedBox(height: sh(24)),
-              ListView.separated(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) => CartCard(),
-                separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(Dimens.k24)),
-                itemCount: 2,
-              ),
+              ValueListenableBuilder<Box>(
+                  valueListenable: Hive.box(Strings.CART_BOX).listenable(),
+                  builder: (context, box, _) {
+                    return Expanded(
+                      child: ListView.separated(
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (BuildContext context, int index) =>
+                            CartCard(box.getAt(index)),
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(height: sh(Dimens.k24)),
+                        itemCount: box.values.length,
+                      ),
+                    );
+                  }),
             ],
           ),
         ),

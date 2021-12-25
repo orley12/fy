@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/cart/controller/cart_tab_controller.dart';
+import 'package:food_yours_customer/cart/model/cart_model.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
@@ -10,6 +11,10 @@ import 'package:get/instance_manager.dart';
 
 class CartCard extends StatelessWidget {
   final CartTabController widgetCtrl = Get.find<CartTabController>();
+
+  final CartModel cartItem;
+
+  CartCard(this.cartItem);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,12 @@ class CartCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: context.theme.backgroundColor,
           borderRadius: BorderRadius.circular(4),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.01), blurRadius: 8, offset: Offset(0, 1))],
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.01),
+                blurRadius: 8,
+                offset: Offset(0, 1))
+          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -39,7 +49,9 @@ class CartCard extends StatelessWidget {
                       height: sh(82),
                       width: sh(86),
                       decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage(Images.female_chef), fit: BoxFit.cover),
+                          image: DecorationImage(
+                              image: AssetImage(Images.female_chef),
+                              fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(4)),
                     ),
                   ),
@@ -54,13 +66,16 @@ class CartCard extends StatelessWidget {
                           textAlign: TextAlign.start,
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                              style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: sh(Dimens.k12)),
                               text: "Order Chef: ",
                             ),
                             TextSpan(
-                              style: context.theme.textTheme.caption!
-                                  .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                              text: "Omowunmi O.",
+                              style: context.theme.textTheme.caption!.copyWith(
+                                  fontSize: sh(Dimens.k12),
+                                  fontWeight: FontWeight.w400,
+                                  color: FYColors.darkerBlack2),
+                              text: cartItem.chefName,
                             ),
                           ]),
                         ),
@@ -69,12 +84,14 @@ class CartCard extends StatelessWidget {
                           textAlign: TextAlign.start,
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                              style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: sh(Dimens.k12)),
                               text: "Total Price: ",
                             ),
                             TextSpan(
-                              style: context.theme.textTheme.headline3!.copyWith(fontSize: sh(Dimens.k12)),
-                              text: "N 9,400",
+                              style: context.theme.textTheme.headline3!
+                                  .copyWith(fontSize: sh(Dimens.k12)),
+                              text: cartItem.total.toString(),
                             ),
                           ]),
                         ),
@@ -83,13 +100,16 @@ class CartCard extends StatelessWidget {
                           textAlign: TextAlign.start,
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                              style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12)),
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: sh(Dimens.k12)),
                               text: "Default Address: ",
                             ),
                             TextSpan(
-                              style: context.theme.textTheme.caption!
-                                  .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                              text: "23 Barnawa, Kaduna Nigeria.",
+                              style: context.theme.textTheme.caption!.copyWith(
+                                  fontSize: sh(Dimens.k12),
+                                  fontWeight: FontWeight.w400,
+                                  color: FYColors.darkerBlack2),
+                              text: cartItem.address,
                             ),
                           ]),
                         ),

@@ -11,8 +11,13 @@ class FYChip extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final bool hideDeleteButton;
+  final void Function()? onDeleted;
 
-  FYChip(this.text, {this.backgroundColor, this.textColor, this.hideDeleteButton = true});
+  FYChip(this.text,
+      {this.backgroundColor,
+      this.textColor,
+      this.hideDeleteButton = true,
+      this.onDeleted});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,8 @@ class FYChip extends StatelessWidget {
     return Chip(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: backgroundColor,
+        deleteIcon: Icon(FYIcons.x, size: Dimens.k16),
+        onDeleted: hideDeleteButton ? null : onDeleted,
         label: SizedBox(
           height: sh(20),
           child: Row(
@@ -29,17 +36,14 @@ class FYChip extends StatelessWidget {
             children: [
               SizedBox(
                 width: sw(50),
-                child: AutoSizeText(text.substring(0, text.length >= 10 ? 11 : text.length),
+                child: AutoSizeText(
+                    text.substring(0, text.length >= 10 ? 11 : text.length),
                     minFontSize: 4,
-                    style: context.theme.textTheme.headline3!
-                        .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w600, color: textColor ?? FYColors.mainBlue)),
+                    style: context.theme.textTheme.headline3!.copyWith(
+                        fontSize: Dimens.k12,
+                        fontWeight: FontWeight.w600,
+                        color: textColor ?? FYColors.mainBlue)),
               ),
-              hideDeleteButton
-                  ? Container()
-                  : Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [SizedBox(width: sw(7.0)), Icon(FYIcons.x, size: Dimens.k16)],
-                    ),
             ],
           ),
         ));

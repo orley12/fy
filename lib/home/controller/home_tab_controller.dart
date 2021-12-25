@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/api/app_response.dart';
 import 'package:food_yours_customer/auth/login/controller/login_screen_controller.dart';
+import 'package:food_yours_customer/common/view_model/global_objects.dart';
 import 'package:food_yours_customer/common/widget/notification_widgets.dart';
 import 'package:food_yours_customer/controller/dashbard/dashboard_screen_controller.dart';
-import 'package:food_yours_customer/home/service/product_service.dart';
 import 'package:food_yours_customer/home/view_model/food_category_view_model.dart';
 import 'package:food_yours_customer/home/view_model/popular_chef_view_model.dart';
 import 'package:food_yours_customer/home/view_model/user_model.dart';
+import 'package:food_yours_customer/product_screen/service/product_service.dart';
 import 'package:food_yours_customer/resources/enums.dart';
 import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/search/screen/search_screen.dart';
 import 'package:food_yours_customer/user/service/user_service.dart';
 import 'package:food_yours_customer/user/view_model/user_view_model.dart';
-import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:get/route_manager.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
+import 'package:hive/hive.dart';
 
-Rx<UserViewModel> user = UserViewModel().obs;
-
-class HomeTabController extends GetxController with SingleGetTickerProviderMixin {
-  final DashBoardScreenController dashBoardScreenController = Get.find();
+class HomeTabController extends GetxController
+    with SingleGetTickerProviderMixin {
   final UserService userService = Get.find();
   final ProductService productService = Get.find();
+  final DashBoardScreenController dashBoardScreenController = Get.find();
 
-  RxList<FoodCategoryViewModel> foodCategories = FoodCategoryViewModel.getList(null);
-  RxList<PopularChefViewModel> popularChefs = PopularChefViewModel.getList(null);
+  RxList<PopularChefViewModel> popularChefs =
+      PopularChefViewModel.getList(null);
 
   Rx<Offset> appHomeAppbarOffset = Rx(Offset(0, 0));
   Rx<Offset> searchScreenAppbarOffset = Rx(Offset(0, 2));
@@ -44,7 +45,9 @@ class HomeTabController extends GetxController with SingleGetTickerProviderMixin
     value: 1.0,
   );
 
-  bool get isPanelVisible => animationCrtl.status == AnimationStatus.completed || animationCrtl.status == AnimationStatus.forward;
+  bool get isPanelVisible =>
+      animationCrtl.status == AnimationStatus.completed ||
+      animationCrtl.status == AnimationStatus.forward;
 
   Animation<RelativeRect> getPanelAnimation(BoxConstraints constraints) {
     final height = constraints.biggest.height;
@@ -68,13 +71,12 @@ class HomeTabController extends GetxController with SingleGetTickerProviderMixin
     searchScreenAppbarOffset.value -= Offset(0, -2);
     animationCrtl.fling(velocity: 1.0);
   }
-  //  SOME ANIMATION CODE ====================================================>
+  //  END OF SOME ANIMATION CODE ====================================================>
 
   onCategorySelected(int index, FoodCategoryViewModel foodCategory) {
     selectedFoodCategoryIndex.value = index;
-    searchQuery = foodCategory.categoryName;
-    loadFoodAllMeal();
-    // push(page: SearchScreen(), arguments: foodCategory);
+    searchQuery = foodCategory.name;
+    loadAllMealUnderSelectedCategory();
   }
 
   // openAlertDialog() => showAlertDialog();
@@ -83,7 +85,13 @@ class HomeTabController extends GetxController with SingleGetTickerProviderMixin
   void onReady() async {
     await loadUserData();
     loadFoodCategories();
+    openHiveBoxes();
     super.onReady();
+  }
+
+  openHiveBoxes() async {
+    await Hive.openBox(Strings.CART_BOX);
+    await Hive.openBox(Strings.RANDOM_INFORMATION_BOX);
   }
 
   Future<void> loadUserData() async {
@@ -93,7 +101,8 @@ class HomeTabController extends GetxController with SingleGetTickerProviderMixin
 
     dashBoardScreenController.loadingMessage.value = "Fetching user data";
 
-    AppResponse<UserViewModel> response = await userService.loadUserData(requestInformation.toJSON());
+    AppResponse<UserViewModel> response =
+        await userService.loadUserData(requestInformation.toJSON());
 
     dashBoardScreenController.isLoading.value = false;
 
@@ -109,7 +118,8 @@ class HomeTabController extends GetxController with SingleGetTickerProviderMixin
   loadFoodCategories() async {
     isLoadingFoodCategories.value = true;
 
-    AppResponse<List<FoodCategoryViewModel>> response = await productService.loadFoodCategories({
+    AppResponse<List<FoodCategoryViewModel>> response =
+        await productService.loadFoodCategories({
       "sKey": Strings.apiKey,
     });
 
@@ -117,22 +127,24 @@ class HomeTabController extends GetxController with SingleGetTickerProviderMixin
 
     isLoadingFoodCategories.value = false;
 
-    foodCategories.value.assignAll(response.data!);
+    foodCategories.assignAll(response.data!);
     // foodCategories.value.
   }
 
-  loadFoodAllMeal() async {
+  loadAllMealUnderSelectedCategory() async {
     dashBoardScreenController.isLoading.value = true;
 
     dashBoardScreenController.loadingMessage.value = "loading Meals";
 
     Map<String, dynamic> requestInformation = setAllMealRequestInformation();
 
-    AppResponse response = await productService.allMeals(requestInformation);
+    AppResponse response = await productService
+        .loadAllMealUnderSelectedCategory(requestInformation);
 
     dashBoardScreenController.isLoading.value = false;
 
-    showFYSnackBar(message: response.message, responseGrades: response.responseGrades);
+    showFYSnackBar(
+        message: response.message, responseGrades: response.responseGrades);
 
     if (response.responseGrades == ResponseGrades.ERROR) return;
 
@@ -141,12 +153,13 @@ class HomeTabController extends GetxController with SingleGetTickerProviderMixin
 
   Map<String, dynamic> setAllMealRequestInformation() {
     return {
-      "categoryID": foodCategories.value[selectedFoodCategoryIndex.value].categoryId,
+      "categoryID":
+          foodCategories.value[selectedFoodCategoryIndex.value].categoryId,
       "sKey": Strings.apiKey,
     };
   }
 
-  gotoSearchScreen(meals) => push(page: SearchScreen(), arguments: {
+  gotoSearchScreen(meals) => Get.to(() => SearchScreen(), arguments: {
         "meals": meals,
         "searchQuery": searchQuery,
       });

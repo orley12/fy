@@ -4,7 +4,6 @@ import 'package:food_yours_customer/common/widget/round_image.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
 
@@ -31,12 +30,15 @@ class ChefCoverPhoto extends StatelessWidget {
                       image: DecorationImage(
                         image: AssetImage(Images.chef_bg_image),
                         fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.73), BlendMode.darken),
+                        colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(0.73), BlendMode.darken),
                       ),
                       borderRadius: BorderRadius.circular(9.85)),
                 ),
               )),
-          Align(alignment: Alignment.bottomCenter, child: RoundImage(height: sh(139), width: sw(139)))
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: RoundImage(height: sh(139), width: sw(139)))
         ],
       ),
     );

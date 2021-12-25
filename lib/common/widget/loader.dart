@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/resources/Images.dart';
-import 'package:food_yours_customer/resources/dimens.dart';
+import 'package:food_yours_customer/common/widget/loading_gif.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/utils.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:loading_overlay/loading_overlay.dart';
 
 class FYLoader extends StatelessWidget {
@@ -28,15 +28,7 @@ class FYLoader extends StatelessWidget {
         color: context.theme.backgroundColor,
         progressIndicator: Container(
           color: context.theme.backgroundColor,
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(Images.loading, width: sw(180), height: sh(90)),
-                Text(message, style: context.theme.textTheme.headline3!.copyWith(fontSize: Dimens.k16)),
-              ],
-            ),
-          ),
+          child: LoadingGif(message: message),
         ),
         isLoading: isLoading,
       ),

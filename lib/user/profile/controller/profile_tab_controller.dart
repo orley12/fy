@@ -1,15 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/common/widget/fy_switch.dart';
-import 'package:food_yours_customer/resources/colors.dart';
-import 'package:food_yours_customer/resources/icons.dart';
-import 'package:food_yours_customer/util/navigation_util.dart';
-import 'package:food_yours_customer/util/responsive_screen_util.dart';
+import 'package:food_yours_customer/common/repository/preference_repository/preference_repository.dart';
+import 'package:food_yours_customer/common/service/fcm_service.dart';
+import 'package:food_yours_customer/resources/strings.dart';
+import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
 
 class ProfileTabController extends GetxController {
-  RxBool enableNotification = false.obs;
+  final PreferenceRepository preferenceRepository = Get.find();
+  final FCMService fcmService = Get.find();
 
-  onOptionSelected(Widget page) => push(page: page);
+  RxBool enableNotification = true.obs;
+  RxBool isLoading = false.obs;
 
-  void toggleNotification(bool value) => enableNotification.value = value;
+  RxString loadingMessage = "loading notifications ...".obs;
+  RxString loadingError = "".obs;
+
+  @override
+  void onReady() {
+    getFcmPermissionStatus();
+    super.onReady();
+  }
+
+  void getFcmPermissionStatus() async {
+    enableNotification.value = await preferenceRepository
+            .getBooleanPref(Strings.IS_FCM_PERMISSION_REVOKED) ??
+        true;
+  }
+
+  onOptionSelected(Widget page) {
+    Get.to(() => page);
+  }
+
+  toggleNotification(bool value) async {
+    enableNotification.value = value;
+    isLoading.value = true;
+    loadingMessage.value = "Disabling Notifications";
+    bool isFCMPermissionRevoked = await fcmService.revokeFCMPermission();
+    isLoading.value = false;
+    saveNotificationPermissionStatus(isFCMPermissionRevoked);
+  }
+
+  void saveNotificationPermissionStatus(bool isFCMPermissionRevoked) {
+    preferenceRepository.setBooleanPref(
+        Strings.IS_FCM_PERMISSION_REVOKED, isFCMPermissionRevoked);
+  }
 }

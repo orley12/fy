@@ -26,11 +26,16 @@ class ChefProfileCard extends StatelessWidget {
             color: context.theme.backgroundColor,
             boxShadow: widgetCtrl.selectedSegment.value > 1
                 ? null
-                : [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8, offset: Offset(0, 1))]),
+                : [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 8,
+                        offset: Offset(0, 1))
+                  ]),
         child: Column(
           children: [
             Text(
-              "Omowunmi O.",
+              "${widgetCtrl.chef.value.chefName}",
               textAlign: TextAlign.center,
               style: context.theme.textTheme.headline5!.copyWith(
                 fontWeight: FontWeight.w600,
@@ -38,39 +43,30 @@ class ChefProfileCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: sh(Dimens.k10)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Transform(
-                  transform: Matrix4.identity()..scale(0.8),
-                  child:
-                      FYChip("Spicy", backgroundColor: FYColors.lighterBlack2, textColor: context.theme.textTheme.button!.color),
-                ),
-                Transform(
-                  transform: Matrix4.identity()..scale(0.8),
-                  child: FYChip("African",
-                      backgroundColor: FYColors.lighterBlack2, textColor: context.theme.textTheme.button!.color),
-                ),
-                Transform(
-                  transform: Matrix4.identity()..scale(0.8),
-                  child: FYChip("Fast Food",
-                      backgroundColor: FYColors.lighterBlack2, textColor: context.theme.textTheme.button!.color),
-                ),
-                Transform(
-                  transform: Matrix4.identity()..scale(0.8),
-                  child: FYChip("Dessert",
-                      backgroundColor: FYColors.lighterBlack2, textColor: context.theme.textTheme.button!.color),
-                ),
-              ],
-            ),
-            Text("Cheapest Dish(minimum):", style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12))),
+            Wrap(
+                children: List.generate(
+              widgetCtrl.tags.value.length,
+              (index) => Transform(
+                transform: Matrix4.identity()..scale(0.8),
+                child: FYChip(widgetCtrl.tags.value[index],
+                    backgroundColor: FYColors.lighterBlack2,
+                    textColor: context.theme.textTheme.button!.color),
+              ),
+            )),
+            Text("Cheapest Dish(minimum):",
+                style: context.theme.textTheme.headline4!
+                    .copyWith(fontSize: sh(Dimens.k12))),
             SizedBox(height: sh(Dimens.k4)),
             Text("N 4,000",
-                style: context.theme.textTheme.headline5!.copyWith(fontWeight: FontWeight.w700, fontSize: Dimens.k24)),
+                style: context.theme.textTheme.headline5!.copyWith(
+                    fontWeight: FontWeight.w700, fontSize: Dimens.k24)),
             SizedBox(height: sh(Dimens.k8)),
             Text("Delivery Time:",
-                style: context.theme.textTheme.headline5!.copyWith(fontWeight: FontWeight.w400, fontSize: Dimens.k12)),
-            Text("32hrs", style: context.theme.textTheme.headline5!.copyWith(fontWeight: FontWeight.w700, fontSize: Dimens.k24)),
+                style: context.theme.textTheme.headline5!.copyWith(
+                    fontWeight: FontWeight.w400, fontSize: Dimens.k12)),
+            Text("32hrs",
+                style: context.theme.textTheme.headline5!.copyWith(
+                    fontWeight: FontWeight.w700, fontSize: Dimens.k24)),
             SizedBox(height: sh(Dimens.k16)),
             Obx(
               () => LocalTheme(
@@ -80,35 +76,53 @@ class ChefProfileCard extends StatelessWidget {
                 ),
                 buttonStyle: subTextButtonStyle.copyWith(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        widgetCtrl.isFollowed.value ? FYColors.subtleGreen1 : FYColors.subtleBlue2),
-                    minimumSize: MaterialStateProperty.all<Size>(Size(sw(88), sh(37)))),
+                        widgetCtrl.isFollowed.value
+                            ? FYColors.subtleGreen1
+                            : FYColors.subtleBlue2),
+                    minimumSize:
+                        MaterialStateProperty.all<Size>(Size(sw(88), sh(37)))),
                 buttonTextStyle: context.theme.textTheme.headline3!.copyWith(
                     fontSize: Dimens.k16,
-                    color: widgetCtrl.isFollowed.value ? FYColors.mainGreen : FYColors.mainBlue,
+                    color: widgetCtrl.isFollowed.value
+                        ? FYColors.mainGreen
+                        : FYColors.mainBlue,
                     fontWeight: FontWeight.w400),
               ),
             ),
             SizedBox(height: sh(Dimens.k8)),
             Text("*You get notified when chef add new menu items",
-                style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12))),
+                style: context.theme.textTheme.headline4!
+                    .copyWith(fontSize: sh(Dimens.k12))),
             SizedBox(height: sh(Dimens.k24)),
             Obx(
               () => Container(
                 width: sw(326),
-                child: FYSlidingSegmentedControl(labels: {
-                  1: Text("Menu",
-                      style: widgetCtrl.selectedSegment.value == 1
-                          ? context.theme.textTheme.headline5!.copyWith(fontWeight: FontWeight.w700, fontSize: Dimens.k12)
-                          : context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12))),
-                  2: Text("Reviews",
-                      style: widgetCtrl.selectedSegment.value == 2
-                          ? context.theme.textTheme.headline5!.copyWith(fontWeight: FontWeight.w700, fontSize: Dimens.k12)
-                          : context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12))),
-                  3: Text("Chef info",
-                      style: widgetCtrl.selectedSegment.value == 3
-                          ? context.theme.textTheme.headline5!.copyWith(fontWeight: FontWeight.w700, fontSize: Dimens.k12)
-                          : context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12))),
-                }, onChanged: widgetCtrl.onSegmentSelected, selectedSegment: widgetCtrl.selectedSegment.value),
+                child: FYSlidingSegmentedControl(
+                    labels: {
+                      1: Text("Menu",
+                          style: widgetCtrl.selectedSegment.value == 1
+                              ? context.theme.textTheme.headline5!.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: Dimens.k12)
+                              : context.theme.textTheme.headline4!
+                                  .copyWith(fontSize: sh(Dimens.k12))),
+                      2: Text("Reviews",
+                          style: widgetCtrl.selectedSegment.value == 2
+                              ? context.theme.textTheme.headline5!.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: Dimens.k12)
+                              : context.theme.textTheme.headline4!
+                                  .copyWith(fontSize: sh(Dimens.k12))),
+                      3: Text("Chef info",
+                          style: widgetCtrl.selectedSegment.value == 3
+                              ? context.theme.textTheme.headline5!.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: Dimens.k12)
+                              : context.theme.textTheme.headline4!
+                                  .copyWith(fontSize: sh(Dimens.k12))),
+                    },
+                    onChanged: widgetCtrl.onSegmentSelected,
+                    selectedSegment: widgetCtrl.selectedSegment.value),
               ),
             ),
             SizedBox(height: sh(Dimens.k17)),

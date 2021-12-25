@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:food_yours_customer/common/service/hive_service.dart';
 import 'package:food_yours_customer/common/widget/fy_switch.dart';
 import 'package:food_yours_customer/common/widget/loader.dart';
 import 'package:food_yours_customer/common/widget/primary_app_bar.dart';
@@ -12,6 +14,7 @@ import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class NotificationScreen extends StatelessWidget {
   final NotificationScreenController widgetCtrl =
@@ -45,17 +48,17 @@ class NotificationScreen extends StatelessWidget {
                           style: context.theme.textTheme.headline4!
                               .copyWith(fontSize: sh(Dimens.k12))),
                       SizedBox(width: sw(12)),
-                      Obx(() => Transform.scale(
+                      Transform.scale(
                           scale: 0.65,
-                          child: FYSwitch(
-                            onChanged: widgetCtrl.toggleNotification,
-                            value: widgetCtrl.enableNotification.value,
-                            activeWidget: Icon(Icons.check,
-                                size: sh(24),
-                                color: context.theme.backgroundColor),
-                            inactiveWidget: Container(width: sw(24)),
-                            inactiveColor: FYColors.lighterBlack2,
-                          ))),
+                          child: Obx(() => FYSwitch(
+                                onChanged: widgetCtrl.toggleNotification,
+                                value: widgetCtrl.enableNotification.value,
+                                activeWidget: Icon(Icons.check,
+                                    size: sh(24),
+                                    color: context.theme.backgroundColor),
+                                inactiveWidget: Container(width: sw(24)),
+                                inactiveColor: FYColors.lighterBlack2,
+                              ))),
                     ],
                   ),
                   SizedBox(height: sh(13)),
@@ -75,14 +78,21 @@ class NotificationScreen extends StatelessWidget {
                   SizedBox(height: sh(10)),
                   Obx(
                     () => widgetCtrl.loadingError.value == ""
-                        ? ListView.builder(
-                            padding: EdgeInsets.zero,
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) =>
-                                NotificationCard(),
-                            itemCount: 10,
-                          )
+                        ? ValueListenableBuilder<Box>(
+                            valueListenable:
+                                HiveService.getNotificationsBox().listenable(),
+                            builder: (context, box, _) {
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                reverse: true,
+                                itemBuilder:
+                                    (BuildContext context, int index) =>
+                                        NotificationCard(box.getAt(index)),
+                                itemCount: box.values.length,
+                              );
+                            })
                         : Container(),
                   ),
                 ],

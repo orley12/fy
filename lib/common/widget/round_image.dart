@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/resources/Images.dart';
+import 'package:food_yours_customer/chef_screen/controller/chef_screen_controller.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:get/instance_manager.dart';
 
 class RoundImage extends StatelessWidget {
+  final ChefScreenController widgetCtrl = Get.find<ChefScreenController>();
   final double height;
   final double width;
 
@@ -14,13 +17,16 @@ class RoundImage extends StatelessWidget {
     final Function sh = sHeight(context);
     final Function sw = sWidth(context);
 
-    return Container(
+    return Obx(() => Container(
         height: height,
         width: width,
         decoration: BoxDecoration(
             color: context.theme.textTheme.button!.color,
-            border: Border.all(color: context.theme.textTheme.button!.color!, width: 4.0),
+            border: Border.all(
+                color: context.theme.textTheme.button!.color!, width: 4.0),
             shape: BoxShape.circle,
-            image: DecorationImage(image: AssetImage(Images.chef), fit: BoxFit.cover)));
+            image: DecorationImage(
+                image: NetworkImage(widgetCtrl.chef.value.chefImage),
+                fit: BoxFit.cover))));
   }
 }

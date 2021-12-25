@@ -14,7 +14,8 @@ import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
 
 class NewPasswordScreen extends StatelessWidget {
-  final NewPasswordScreenController newPasswordScreenController = Get.put(NewPasswordScreenController());
+  final NewPasswordScreenController newPasswordScreenController =
+      Get.put(NewPasswordScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,10 @@ class NewPasswordScreen extends StatelessWidget {
               SizedBox(height: sh(Dimens.k99)),
               LocalTheme(
                 backGroundColor: context.theme.primaryColor,
-                child: FYLogo(svgPath: Images.food_yours_logo),
+                child: FYLogo(
+                    svgPath: Images.food_yours_logo,
+                    height: sh(33.9),
+                    width: sw(165)),
               ),
               SizedBox(height: sh(Dimens.k70)),
               _buildLoginForm(sw, context),
@@ -39,14 +43,16 @@ class NewPasswordScreen extends StatelessWidget {
               Text(
                 "Don’t have an account?",
                 textAlign: TextAlign.center,
-                style: context.theme.textTheme.headline5!.copyWith(fontSize: sh(Dimens.k16)),
+                style: context.theme.textTheme.headline5!
+                    .copyWith(fontSize: sh(Dimens.k16)),
               ),
               // SizedBox(height: sh(Dimens.k16)),
               Center(
                 child: LocalTheme(
                   child: FYTextButton(
                     text: "Register Here",
-                    onPressed: newPasswordScreenController.gotoRegistrationScreen,
+                    onPressed:
+                        newPasswordScreenController.gotoRegistrationScreen,
                     decoration: TextDecoration.underline,
                   ),
                   buttonStyle: whiteTextButtonStyle,
@@ -79,33 +85,38 @@ class NewPasswordScreen extends StatelessWidget {
                 Text(
                   "New Password",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline1!.copyWith(fontSize: sh(Dimens.k24)),
+                  style: context.theme.textTheme.headline1!
+                      .copyWith(fontSize: sh(Dimens.k24)),
                 ),
                 SizedBox(height: sh(Dimens.k8)),
                 Text(
                   "Try not use the name on your email address",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12)),
+                  style: context.theme.textTheme.headline4!
+                      .copyWith(fontSize: sh(Dimens.k12)),
                 ),
                 SizedBox(height: sh(Dimens.k20)),
                 PrimaryTextField(
                   labelText: "New Password",
                   hintText: "****************",
-                  suffixIcon:
-                      Padding(padding: EdgeInsets.symmetric(horizontal: sw(16.0)), child: SvgPicture.asset(Images.eye_on)),
+                  suffixIcon: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: sw(16.0)),
+                      child: SvgPicture.asset(Images.eye_on)),
                 ),
                 SizedBox(height: sh(Dimens.k12)),
                 PrimaryTextField(
                   labelText: "Confirm New Password",
                   hintText: "****************",
-                  suffixIcon:
-                      Padding(padding: EdgeInsets.symmetric(horizontal: sw(16.0)), child: SvgPicture.asset(Images.eye_on)),
+                  suffixIcon: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: sw(16.0)),
+                      child: SvgPicture.asset(Images.eye_on)),
                 ),
                 SizedBox(height: sh(Dimens.k40)),
                 Center(
                   child: FYTextButton(
                     text: "Reset Password",
-                    onPressed: newPasswordScreenController.gotoPasswordResetConfirmationScreen,
+                    onPressed: newPasswordScreenController
+                        .gotoPasswordResetConfirmationScreen,
                   ),
                 ),
                 SizedBox(height: sh(Dimens.k20)),

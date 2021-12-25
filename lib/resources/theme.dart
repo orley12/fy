@@ -3,8 +3,6 @@ import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/font_family.dart';
 import 'package:food_yours_customer/resources/style.dart';
-import 'package:food_yours_customer/util/responsive_screen_util.dart';
-import 'package:get/get.dart';
 
 class Themes {
   static final light = ThemeData.light().copyWith(
@@ -27,7 +25,8 @@ class Themes {
       caption: labelText,
       button: buttonTextStyle,
     ),
-    radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(FYColors.mainRed)),
+    radioTheme: RadioThemeData(
+        fillColor: MaterialStateProperty.all<Color>(FYColors.mainRed)),
     checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.all<Color>(Colors.white),
         side: BorderSide(color: FYColors.darkerBlack6),
@@ -36,8 +35,14 @@ class Themes {
       selectedColor: FYColors.mainBlue,
       disabledColor: FYColors.subtleBlack,
       secondarySelectedColor: FYColors.mainBlue,
-      labelStyle: TextStyle(color: FYColors.mainRed, fontWeight: FontWeight.w600, fontFamily: FontFamily.mulish),
-      secondaryLabelStyle: TextStyle(color: FYColors.mainRed, fontWeight: FontWeight.w600, fontFamily: FontFamily.mulish),
+      labelStyle: TextStyle(
+          color: FYColors.mainRed,
+          fontWeight: FontWeight.w600,
+          fontFamily: FontFamily.mulish),
+      secondaryLabelStyle: TextStyle(
+          color: FYColors.mainRed,
+          fontWeight: FontWeight.w600,
+          fontFamily: FontFamily.mulish),
       brightness: Brightness.light,
       padding: EdgeInsets.all(Dimens.k8),
       backgroundColor: Colors.white,
@@ -60,6 +65,7 @@ class Themes {
       disabledColor: FYColors.subtleBlack,
       splashColor: FYColors.darkerRed,
     ),
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: FYColors.mainGreen),
+    colorScheme:
+        ColorScheme.fromSwatch().copyWith(secondary: FYColors.mainGreen),
   );
 }

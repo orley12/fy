@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_yours_customer/common/view_model/global_objects.dart';
+import 'package:food_yours_customer/common/widget/shimmer_widget.dart';
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/home/controller/home_tab_front_panel_controller.dart';
 import 'package:food_yours_customer/home/widget/ad_space.dart';
@@ -12,7 +14,8 @@ import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
 
 class HomeScreenFrontPanel extends StatelessWidget {
-  final HomeTabFrontPanelController homeTabFrontPanelCrtl = Get.put(HomeTabFrontPanelController());
+  final HomeTabFrontPanelController homeTabFrontPanelCrtl =
+      Get.put(HomeTabFrontPanelController());
   final HomeTabController homeTabCrtl = Get.find<HomeTabController>();
 
   @override
@@ -27,7 +30,8 @@ class HomeScreenFrontPanel extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: sw(25)),
           child: Text("Food Categories",
-              style: context.theme.textTheme.headline5!.copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700)),
+              style: context.theme.textTheme.headline5!.copyWith(
+                  fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700)),
         ),
         SizedBox(height: sh(Dimens.k8)),
         Obx(
@@ -41,12 +45,13 @@ class HomeScreenFrontPanel extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: sw(25)),
             semanticChildCount: 6,
             children: List.generate(
-                homeTabFrontPanelCrtl.homeTabCrtl.foodCategories.length,
+                foodCategories.value.length,
                 (index) => homeTabCrtl.isLoadingFoodCategories.value
-                    ? FoodCategoryLoadingItem()
-                    : FoodCategoryItem(homeTabCrtl.foodCategories.value[index],
+                    ? ShimmerWidget()
+                    : FoodCategoryItem(foodCategories.value[index],
                         onSelected: homeTabCrtl.onCategorySelected,
-                        isSelected: index == homeTabCrtl.selectedFoodCategoryIndex.value,
+                        isSelected: index ==
+                            homeTabCrtl.selectedFoodCategoryIndex.value,
                         selectedFoodCategoryIndex: index)),
           ),
         ),
@@ -54,7 +59,8 @@ class HomeScreenFrontPanel extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: sw(25)),
           child: Text("Popular chefs around you",
-              style: context.theme.textTheme.headline5!.copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700)),
+              style: context.theme.textTheme.headline5!.copyWith(
+                  fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700)),
         ),
         SizedBox(height: sh(Dimens.k10)),
         Container(
@@ -62,13 +68,17 @@ class HomeScreenFrontPanel extends StatelessWidget {
           padding: EdgeInsets.only(left: sw(25)),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext buildContext, int index) => Obx(() => homeTabCrtl.isLoadingFoodCategories.value
-                ? PopularChefLoadingItem()
-                : PopularChefItem(
-                    homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value[index],
-                  )),
-            itemCount: homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value.length,
-            separatorBuilder: (BuildContext context, int index) => SizedBox(width: sw(Dimens.k16)),
+            itemBuilder: (BuildContext buildContext, int index) =>
+                Obx(() => homeTabCrtl.isLoadingFoodCategories.value
+                    ? PopularChefLoadingItem()
+                    : PopularChefItem(
+                        homeTabFrontPanelCrtl
+                            .homeTabCrtl.popularChefs.value[index],
+                      )),
+            itemCount:
+                homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value.length,
+            separatorBuilder: (BuildContext context, int index) =>
+                SizedBox(width: sw(Dimens.k16)),
           ),
         ),
         SizedBox(height: sh(23.82)),
@@ -81,7 +91,8 @@ class HomeScreenFrontPanel extends StatelessWidget {
         Container(
             padding: EdgeInsets.symmetric(horizontal: sw(25)),
             child: Text("Top chefs in your city",
-                style: context.theme.textTheme.headline5!.copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700))),
+                style: context.theme.textTheme.headline5!.copyWith(
+                    fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700))),
         SizedBox(height: sh(Dimens.k8)),
         Obx(
           () => Container(
@@ -89,19 +100,25 @@ class HomeScreenFrontPanel extends StatelessWidget {
             padding: EdgeInsets.only(left: sw(25)),
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext buildContext, int index) => Obx(() => homeTabCrtl.isLoadingFoodCategories.value
-                  ? PopularChefLoadingItem()
-                  : PopularChefItem(
-                      homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value[index],
-                    )),
-              itemCount: homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value.length,
-              separatorBuilder: (BuildContext context, int index) => SizedBox(width: sw(Dimens.k16)),
+              itemBuilder: (BuildContext buildContext, int index) =>
+                  Obx(() => homeTabCrtl.isLoadingFoodCategories.value
+                      ? PopularChefLoadingItem()
+                      : PopularChefItem(
+                          homeTabFrontPanelCrtl
+                              .homeTabCrtl.popularChefs.value[index],
+                        )),
+              itemCount:
+                  homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value.length,
+              separatorBuilder: (BuildContext context, int index) =>
+                  SizedBox(width: sw(Dimens.k16)),
             ),
           ),
         ),
         SizedBox(height: sh(43.82)),
         Obx(() => Container(
-              child: homeTabCrtl.isLoadingFoodCategories.value ? LargeOrderBannerLoadingItem() : LargeOrderBanner(),
+              child: homeTabCrtl.isLoadingFoodCategories.value
+                  ? LargeOrderBannerLoadingItem()
+                  : LargeOrderBanner(),
               width: sw(Dimens.k327),
             )),
         SizedBox(height: sh(28)),

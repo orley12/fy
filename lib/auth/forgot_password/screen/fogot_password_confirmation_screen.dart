@@ -13,7 +13,8 @@ import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
 
 class ForgotPasswordConfirmationScreen extends StatelessWidget {
-  final ForgetPasswordConfirmationScreenController forgotPasswordConfirmationScreenController =
+  final ForgetPasswordConfirmationScreenController
+      forgotPasswordConfirmationScreenController =
       Get.put(ForgetPasswordConfirmationScreenController());
 
   @override
@@ -31,7 +32,10 @@ class ForgotPasswordConfirmationScreen extends StatelessWidget {
               SizedBox(height: sh(Dimens.k99)),
               LocalTheme(
                 backGroundColor: context.theme.primaryColor,
-                child: FYLogo(svgPath: Images.food_yours_logo),
+                child: FYLogo(
+                    svgPath: Images.food_yours_logo,
+                    height: sh(33.9),
+                    width: sw(165)),
               ),
               SizedBox(height: sh(Dimens.k70)),
               _buildLoginForm(sw, context),
@@ -39,13 +43,15 @@ class ForgotPasswordConfirmationScreen extends StatelessWidget {
               Text(
                 "Don’t have an account?",
                 textAlign: TextAlign.center,
-                style: context.theme.textTheme.headline5!.copyWith(fontSize: sh(Dimens.k16)),
+                style: context.theme.textTheme.headline5!
+                    .copyWith(fontSize: sh(Dimens.k16)),
               ),
               Center(
                 child: LocalTheme(
                   child: FYTextButton(
                     text: "Register Here",
-                    onPressed: forgotPasswordConfirmationScreenController.gotoRegistrationScreen,
+                    onPressed: forgotPasswordConfirmationScreenController
+                        .gotoRegistrationScreen,
                     decoration: TextDecoration.underline,
                   ),
                   buttonStyle: whiteTextButtonStyle,
@@ -78,21 +84,26 @@ class ForgotPasswordConfirmationScreen extends StatelessWidget {
                 Text(
                   "Confirm Email",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline1!.copyWith(fontSize: sh(Dimens.k24)),
+                  style: context.theme.textTheme.headline1!
+                      .copyWith(fontSize: sh(Dimens.k24)),
                 ),
                 SizedBox(height: sh(Dimens.k8)),
                 RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "We sent a link to confirm your supplied email address"
+                        text:
+                            "We sent a link to confirm your supplied email address"
                             "please click the link in the email we sent to verify"
                             "your email. Email: ",
-                        style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12)),
+                        style: context.theme.textTheme.headline4!
+                            .copyWith(fontSize: sh(Dimens.k12)),
                       ),
                       TextSpan(
                         text: "johndoe@gmail.com",
-                        style: context.theme.textTheme.headline1!.copyWith(fontSize: sh(Dimens.k12), color: FYColors.subtleBlue),
+                        style: context.theme.textTheme.headline1!.copyWith(
+                            fontSize: sh(Dimens.k12),
+                            color: FYColors.subtleBlue),
                         // recognizer: TapGestureRecognizer()
                         //   ..onTap = () async {
                         //     final url = 'johndoe@gmail.com';

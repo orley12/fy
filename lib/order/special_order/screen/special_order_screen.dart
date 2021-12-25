@@ -6,6 +6,7 @@ import 'package:food_yours_customer/common/widget/fy_drop_down.dart';
 import 'package:food_yours_customer/common/widget/fy_country_code_picker.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
 import 'package:food_yours_customer/common/widget/local_theme.dart';
+import 'package:food_yours_customer/common/widget/option_item.dart';
 import 'package:food_yours_customer/common/widget/primary_app_bar.dart';
 import 'package:food_yours_customer/common/widget/secondary_text_input_field.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
@@ -19,7 +20,8 @@ import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
 
 class SpecialOrderScreen extends StatelessWidget {
-  final SpecialOrderScreenController widgetController = Get.put(SpecialOrderScreenController());
+  final SpecialOrderScreenController widgetController =
+      Get.put(SpecialOrderScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,30 +33,40 @@ class SpecialOrderScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: FYColors.subtleBlack5,
-          appBar: PreferredSize(preferredSize: Size(20, sh(46.41)), child: PrimaryAppBar(title: "Special order")),
+          appBar: PreferredSize(
+              preferredSize: Size(20, sh(46.41)),
+              child: PrimaryAppBar(title: "Special order")),
           body: ListView(
             padding: EdgeInsets.symmetric(horizontal: sw(24)),
             children: [
               SizedBox(height: sh(30)),
-              AutoSizeText("Order for anniversaries, house warming, new jobs etc.",
+              AutoSizeText(
+                  "Order for anniversaries, house warming, new jobs etc.",
                   minFontSize: 4,
                   maxLines: 3,
-                  style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12), color: FYColors.darkerBlack3)),
+                  style: context.theme.textTheme.headline4!.copyWith(
+                      fontSize: sh(Dimens.k12), color: FYColors.darkerBlack3)),
               SizedBox(height: sh(48)),
               Text(
                 "Requester Details",
-                style: context.theme.textTheme.caption!
-                    .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700, color: FYColors.darkerBlack2),
+                style: context.theme.textTheme.caption!.copyWith(
+                    fontSize: sh(Dimens.k16),
+                    fontWeight: FontWeight.w700,
+                    color: FYColors.darkerBlack2),
               ),
               SizedBox(height: sh(24)),
               InputFieldWrapper(
                 labelText: "Full Name",
-                child: SecondaryTextField(hintText: "Mike Aderongbe", hintTextColor: FYColors.subtleBlack),
+                child: SecondaryTextField(
+                    hintText: "Mike Aderongbe",
+                    hintTextColor: FYColors.subtleBlack),
               ),
               SizedBox(height: sh(16)),
               InputFieldWrapper(
                 labelText: "Email",
-                child: SecondaryTextField(hintText: "mikeaderongbe31@gmail.com", hintTextColor: FYColors.subtleBlack),
+                child: SecondaryTextField(
+                    hintText: "mikeaderongbe31@gmail.com",
+                    hintTextColor: FYColors.subtleBlack),
               ),
               SizedBox(height: sh(16)),
               InputFieldWrapper(
@@ -69,7 +81,7 @@ class SpecialOrderScreen extends StatelessWidget {
                       bodyStyle2: context.theme.textTheme.bodyText2,
                       child: FYCountryCodePicker(
                           selectedCountryCode: CountryCode(
-                        flagUri: Images.ng,
+                        flagUri: Images.chef_place_holder,
                         name: "Nigeria",
                         code: "NG",
                         dialCode: "+234",
@@ -82,14 +94,18 @@ class SpecialOrderScreen extends StatelessWidget {
               SizedBox(height: sh(40)),
               Text(
                 "Event Details",
-                style: context.theme.textTheme.caption!
-                    .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700, color: FYColors.darkerBlack2),
+                style: context.theme.textTheme.caption!.copyWith(
+                    fontSize: sh(Dimens.k16),
+                    fontWeight: FontWeight.w700,
+                    color: FYColors.darkerBlack2),
               ),
               SizedBox(height: sh(16)),
               Text(
                 "Type of Event",
-                style: context.theme.textTheme.caption!
-                    .copyWith(fontSize: Dimens.k16, fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
+                style: context.theme.textTheme.caption!.copyWith(
+                    fontSize: Dimens.k16,
+                    fontWeight: FontWeight.w400,
+                    color: FYColors.darkerBlack2),
               ),
               SizedBox(height: sh(16)),
               ListView.builder(
@@ -108,12 +124,16 @@ class SpecialOrderScreen extends StatelessWidget {
                     textAlign: TextAlign.start,
                     text: TextSpan(children: <TextSpan>[
                       TextSpan(
-                        style: context.theme.textTheme.caption!
-                            .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
+                        style: context.theme.textTheme.caption!.copyWith(
+                            fontSize: sh(Dimens.k16),
+                            fontWeight: FontWeight.w400,
+                            color: FYColors.darkerBlack2),
                         text: "Corporate Events",
                       ),
                       TextSpan(
-                        style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k16), color: FYColors.lighterBlack2),
+                        style: context.theme.textTheme.caption!.copyWith(
+                            fontSize: sh(Dimens.k16),
+                            color: FYColors.lighterBlack2),
                         text: "(e.g. Board Meetings,Company Retreat, etc)",
                       ),
                     ]),
@@ -127,7 +147,8 @@ class SpecialOrderScreen extends StatelessWidget {
                   hintText: "25 / 07 / 1990",
                   hintTextColor: FYColors.subtleBlack,
                   suffixIcon: Container(
-                    padding: EdgeInsets.symmetric(horizontal: sw(4.0), vertical: sh(4.0)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: sw(4.0), vertical: sh(4.0)),
                     margin: EdgeInsets.only(right: sw(8)),
                     child: SvgPicture.asset(Images.calender),
                   ),
@@ -141,8 +162,11 @@ class SpecialOrderScreen extends StatelessWidget {
                   hintTextColor: FYColors.subtleBlack,
                   suffixIcon: Container(
                       width: sw(80),
-                      child:
-                          FYDropDownButton(hintText: "PM", options: [], onChanged: (FYDropDownItem value) {}, errorMessage: "")),
+                      child: FYDropDownButton(
+                          hintText: "PM",
+                          options: [],
+                          onChanged: (FYOptionItem value) {},
+                          errorMessage: "")),
                 ),
               ),
               SizedBox(height: sh(16)),

@@ -12,27 +12,36 @@ class PaymentMethodCard extends StatelessWidget {
   final TextSpan cardValueText;
   final bool isImage;
   final Function()? onTap;
+  final bool isSelected;
 
-  PaymentMethodCard(
-      {required this.cardTitle,
-      required this.cardValueText,
-      required this.cardKeyText,
-      this.isImage = false,
-      this.onTap});
+  PaymentMethodCard({
+    required this.cardTitle,
+    required this.cardValueText,
+    required this.cardKeyText,
+    required this.isSelected,
+    this.isImage = false,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final Function sh = sHeight(context);
     final Function sw = sWidth(context);
 
-    return FYButton(
-      onTap: onTap,
-      child: Expanded(
+    return Expanded(
+      child: FYButton(
+        onTap: onTap,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(Dimens.k12),
           child: Card(
             elevation: 0,
             child: Container(
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color:
+                          isSelected ? FYColors.mainBlue : Colors.transparent,
+                      width: 0.5),
+                  borderRadius: BorderRadius.circular(8)),
               padding:
                   EdgeInsets.symmetric(horizontal: sw(8), vertical: sh(4.75)),
               height: sh(74),
@@ -44,7 +53,9 @@ class PaymentMethodCard extends StatelessWidget {
                       child: Icon(
                         Icons.check_circle,
                         size: 12,
-                        color: FYColors.darkerBlack4,
+                        color: isSelected
+                            ? FYColors.mainBlue
+                            : FYColors.darkerBlack4,
                       )),
                   SizedBox(height: sh(4.75)),
                   cardTitle,
