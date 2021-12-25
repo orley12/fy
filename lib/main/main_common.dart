@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/api/api.dart';
 import 'package:food_yours_customer/app/app.dart';
+import 'package:food_yours_customer/app/app_bindings.dart';
 import 'package:food_yours_customer/common/service/hive_service.dart';
 import 'package:food_yours_customer/config/app_config.dart';
-import 'package:food_yours_customer/resources/strings.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -13,6 +13,8 @@ late ApiClient api;
 
 void mainCommon(AppConfig config) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  AppBindings ab = AppBindings()..dependencies();
 
   api = ApiClient(Dio())
     ..setBaseOptions()
@@ -22,9 +24,8 @@ void mainCommon(AppConfig config) async {
   await Hive.initFlutter();
 
   HiveService.setUpHiveAdapters();
-  await HiveService.openHiveBoxes();
 
-  runApp(App(config));
+  runApp(App(config, ab));
 }
 
 

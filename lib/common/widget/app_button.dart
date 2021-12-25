@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class FYButton extends StatelessWidget {
   final Widget child;
   final Function()? onTap;
-  FocusNode? focusNode;
+  final FocusNode? focusNode;
 
   FYButton({required this.child, required this.onTap, this.focusNode});
 

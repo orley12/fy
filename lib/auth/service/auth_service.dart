@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:food_yours_customer/api/app_response.dart';
 import 'package:food_yours_customer/auth/repository/auth_repository.dart';
 import 'package:food_yours_customer/common/repository/preference_repository/preference_repository.dart';
-import 'package:food_yours_customer/common/view_model/view_model.dart';
 import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/resources/enums.dart';
 import 'package:get/instance_manager.dart';
@@ -27,7 +26,7 @@ class AuthService {
 
   void updateStageOfUsage() {
     preferenceRepository.setStringPref(
-        Strings.stageOfUSage, StageOfUsage.REGISTERED.toString());
+        Strings.stageOfUsage, StageOfUsage.REGISTERED.toString());
   }
 
   login(Map<String, dynamic> loginInformation) async {

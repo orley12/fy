@@ -5,7 +5,7 @@ import 'package:food_yours_customer/fund_wallet/screen/fund_wallet.dart';
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:get/route_manager.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
@@ -26,23 +26,30 @@ class WalletBalance extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Wallet Balance", style: context.theme.textTheme.caption!.copyWith(fontSize: sh(12))),
+              Text("Wallet Balance",
+                  style: context.theme.textTheme.caption!
+                      .copyWith(fontSize: sh(12))),
               SizedBox(height: sh(4.0)),
               RichText(
                 textAlign: TextAlign.start,
                 text: TextSpan(children: <TextSpan>[
                   TextSpan(
-                    style: context.theme.textTheme.caption!.copyWith(fontSize: sh(12)),
+                    style: context.theme.textTheme.caption!
+                        .copyWith(fontSize: sh(12)),
                     text: "N ",
                   ),
                   TextSpan(
-                    style: context.theme.textTheme.caption!
-                        .copyWith(fontSize: sh(Dimens.k24), fontWeight: FontWeight.w700, color: FYColors.mainBlue),
+                    style: context.theme.textTheme.caption!.copyWith(
+                        fontSize: sh(Dimens.k24),
+                        fontWeight: FontWeight.w700,
+                        color: FYColors.mainBlue),
                     text: "269,550 ",
                   ),
                   TextSpan(
-                    style: context.theme.textTheme.caption!
-                        .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w400, color: FYColors.mainBlue),
+                    style: context.theme.textTheme.caption!.copyWith(
+                        fontSize: sh(Dimens.k12),
+                        fontWeight: FontWeight.w400,
+                        color: FYColors.mainBlue),
                     text: ".00",
                   ),
                 ]),
@@ -55,7 +62,7 @@ class WalletBalance extends StatelessWidget {
                   firstBtnColor: FYColors.subtleBlue2,
                   secondBtnText: "Fund Wallet",
                   firstBtnAction: () {},
-                  secondBtnAction: () => push(page: FundWalletScreen()),
+                  secondBtnAction: () => Get.to(() => FundWalletScreen()),
                   spaced: true,
                   secondBtnColor: FYColors.mainBlue)
             ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:food_yours_customer/auth/login/controller/login_screen_controller.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
@@ -38,7 +39,10 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: sh(Dimens.k99)),
                 LocalTheme(
                   backGroundColor: context.theme.primaryColor,
-                  child: FYLogo(svgPath: Images.food_yours_logo, height: sh(33.9), width: sw(165)),
+                  child: FYLogo(
+                      svgPath: Images.food_yours_logo,
+                      height: sh(33.9),
+                      width: sw(165)),
                 ),
                 SizedBox(height: sh(Dimens.k70)),
                 buildLoginForm(sw, context),
@@ -46,13 +50,14 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   "Don’t have an account?",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline5!.copyWith(fontSize: sh(Dimens.k16)),
+                  style: context.theme.textTheme.headline5!
+                      .copyWith(fontSize: sh(Dimens.k16)),
                 ),
                 Center(
                   child: LocalTheme(
                     child: FYTextButton(
                       text: "Register Here",
-                      onPressed: widgetCtrl.validateInputs,
+                      onPressed: widgetCtrl.gotoRegistrationScreen,
                       decoration: TextDecoration.underline,
                     ),
                     buttonStyle: whiteTextButtonStyle,
@@ -86,13 +91,15 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   "Sign In",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline1!.copyWith(fontSize: sh(Dimens.k24)),
+                  style: context.theme.textTheme.headline1!
+                      .copyWith(fontSize: sh(Dimens.k24)),
                 ),
                 SizedBox(height: sh(Dimens.k8)),
                 Text(
                   "Welcome back, please sign into your account",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12)),
+                  style: context.theme.textTheme.headline4!
+                      .copyWith(fontSize: sh(Dimens.k12)),
                 ),
                 SizedBox(height: sh(Dimens.k22)),
                 PrimaryTextField(
@@ -114,7 +121,9 @@ class LoginScreen extends StatelessWidget {
                       onTap: widgetCtrl.toggleObscurePassword,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: sw(16.0)),
-                        child: widgetCtrl.obscurePassword.value ? Icon(Feather.eye_off) : Icon(Feather.eye),
+                        child: widgetCtrl.obscurePassword.value
+                            ? Icon(Feather.eye_off)
+                            : Icon(Feather.eye),
                       )),
                 ),
                 SizedBox(height: sh(Dimens.k26)),
@@ -125,7 +134,8 @@ class LoginScreen extends StatelessWidget {
                       onPressed: widgetCtrl.validateInputs,
                     ),
                     buttonStyle: mainTextButtonStyle.copyWith(
-                        minimumSize: MaterialStateProperty.all<Size>(Size(sw(Dimens.k327), sh(Dimens.k57)))),
+                        minimumSize: MaterialStateProperty.all<Size>(
+                            Size(sw(Dimens.k327), sh(Dimens.k57)))),
                   ),
                 ),
                 Center(

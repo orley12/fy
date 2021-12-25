@@ -8,3 +8,10 @@ enum ResponseGrades {
 enum StageOfUsage {
   REGISTERED,
 }
+
+enum PaymentMethod {
+  WALLET,
+  POINTS,
+  PAYSTACK,
+  DEFAULT,
+}

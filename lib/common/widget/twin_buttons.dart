@@ -4,6 +4,7 @@ import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:get/route_manager.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
@@ -39,9 +40,11 @@ class FYTwinButton extends StatelessWidget {
         child: LocalTheme(
           child: FYTextButton(text: firstBtnText, onPressed: pop),
           buttonStyle: whiteTextButtonStyle.copyWith(
-              minimumSize: MaterialStateProperty.all<Size>(Size(sw(133), sh(Dimens.k47))),
+              minimumSize: MaterialStateProperty.all<Size>(
+                  Size(sw(133), sh(Dimens.k47))),
               backgroundColor: MaterialStateProperty.all<Color>(firstBtnColor)),
-          buttonTextStyle: context.theme.textTheme.caption!.copyWith(fontWeight: FontWeight.w400, color: firstBtnTextColor),
+          buttonTextStyle: context.theme.textTheme.caption!
+              .copyWith(fontWeight: FontWeight.w400, color: firstBtnTextColor),
         ),
       ),
       SizedBox(width: sw(spaced ? 8.13 : 0.0)),
@@ -49,10 +52,13 @@ class FYTwinButton extends StatelessWidget {
           ? Container()
           : Center(
               child: LocalTheme(
-                child: FYTextButton(text: secondBtnText, onPressed: secondBtnAction),
+                child: FYTextButton(
+                    text: secondBtnText, onPressed: secondBtnAction),
                 buttonStyle: context.theme.textButtonTheme.style!.copyWith(
-                    minimumSize: MaterialStateProperty.all<Size>(Size(sw(133), sh(Dimens.k47))),
-                    backgroundColor: MaterialStateProperty.all<Color>(secondBtnColor)),
+                    minimumSize: MaterialStateProperty.all<Size>(
+                        Size(sw(133), sh(Dimens.k47))),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(secondBtnColor)),
                 buttonTextStyle: context.theme.textTheme.button!.copyWith(
                   fontWeight: FontWeight.w400,
                 ),

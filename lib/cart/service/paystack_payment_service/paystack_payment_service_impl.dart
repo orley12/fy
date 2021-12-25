@@ -7,7 +7,7 @@ class PayStackPaymentServiceImpl implements PayStackPaymentService {
   final PaystackPlugin plugin = PaystackPlugin();
 
   PayStackPaymentServiceImpl() {
-    plugin.initialize(publicKey: Strings.PAY_STACK_PUB_API_KEY);
+    plugin.initialize(publicKey: Strings.IS_FCM_PERMISSION_REVOKED);
   }
 
   checkOut(Charge charge) async {

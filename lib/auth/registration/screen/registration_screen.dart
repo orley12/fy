@@ -18,7 +18,8 @@ import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
 
 class RegistrationScreen extends StatelessWidget {
-  final RegistrationScreenController widgetCtrl = Get.put(RegistrationScreenController());
+  final RegistrationScreenController widgetCtrl =
+      Get.put(RegistrationScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,10 @@ class RegistrationScreen extends StatelessWidget {
                   SizedBox(height: sh(Dimens.k99)),
                   LocalTheme(
                     backGroundColor: context.theme.primaryColor,
-                    child: FYLogo(svgPath: Images.food_yours_logo),
+                    child: FYLogo(
+                        svgPath: Images.food_yours_logo,
+                        height: sh(33.9),
+                        width: sw(165)),
                   ),
                   SizedBox(height: sh(Dimens.k70)),
                   _buildRegistrationForm(sw, context),
@@ -47,7 +51,8 @@ class RegistrationScreen extends StatelessWidget {
                   Text(
                     "Already a user?",
                     textAlign: TextAlign.center,
-                    style: context.theme.textTheme.headline5!.copyWith(fontSize: sh(Dimens.k16)),
+                    style: context.theme.textTheme.headline5!
+                        .copyWith(fontSize: sh(Dimens.k16)),
                   ),
                   // SizedBox(height: sh(Dimens.k16)),
                   Center(
@@ -89,13 +94,15 @@ class RegistrationScreen extends StatelessWidget {
                 Text(
                   "Register",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline1!.copyWith(fontSize: sh(Dimens.k24)),
+                  style: context.theme.textTheme.headline1!
+                      .copyWith(fontSize: sh(Dimens.k24)),
                 ),
                 SizedBox(height: sh(Dimens.k8)),
                 Text(
                   "Welcome, create an account to get started",
                   textAlign: TextAlign.center,
-                  style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12)),
+                  style: context.theme.textTheme.headline4!
+                      .copyWith(fontSize: sh(Dimens.k12)),
                 ),
                 SizedBox(height: sh(Dimens.k26)),
                 Obx(() => PrimaryTextField(
@@ -123,7 +130,8 @@ class RegistrationScreen extends StatelessWidget {
                             bodyStyle2: context.theme.textTheme.bodyText2,
                             child: FYCountryCodePicker(
                               onChanged: widgetCtrl.onCountrySelected,
-                              selectedCountryCode: widgetCtrl.selectedCountryCode.value,
+                              selectedCountryCode:
+                                  widgetCtrl.selectedCountryCode.value,
                             ),
                           ),
                         ),
@@ -158,7 +166,9 @@ class RegistrationScreen extends StatelessWidget {
                           onTap: widgetCtrl.toggleObscurePassword,
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: sw(16.0)),
-                            child: widgetCtrl.obscurePassword.value ? Icon(Feather.eye_off) : Icon(Feather.eye),
+                            child: widgetCtrl.obscurePassword.value
+                                ? Icon(Feather.eye_off)
+                                : Icon(Feather.eye),
                           )),
                     )),
                 SizedBox(height: sh(Dimens.k8)),
@@ -173,7 +183,9 @@ class RegistrationScreen extends StatelessWidget {
                           onTap: widgetCtrl.toggleObscureConfirmPassword,
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: sw(16.0)),
-                            child: widgetCtrl.obscureConfirmPassword.value ? Icon(Feather.eye_off) : Icon(Feather.eye),
+                            child: widgetCtrl.obscureConfirmPassword.value
+                                ? Icon(Feather.eye_off)
+                                : Icon(Feather.eye),
                           )),
                     )),
                 SizedBox(height: sh(Dimens.k22)),

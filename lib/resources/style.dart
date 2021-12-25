@@ -81,14 +81,17 @@ TextStyle buttonTextStyle = TextStyle(
 ButtonStyle mainTextButtonStyle = ButtonStyle(
   minimumSize: MaterialStateProperty.all<Size>(Size(Dimens.k327, Dimens.k57)),
   backgroundColor: MaterialStateProperty.all<Color>(FYColors.mainRed),
-  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
+  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
 );
 
 ButtonStyle mainOutlineButtonStyle = ButtonStyle(
   minimumSize: MaterialStateProperty.all<Size>(Size(Dimens.k98, Dimens.k32)),
   backgroundColor: MaterialStateProperty.all<Color>(FYColors.mainRed),
-  side: MaterialStateProperty.all<BorderSide>(BorderSide(color: Colors.white, width: Dimens.k2)),
-  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
+  side: MaterialStateProperty.all<BorderSide>(
+      BorderSide(color: Colors.white, width: Dimens.k2)),
+  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
 );
 
 ButtonStyle subTextButtonStyle = mainTextButtonStyle.copyWith(

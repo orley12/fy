@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_yours_customer/cart/model/cart_model.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
 import 'package:food_yours_customer/order/orders/controller/orders_tab_controller.dart';
 import 'package:food_yours_customer/resources/Images.dart';
@@ -11,13 +12,17 @@ import 'package:get/instance_manager.dart';
 class OrderCard extends StatelessWidget {
   final widgetCtrl = Get.find<OrdersTabController>();
 
+  final CartModel cartItem;
+
+  OrderCard(this.cartItem);
+
   @override
   Widget build(BuildContext context) {
     final Function sh = sHeight(context);
     final Function sw = sWidth(context);
 
     return FYButton(
-      onTap: widgetCtrl.gotoOrderSummaryScreen,
+      onTap: () => widgetCtrl.gotoOrderSummaryScreen(cartItem),
       child: Container(
         height: sh(98),
         width: double.maxFinite,
@@ -25,7 +30,12 @@ class OrderCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: context.theme.backgroundColor,
           borderRadius: BorderRadius.circular(4),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.01), blurRadius: 8, offset: Offset(0, 1))],
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.01),
+                blurRadius: 8,
+                offset: Offset(0, 1))
+          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -39,7 +49,9 @@ class OrderCard extends StatelessWidget {
                       height: sh(82),
                       width: sh(86),
                       decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage(Images.search_result), fit: BoxFit.cover),
+                          image: DecorationImage(
+                              image: NetworkImage(cartItem.chefImageUrl),
+                              fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(4)),
                     ),
                   ),
@@ -54,13 +66,17 @@ class OrderCard extends StatelessWidget {
                           textAlign: TextAlign.start,
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                              style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: Dimens.k12),
                               text: "Order Items: ",
                             ),
                             TextSpan(
-                              style: context.theme.textTheme.caption!
-                                  .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                              text: "Ofada Rice(1x), Zobo(2x), Doughnuts(5x).",
+                              style: context.theme.textTheme.caption!.copyWith(
+                                  fontSize: Dimens.k12,
+                                  fontWeight: FontWeight.w400,
+                                  color: FYColors.darkerBlack2),
+                              text:
+                                  "${cartItem.quantity["name"]} ${cartItem.suppliments.isNotEmpty ? cartItem.suppliments.first["name"] : ""}, ${cartItem.extras.isNotEmpty ? cartItem.extras.first["name"] : ""}",
                             ),
                           ]),
                         ),
@@ -69,12 +85,14 @@ class OrderCard extends StatelessWidget {
                           textAlign: TextAlign.start,
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                              style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: Dimens.k12),
                               text: "Price: ",
                             ),
                             TextSpan(
-                              style: context.theme.textTheme.headline3!.copyWith(fontSize: Dimens.k12),
-                              text: "N 5,600",
+                              style: context.theme.textTheme.headline3!
+                                  .copyWith(fontSize: Dimens.k12),
+                              text: cartItem.total.toString(),
                             ),
                           ]),
                         ),
@@ -83,13 +101,16 @@ class OrderCard extends StatelessWidget {
                           textAlign: TextAlign.start,
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                              style: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k12),
+                              style: context.theme.textTheme.caption!
+                                  .copyWith(fontSize: Dimens.k12),
                               text: "Chef: ",
                             ),
                             TextSpan(
-                              style: context.theme.textTheme.caption!
-                                  .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
-                              text: "Omowunmi O",
+                              style: context.theme.textTheme.caption!.copyWith(
+                                  fontSize: Dimens.k12,
+                                  fontWeight: FontWeight.w400,
+                                  color: FYColors.darkerBlack2),
+                              text: cartItem.chefName,
                             ),
                           ]),
                         ),

@@ -21,60 +21,64 @@ class NewAddressScreen extends StatelessWidget {
       color: context.theme.backgroundColor,
       child: Scaffold(
         backgroundColor: FYColors.subtleBlack5,
-        appBar: PreferredSize(preferredSize: Size(sw(20), sh(46.41)), child: SecondaryAppBar(title: "New Address")),
-        body: ListView(padding: EdgeInsets.symmetric(horizontal: sw(24), vertical: sh(24)), children: [
-          InputFieldWrapper(
-            labelText: "Address Line 1",
-            child: SecondaryTextField(
-              hintText: "Plot 5 Ibeju-Lekki",
-              hintTextColor: FYColors.subtleBlack,
-            ),
-          ),
-          SizedBox(height: sh(16)),
-          InputFieldWrapper(
-            labelText: "Address Line 2",
-            child: SecondaryTextField(
-              hintText: "Lagos Nigeria",
-              hintTextColor: FYColors.subtleBlack,
-            ),
-          ),
-          SizedBox(height: sh(16)),
-          InputFieldWrapper(
-            labelText: "Contact Number",
-            child: SecondaryTextField(
-              hintText: "0701 234 5678",
-              hintTextColor: FYColors.subtleBlack,
-              prefixIcon: SizedBox(
-                width: 85,
-                child: LocalTheme(
-                  buttonTextStyle: context.theme.textTheme.bodyText1,
-                  bodyStyle2: context.theme.textTheme.bodyText2,
-                  child: FYCountryCodePicker(
-                      selectedCountryCode: CountryCode(
-                    flagUri: Images.ng,
-                    name: "Nigeria",
-                    code: "NG",
-                    dialCode: "+234",
-                  )),
-                  //     SizedBox(
+        appBar: PreferredSize(
+            preferredSize: Size(sw(20), sh(46.41)),
+            child: SecondaryAppBar(title: "New Address")),
+        body: ListView(
+            padding: EdgeInsets.symmetric(horizontal: sw(24), vertical: sh(24)),
+            children: [
+              InputFieldWrapper(
+                labelText: "Address Line 1",
+                child: SecondaryTextField(
+                  hintText: "Plot 5 Ibeju-Lekki",
+                  hintTextColor: FYColors.subtleBlack,
                 ),
               ),
-            ),
-          ),
-          SizedBox(height: sh(16)),
-          InputFieldWrapper(
-            labelText: "Name this Address(e.g home, work, gym etc.)",
-            child: SecondaryTextField(
-              hintText: "Home",
-              hintTextColor: FYColors.subtleBlack,
-            ),
-          ),
-          SizedBox(height: sh(24)),
-          FYTextButton(
-            text: "Add Address",
-            onPressed: () {},
-          ),
-        ]),
+              SizedBox(height: sh(16)),
+              InputFieldWrapper(
+                labelText: "Address Line 2",
+                child: SecondaryTextField(
+                  hintText: "Lagos Nigeria",
+                  hintTextColor: FYColors.subtleBlack,
+                ),
+              ),
+              SizedBox(height: sh(16)),
+              InputFieldWrapper(
+                labelText: "Contact Number",
+                child: SecondaryTextField(
+                  hintText: "0701 234 5678",
+                  hintTextColor: FYColors.subtleBlack,
+                  prefixIcon: SizedBox(
+                    width: 85,
+                    child: LocalTheme(
+                      buttonTextStyle: context.theme.textTheme.bodyText1,
+                      bodyStyle2: context.theme.textTheme.bodyText2,
+                      child: FYCountryCodePicker(
+                          selectedCountryCode: CountryCode(
+                        flagUri: Images.chef_place_holder,
+                        name: "Nigeria",
+                        code: "NG",
+                        dialCode: "+234",
+                      )),
+                      //     SizedBox(
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: sh(16)),
+              InputFieldWrapper(
+                labelText: "Name this Address(e.g home, work, gym etc.)",
+                child: SecondaryTextField(
+                  hintText: "Home",
+                  hintTextColor: FYColors.subtleBlack,
+                ),
+              ),
+              SizedBox(height: sh(24)),
+              FYTextButton(
+                text: "Add Address",
+                onPressed: () {},
+              ),
+            ]),
       ),
     );
   }

@@ -10,7 +10,8 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
 
 class DashboardScreen extends StatelessWidget {
-  final DashBoardScreenController widgetCtrl = Get.put(DashBoardScreenController());
+  final DashBoardScreenController widgetCtrl =
+      Get.put(DashBoardScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +19,17 @@ class DashboardScreen extends StatelessWidget {
       () => FYLoader(
         isLoading: widgetCtrl.isLoading.value,
         message: widgetCtrl.loadingMessage.value,
-        child: Scaffold(
-          body: TabBarView(controller: widgetCtrl.tabController, children: [
-            HomeTab(),
-            OrdersTab(),
-            CartTab(),
-            ProfileTab(),
-          ]),
-          bottomNavigationBar: FYTabBar(widgetCtrl),
+        child: WillPopScope(
+          onWillPop: widgetCtrl.willPop,
+          child: Scaffold(
+            body: TabBarView(controller: widgetCtrl.tabController, children: [
+              HomeTab(),
+              OrdersTab(),
+              CartTab(),
+              ProfileTab(),
+            ]),
+            bottomNavigationBar: FYTabBar(widgetCtrl),
+          ),
         ),
       ),
     );

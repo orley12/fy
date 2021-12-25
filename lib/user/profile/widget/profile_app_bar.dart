@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_yours_customer/common/view_model/global_objects.dart';
 import 'package:food_yours_customer/common/widget/round_image.dart';
-import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
@@ -23,9 +23,12 @@ class ProfileAppBar extends StatelessWidget {
           children: [
             Text(
               "${user.value.firstName} ${user.value.lastName}",
-              style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16)),
+              style: context.theme.textTheme.headline2!
+                  .copyWith(fontSize: sh(Dimens.k16)),
             ),
-            Text(user.value.email, style: context.theme.textTheme.caption!.copyWith(fontSize: sh(12))),
+            Text(user.value.email,
+                style: context.theme.textTheme.caption!
+                    .copyWith(fontSize: sh(12))),
           ],
         ),
         Expanded(child: Container()),

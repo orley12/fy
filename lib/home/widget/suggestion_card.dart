@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/home/controller/home_tab_back_panel_controller.dart';
-import 'package:food_yours_customer/resources/colors.dart';
+import 'package:food_yours_customer/common/widget/option_item.dart';
+import 'package:food_yours_customer/common/widget/shimmer_widget.dart';
+import 'package:food_yours_customer/home/widget/suggestion_item.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
-class SuggestionCard extends StatelessWidget {
-  dynamic widgetCtrl;
+class SuggestionsCard extends StatelessWidget {
+  final List<FYOptionItem> options;
+  final Function? onSelected;
+  final RxBool isLoading;
 
-  SuggestionCard(this.widgetCtrl);
+  SuggestionsCard(
+      {required this.options, this.onSelected, required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +33,18 @@ class SuggestionCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Suggestions",
-                  style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600)),
+                  style: context.theme.textTheme.caption!.copyWith(
+                      fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600)),
               SizedBox(height: sh(20)),
               Expanded(
                 child: ListView.separated(
-                  itemBuilder: (context, index) => Row(
-                    children: [
-                      Icon(FYIcons.search, size: 24, color: FYColors.lighterBlack3),
-                      SizedBox(width: sw(12)),
-                      Text(
-                        widgetCtrl.suggestions.value[index],
-                        style: context.theme.textTheme.caption!.copyWith(fontSize: sh(Dimens.k16)),
-                      )
-                    ],
-                  ),
-                  separatorBuilder: (context, index) => SizedBox(height: sh(20)),
-                  itemCount: widgetCtrl.suggestions.value.length,
+                  itemBuilder: (context, index) => isLoading.value
+                      ? ShimmerWidget()
+                      : SuggestionItem(
+                          option: options[index], onSelected: onSelected),
+                  separatorBuilder: (context, index) =>
+                      SizedBox(height: sh(20)),
+                  itemCount: options.length,
                 ),
               ),
             ],

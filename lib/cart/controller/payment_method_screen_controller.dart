@@ -1,36 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:food_yours_customer/cart/interface/interface_cart_order.dart';
-import 'package:food_yours_customer/cart/screen/delivery_time_screen.dart';
 import 'package:food_yours_customer/cart/service/food_yours_payment_service/food_yours_payment_service.dart';
-import 'package:food_yours_customer/cart/service/paystack_payment_service/paystack_payment_service.dart';
-import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:food_yours_customer/common/view_model/global_objects.dart';
+import 'package:food_yours_customer/common/widget/notification_widgets.dart';
+import 'package:food_yours_customer/dashboard/screen/dashboard_screen.dart';
+import 'package:food_yours_customer/resources/enums.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
 
 class PaymentMethodScreenController extends GetxController
     implements ICartOrder {
-  final PayStackPaymentService payStackPaymentService = Get.find();
   final FoodYoursPaymentService foodYoursPaymentService = Get.find();
 
-  RxList<Widget> paymentMethods = <Widget>[].obs;
+  Rx<PaymentMethod> paymentMethod = PaymentMethod.DEFAULT.obs;
+
+  RxString total = "0.0".obs;
+  RxString deliveryDate = "".obs;
+  RxString orderId = "".obs;
 
   @override
-  placeOrder() {
-    push(page: DeliveryTimeScreen());
+  void onReady() {
+    total.value = Get.arguments["total"].toString();
+    deliveryDate.value = Get.arguments["deliveryDate"];
+    super.onReady();
   }
 
-  checkoutWithPaystack() {
-    Charge charge = Charge()
-      ..amount = 10000
-      ..reference = "qwertyuio" /* _getReference() */
+  @override
+  placeOrder() async {
+    Charge charge = generateCharge();
+    CheckoutResponse checkoutResponse =
+        await foodYoursPaymentService.checkOut(charge);
+
+    if (checkoutResponse.status) return gotoDashBoard();
+
+    showFYSnackBar(message: "An error occured ...");
+  }
+
+  onSelectPaymentMethod(PaymentMethod value) {
+    paymentMethod.value = value;
+  }
+
+  Charge generateCharge() {
+    var parse = int.parse(total.value.substring(0, total.value.indexOf(".")));
+    return Charge()
+      ..amount = int.parse(total.value.substring(0, total.value.indexOf(".")))
+      ..reference = "qwertyuioo" /* _getReference() */
       // or ..accessCode = _getAccessCodeFrmInitialization()
-      ..email = 'customer@email.com';
-    payStackPaymentService.checkOut(charge);
+      ..email = user.value.email;
   }
 
-  initiatePayStackPayment() async {
-    foodYoursPaymentService.initiatePayStackPayment();
+  initiatePayStackPayment() async {}
+
+  void gotoDashBoard() {
+    Get.to(() => DashboardScreen());
   }
 }

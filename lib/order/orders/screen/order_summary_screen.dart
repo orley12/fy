@@ -11,7 +11,8 @@ import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
 
 class OrderSummaryScreen extends StatelessWidget {
-  final OrderSummaryScreenController widgetCtrl = Get.put(OrderSummaryScreenController());
+  final OrderSummaryScreenController widgetCtrl =
+      Get.put(OrderSummaryScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,9 @@ class OrderSummaryScreen extends StatelessWidget {
     Function sw = sWidth(context);
 
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size(20, sh(46.41)), child: SecondaryAppBar(title: "Order Summary")),
+      appBar: PreferredSize(
+          preferredSize: Size(20, sh(46.41)),
+          child: SecondaryAppBar(title: "Order Summary")),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: sw(23)),
         children: [
@@ -28,81 +31,106 @@ class OrderSummaryScreen extends StatelessWidget {
             textAlign: TextAlign.start,
             text: TextSpan(children: <TextSpan>[
               TextSpan(
-                style: context.theme.textTheme.caption!
-                    .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+                style: context.theme.textTheme.caption!.copyWith(
+                    fontSize: sh(Dimens.k12),
+                    fontWeight: FontWeight.w600,
+                    color: FYColors.darkerBlack),
                 text: "Order Status: ",
               ),
               TextSpan(
-                style: context.theme.textTheme.headline3!.copyWith(fontSize: sh(Dimens.k12), color: FYColors.mainBlue),
-                text: "Ongoing",
+                style: context.theme.textTheme.headline3!.copyWith(
+                    fontSize: sh(Dimens.k12), color: FYColors.mainBlue),
+                text: widgetCtrl.cartItem.value.status,
               ),
             ]),
           ),
           SizedBox(height: sh(16)),
           Text(
             "Order ID:",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack),
           ),
           SizedBox(height: sh(4)),
           Text(
             "Ofada Rice(1x), Zobo(2x), Doughnuts(5x).",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack2),
           ),
           SizedBox(height: sh(16)),
           Text(
             "Chef:",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack),
           ),
           SizedBox(height: sh(4)),
           Text(
-            "Omowunmi O.",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.mainBlue),
+            widgetCtrl.cartItem.value.chefName,
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.mainBlue),
           ),
           SizedBox(height: sh(16)),
           Text(
             "Delivery Address:",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack),
           ),
           SizedBox(height: sh(4)),
           Text(
-            "23 Barnawa, Kaduna, Nigeria.",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+            widgetCtrl.cartItem.value.address,
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack2),
           ),
           SizedBox(height: sh(16)),
           Text(
             "Order Date:",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack),
           ),
           SizedBox(height: sh(4)),
           Text(
-            "28/07/2021  05:22 PM",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+            widgetCtrl.cartItem.value.specifiedDeliveryAndTime,
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack2),
           ),
           SizedBox(height: sh(16)),
           Text(
             "Delivery Date:",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack),
           ),
           SizedBox(height: sh(4)),
           Text(
-            "28/07/2021  05:22 PM",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+            widgetCtrl.cartItem.value.specifiedDeliveryAndTime,
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack2),
           ),
           SizedBox(height: sh(26)),
           Text(
             "Payment:",
-            style: context.theme.textTheme.caption!
-                .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack),
+            style: context.theme.textTheme.caption!.copyWith(
+                fontSize: sh(Dimens.k12),
+                fontWeight: FontWeight.w600,
+                color: FYColors.darkerBlack),
           ),
           SizedBox(height: sh(12)),
           Container(
@@ -115,10 +143,14 @@ class OrderSummaryScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Order Amount:",
-                          style: context.theme.textTheme.caption!
-                              .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+                          style: context.theme.textTheme.caption!.copyWith(
+                              fontSize: sh(Dimens.k12),
+                              fontWeight: FontWeight.w600,
+                              color: FYColors.darkerBlack2),
                         ),
-                        Text("N 4,900", style: context.theme.textTheme.headline3!.copyWith(fontSize: sh(Dimens.k12))),
+                        Text(widgetCtrl.cartItem.value.total.toString(),
+                            style: context.theme.textTheme.headline3!
+                                .copyWith(fontSize: sh(Dimens.k12))),
                       ],
                     ),
                   ),
@@ -130,10 +162,14 @@ class OrderSummaryScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Delivery Fee:",
-                          style: context.theme.textTheme.caption!
-                              .copyWith(fontSize: sh(Dimens.k12), fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+                          style: context.theme.textTheme.caption!.copyWith(
+                              fontSize: sh(Dimens.k12),
+                              fontWeight: FontWeight.w600,
+                              color: FYColors.darkerBlack2),
                         ),
-                        Text("N 700", style: context.theme.textTheme.headline3!.copyWith(fontSize: Dimens.k12)),
+                        Text("N 700",
+                            style: context.theme.textTheme.headline3!
+                                .copyWith(fontSize: Dimens.k12)),
                       ],
                     ),
                   ),
@@ -147,17 +183,24 @@ class OrderSummaryScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Total:",
-                          style: context.theme.textTheme.caption!
-                              .copyWith(fontSize: Dimens.k16, fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+                          style: context.theme.textTheme.caption!.copyWith(
+                              fontSize: Dimens.k16,
+                              fontWeight: FontWeight.w600,
+                              color: FYColors.darkerBlack2),
                         ),
-                        Text("N 5,600", style: context.theme.textTheme.headline3!.copyWith(fontSize: Dimens.k16)),
+                        Text("N 5,600",
+                            style: context.theme.textTheme.headline3!
+                                .copyWith(fontSize: Dimens.k16)),
                       ],
                     ),
                   ),
                 ],
               ),
-              padding: EdgeInsets.symmetric(horizontal: sw(16), vertical: sh(12)),
-              decoration: BoxDecoration(color: FYColors.subtleBlue2, borderRadius: BorderRadius.circular(8))),
+              padding:
+                  EdgeInsets.symmetric(horizontal: sw(16), vertical: sh(12)),
+              decoration: BoxDecoration(
+                  color: FYColors.subtleBlue2,
+                  borderRadius: BorderRadius.circular(8))),
           SizedBox(height: sh(60)),
           Container(
             width: double.maxFinite,
@@ -169,8 +212,11 @@ class OrderSummaryScreen extends StatelessWidget {
                     text: "Re-order",
                     onPressed: () {},
                   ),
-                  buttonStyle: subTextButtonStyle.copyWith(minimumSize: MaterialStateProperty.all<Size>(Size(sw(122), sh(47)))),
-                  buttonTextStyle: context.theme.textTheme.headline3!.copyWith(fontSize: Dimens.k16),
+                  buttonStyle: subTextButtonStyle.copyWith(
+                      minimumSize: MaterialStateProperty.all<Size>(
+                          Size(sw(122), sh(47)))),
+                  buttonTextStyle: context.theme.textTheme.headline3!
+                      .copyWith(fontSize: Dimens.k16),
                 ),
                 SizedBox(height: sh(Dimens.k24)),
                 LocalTheme(
@@ -178,8 +224,9 @@ class OrderSummaryScreen extends StatelessWidget {
                     text: "Rate Chef",
                     onPressed: widgetCtrl.gotoOrderTrackingScreen,
                   ),
-                  buttonStyle: context.theme.textButtonTheme.style!
-                      .copyWith(minimumSize: MaterialStateProperty.all<Size>(Size(sw(122), sh(47)))),
+                  buttonStyle: context.theme.textButtonTheme.style!.copyWith(
+                      minimumSize: MaterialStateProperty.all<Size>(
+                          Size(sw(122), sh(47)))),
                 ),
               ],
             ),

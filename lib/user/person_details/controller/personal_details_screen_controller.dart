@@ -1,16 +1,18 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/api/app_response.dart';
+import 'package:food_yours_customer/common/view_model/global_objects.dart';
 import 'package:food_yours_customer/common/widget/date_picker.dart';
 import 'package:food_yours_customer/common/widget/fy_drop_down.dart';
 import 'package:food_yours_customer/common/widget/notification_widgets.dart';
-import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
+import 'package:food_yours_customer/common/widget/option_item.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/enums.dart';
 import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/user/person_details/model/profile_update_model.dart';
 import 'package:food_yours_customer/user/service/user_service.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
+import 'package:get/route_manager.dart';
 import 'package:food_yours_customer/util/phone_util.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -21,7 +23,7 @@ class PersonalDetailsScreenController extends GetxController {
   UserService userService = Get.find();
 
   Rx<CountryCode> selectedCountryCode = CountryCode(
-    flagUri: Images.ng,
+    flagUri: Images.chef_place_holder,
     name: "Nigeria",
     code: "NG",
     dialCode: "+234",
@@ -33,7 +35,8 @@ class PersonalDetailsScreenController extends GetxController {
   final TextEditingController phoneTextCtrl = TextEditingController();
   final TextEditingController dobTextCtrl = TextEditingController();
   final TextEditingController passwordTextCtrl = TextEditingController();
-  final Rx<FYDropDownItem<String>> selectedGender = FYDropDownItem<String>("Male", "male").obs;
+  final Rx<FYOptionItem<String>> selectedGender =
+      FYOptionItem<String>("Male", "male").obs;
 
   RxString firstNameError = "".obs;
   RxString lastNameError = "".obs;
@@ -48,9 +51,9 @@ class PersonalDetailsScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
 
-  final List<FYDropDownItem<String>> genders = [
-    FYDropDownItem("Male", "male"),
-    FYDropDownItem("Female", "female"),
+  final List<FYOptionItem<String>> genders = [
+    FYOptionItem("Male", "male"),
+    FYOptionItem("Female", "female"),
   ];
 
   void clearFirstNameError(_) => firstNameError.value = "";
@@ -109,10 +112,13 @@ class PersonalDetailsScreenController extends GetxController {
       firstNameError.value = Strings.blankFieldErrorMessage;
     } else if (GetUtils.isBlank(lastNameTextCtrl.text)!) {
       lastNameError.value = Strings.blankFieldErrorMessage;
-    } else if (GetUtils.isBlank(emailTextCtrl.text)! && GetUtils.isEmail(emailTextCtrl.text)) {
+    } else if (GetUtils.isBlank(emailTextCtrl.text)! &&
+        GetUtils.isEmail(emailTextCtrl.text)) {
       lastNameError.value = Strings.blankFieldErrorMessage;
     } else if (GetUtils.isBlank(phoneTextCtrl.text)! &&
-        await isPhoneNumberValid(phoneTextCtrl.text, selectedCountryCode.value.code!) == false) {
+        await isPhoneNumberValid(
+                phoneTextCtrl.text, selectedCountryCode.value.code!) ==
+            false) {
       phoneError.value = Strings.validPhoneNumberErrorMessage;
     } else if (GetUtils.isBlank(dobTextCtrl.text)!) {
       dobError.value = Strings.blankFieldErrorMessage;
@@ -132,7 +138,7 @@ class PersonalDetailsScreenController extends GetxController {
     }
   }
 
-  onGenderSelected(FYDropDownItem<String> gender) {
+  onGenderSelected(FYOptionItem<String> gender) {
     selectedGender.value = gender;
     clearGenderError();
   }
@@ -144,11 +150,13 @@ class PersonalDetailsScreenController extends GetxController {
 
     ProfileUpdateModel profileInformation = setProfileDetails();
 
-    AppResponse response = await userService.saveProfileDetails(profileInformation.toJSON());
+    AppResponse response =
+        await userService.saveProfileDetails(profileInformation.toJSON());
 
     isLoading.value = false;
 
-    showFYSnackBar(message: response.message, responseGrades: response.responseGrades);
+    showFYSnackBar(
+        message: response.message, responseGrades: response.responseGrades);
 
     if (response.responseGrades == ResponseGrades.ERROR) return;
 
@@ -163,7 +171,7 @@ class PersonalDetailsScreenController extends GetxController {
       lastName: lastNameTextCtrl.text,
       phoneNumber: phoneTextCtrl.text,
       email: emailTextCtrl.text,
-      gender: selectedGender.value.value,
+      gender: selectedGender.value.value!,
       userImage: "",
     );
   }

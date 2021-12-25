@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+// import 'package:get/route_manager.dart';
 
 push({required Widget page, dynamic arguments}) {
-  Get.to(page, arguments: arguments);
+  Get.to(() => page, arguments: arguments);
 }
 
-pushUntil({required Widget page}) {
-  Get.offAll(page);
+pushUntil({required Widget page, dynamic arguments}) {
+  Get.offAll(() => page, arguments: arguments);
 }
 
-pushReplacement({required Widget page}) {
-  Get.off(page);
+pushReplacement({required Widget page, dynamic arguments}) {
+  Get.off(() => page, arguments: arguments);
 }
 
 pop() {

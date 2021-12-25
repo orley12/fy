@@ -12,7 +12,11 @@ class PrimaryAppBar extends StatelessWidget {
   final double? elevation;
   final Function()? backAction;
 
-  PrimaryAppBar({this.showBackBtn = true, required this.title, this.elevation = 8.0, this.backAction});
+  PrimaryAppBar(
+      {this.showBackBtn = true,
+      required this.title,
+      this.elevation = 8.0,
+      this.backAction});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +26,13 @@ class PrimaryAppBar extends StatelessWidget {
       backgroundColor: context.theme.backgroundColor,
       title: Text(
         title,
-        style: context.theme.textTheme.caption!
-            .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700, color: FYColors.darkerBlack2),
+        style: context.theme.textTheme.caption!.copyWith(
+            fontSize: sh(Dimens.k16),
+            fontWeight: FontWeight.w700,
+            color: FYColors.darkerBlack2),
       ),
-      leading: IconButton(icon: Icon(FYIcons.arrow_left), onPressed: backAction ?? () => pop()),
+      leading: IconButton(
+          icon: Icon(FYIcons.arrow_left), onPressed: backAction ?? () => pop()),
       elevation: elevation,
       shadowColor: Color.fromRGBO(0, 99, 247, 0.1),
       foregroundColor: FYColors.darkerBlack2,

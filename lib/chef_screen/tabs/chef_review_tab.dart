@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:food_yours_customer/chef_screen/controller/chef_screen_controller.dart';
 import 'package:food_yours_customer/chef_screen/widget/chef_review_card.dart';
-import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
 
 class ChefReviewTab extends StatelessWidget {
+  final ChefScreenController widgetCtrl = Get.put(ChefScreenController());
+  ChefReviewTab() {
+    widgetCtrl.loadChefReviews();
+  }
   @override
   Widget build(BuildContext context) {
     final Function sh = sHeight(context);
     final Function sw = sWidth(context);
 
-    return /* Container(
-      child: */
-        ListView.separated(
-      padding: EdgeInsets.zero,
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) => ChefReviewCard(),
-      separatorBuilder: (BuildContext context, int index) => SizedBox(height: sh(Dimens.k24)),
-      itemCount: 10,
-      // ),
-    );
+    return Obx(() => ListView.separated(
+          padding: EdgeInsets.zero,
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) =>
+              ChefReviewCard(widgetCtrl.chefReviews.value[index]),
+          separatorBuilder: (BuildContext context, int index) =>
+              SizedBox(height: sh(Dimens.k24)),
+          itemCount: widgetCtrl.chefReviews.value.length,
+        ));
   }
 }
