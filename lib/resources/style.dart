@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/font_family.dart';
-import 'package:food_yours_customer/util/responsive_screen_util.dart';
-import 'package:get/route_manager.dart';
 
 TextStyle textStyleH6 = TextStyle(
   color: FYColors.mainBlack,
@@ -13,20 +10,20 @@ TextStyle textStyleH6 = TextStyle(
 );
 
 TextStyle textStyleH1 = TextStyle(
-  color: FYColors.mainBlack,
+  color: FYColors.darkerBlack2,
   fontWeight: FontWeight.w700,
-  fontFamily: FontFamily.inter,
+  fontFamily: FontFamily.mulish,
 );
 
 TextStyle textStyleH2 = TextStyle(
-  color: FYColors.mainBlack,
-  fontWeight: FontWeight.w700,
+  color: FYColors.lighterBlack2,
+  fontWeight: FontWeight.w400,
   fontFamily: FontFamily.mulish,
 );
 
 TextStyle textStyleH3 = TextStyle(
   color: FYColors.mainRed,
-  fontWeight: FontWeight.w700,
+  fontWeight: FontWeight.w600,
   fontFamily: FontFamily.mulish,
 );
 
@@ -78,8 +75,9 @@ TextStyle buttonTextStyle = TextStyle(
   fontFamily: FontFamily.mulish,
 );
 
-ButtonStyle mainTextButtonStyle = ButtonStyle(
-  minimumSize: MaterialStateProperty.all<Size>(Size(Dimens.k327, Dimens.k57)),
+ButtonStyle textButtonStyle = ButtonStyle(
+  minimumSize:
+      MaterialStateProperty.all<Size>(Size(double.infinity, Dimens.k57)),
   backgroundColor: MaterialStateProperty.all<Color>(FYColors.mainRed),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
@@ -94,13 +92,13 @@ ButtonStyle mainOutlineButtonStyle = ButtonStyle(
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
 );
 
-ButtonStyle subTextButtonStyle = mainTextButtonStyle.copyWith(
-  backgroundColor: MaterialStateProperty.all<Color>(FYColors.subtleRed),
-);
+// ButtonStyle subTextButtonStyle = mainTextButtonStyle.copyWith(
+//   backgroundColor: MaterialStateProperty.all<Color>(FYColors.subtleRed),
+// );
 
-ButtonStyle whiteTextButtonStyle = mainTextButtonStyle.copyWith(
-  backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-);
+// ButtonStyle whiteTextButtonStyle = mainTextButtonStyle.copyWith(
+//   backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+// );
 
 TextStyle hintTextStyle = TextStyle(
   color: FYColors.subtleBlack2,

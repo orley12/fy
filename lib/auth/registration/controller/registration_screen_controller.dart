@@ -6,6 +6,7 @@ import 'package:food_yours_customer/auth/registration/model/registration_model.d
 import 'package:food_yours_customer/auth/service/auth_service.dart';
 import 'package:food_yours_customer/common/widget/notification_widgets.dart';
 import 'package:food_yours_customer/resources/Images.dart';
+import 'package:food_yours_customer/resources/integers.dart';
 import 'package:food_yours_customer/resources/strings.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
 import 'package:get/route_manager.dart';
@@ -15,7 +16,6 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/utils.dart';
-import 'package:get/route_manager.dart';
 
 class RegistrationScreenController extends GetxController {
   final AuthService service = Get.put(AuthService());
@@ -68,11 +68,18 @@ class RegistrationScreenController extends GetxController {
         false) {
       phoneNumberError.value = Strings.validPhoneNumberErrorMessage;
     } else if (!GetUtils.isEmail(emailTextCtrl.text)) {
-      emailError.value = Strings.validPhoneNumberErrorMessage;
+      emailError.value = Strings.validEmailErrorMessage;
     } else if (GetUtils.isBlank(passwordTextCtrl.text)!) {
       passwordError.value = Strings.blankFieldErrorMessage;
+    } else if (GetUtils.isLengthLessThan(passwordTextCtrl.text, Integers.k8)) {
+      passwordError.value = Strings.lessThanEightCharErrorMessage;
+    } else if (GetUtils.isAlphabetOnly(passwordTextCtrl.text) ||
+        GetUtils.isNumericOnly(passwordTextCtrl.text)) {
+      passwordError.value = Strings.isNotAlphaNumericErrorMessage;
     } else if (GetUtils.isBlank(confirmPasswordTextCtrl.text)!) {
       confirmPasswordError.value = Strings.blankFieldErrorMessage;
+    } else if (passwordTextCtrl.text != confirmPasswordTextCtrl.text) {
+      confirmPasswordError.value = Strings.isNotSameErrorMessage;
     } else {
       signUp();
     }

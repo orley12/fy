@@ -5,7 +5,6 @@ import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/home/widget/home_app_bar.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/user/view_model/user_view_model.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
@@ -21,13 +20,18 @@ class PhoneNumberVerificationScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: FYColors.subtleBlack5,
-          appBar: PreferredSize(preferredSize: Size(20, sh(46.41)), child: HomeAppBar(UserViewModel())),
+          appBar: PreferredSize(
+              preferredSize: Size(20, sh(46.41)),
+              child: HomeAppBar(UserViewModel())),
           body: ListView(
             padding: EdgeInsets.symmetric(horizontal: sw(24)),
             children: [
               SizedBox(height: sh(54)),
               AutoSizeText("Phone Number:",
-                  minFontSize: 4, maxLines: 3, style: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k16))),
+                  minFontSize: 4,
+                  maxLines: 3,
+                  style: context.theme.textTheme.headline4!
+                      .copyWith(fontSize: sh(Dimens.k16))),
               SizedBox(height: sh(5)),
               Row(
                 children: [
@@ -35,8 +39,10 @@ class PhoneNumberVerificationScreen extends StatelessWidget {
                     "07123456789",
                     minFontSize: 4,
                     maxLines: 3,
-                    style: context.theme.textTheme.caption!
-                        .copyWith(fontSize: sh(Dimens.k16), fontWeight: FontWeight.w400, color: FYColors.darkerBlack2),
+                    style: context.theme.textTheme.caption!.copyWith(
+                        fontSize: sh(Dimens.k16),
+                        fontWeight: FontWeight.w400,
+                        color: FYColors.darkerBlack2),
                   ),
                   Center(
                     child: LocalTheme(
@@ -45,10 +51,13 @@ class PhoneNumberVerificationScreen extends StatelessWidget {
                         onPressed: () {},
                         decoration: TextDecoration.underline,
                       ),
-                      buttonStyle:
-                          whiteTextButtonStyle.copyWith(minimumSize: MaterialStateProperty.all<Size>(Size(sw(88), sh(37)))),
+                      // buttonStyle:
+                      //     whiteTextButtonStyle.copyWith(minimumSize: MaterialStateProperty.all<Size>(Size(sw(88), sh(37)))),
                       buttonTextStyle: context.theme.textTheme.headline3!
-                          .copyWith(color: FYColors.mainBlue, fontSize: sh(15.25), fontWeight: FontWeight.w400),
+                          .copyWith(
+                              color: FYColors.mainBlue,
+                              fontSize: sh(15.25),
+                              fontWeight: FontWeight.w400),
                     ),
                   ),
                 ],

@@ -4,6 +4,11 @@ class Strings {
   static final String validPhoneNumberErrorMessage =
       "please enter a valid phone number";
   static final String validEmailErrorMessage = "please enter a valid email";
+  static String lessThanEightCharErrorMessage =
+      "password should be at least 8 characters";
+  static String isNotSameErrorMessage = "passwords do not match";
+  static String isNotAlphaNumericErrorMessage =
+      "password should be alpha numeric";
   static final String stageOfUsage = "app_stage_of_usage";
   static final String apiKey =
       "oospshHteynwbs68sujwh27uei8qa90ei9UJDIjsuj289387162oospshHteynwbs68sujwh27uei8qa90ei9UJDIjsuj289387162563778289oospshHteynwbs68sujwh27uei8qa90ei9UJDIjsuj28938716256377828918ujmsklmsnjaiMKAGSHBVQ42T2YH1G6A7892JWJHS18ujmsklmsnjaiMKAGSHBVQ42T2YH1G6A7892JWJHS56377828918ujmsklmsnjaiMKAGSHBVQ42T2YH1G6A7892JWJHS";
@@ -28,4 +33,7 @@ class Strings {
   static final String DAY_MONTH_YEAR = "dd/MM/yyyy";
   static final String ONGOING = "ongoing";
   static final String DELIVERED = "delivered";
+
+  // ========================================================================================>
+
 }

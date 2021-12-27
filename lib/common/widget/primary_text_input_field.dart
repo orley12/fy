@@ -77,12 +77,15 @@ class PrimaryTextField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       maxLength: maxLength,
+      style: context.theme.textTheme.headline2!
+          .copyWith(fontSize: Dimens.k12, color: FYColors.darkerBlack2),
       decoration: InputDecoration(
         labelText: labelText,
-        errorText: errorMessage == "" || errorMessage == null ? null : errorMessage,
+        errorText:
+            errorMessage == "" || errorMessage == null ? null : errorMessage,
         counterText: "",
-        errorStyle: context.theme.textTheme.headline4!.copyWith(fontSize: sh(Dimens.k12), color: FYColors.mainOrange),
-        // contentPadding: EdgeInsets.fromLTRB(sw(0), sh(16), sw(0), sh(16)),
+        errorStyle: context.theme.textTheme.headline4!
+            .copyWith(fontSize: sh(Dimens.k12), color: FYColors.mainOrange),
         hintText: hintText,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/widget/local_theme.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/navigation_util.dart';
-import 'package:get/route_manager.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
@@ -39,10 +37,10 @@ class FYTwinButton extends StatelessWidget {
       Center(
         child: LocalTheme(
           child: FYTextButton(text: firstBtnText, onPressed: pop),
-          buttonStyle: whiteTextButtonStyle.copyWith(
-              minimumSize: MaterialStateProperty.all<Size>(
-                  Size(sw(133), sh(Dimens.k47))),
-              backgroundColor: MaterialStateProperty.all<Color>(firstBtnColor)),
+          // buttonStyle: whiteTextButtonStyle.copyWith(
+          //     minimumSize: MaterialStateProperty.all<Size>(
+          //         Size(sw(133), sh(Dimens.k47))),
+          //     backgroundColor: MaterialStateProperty.all<Color>(firstBtnColor)),
           buttonTextStyle: context.theme.textTheme.caption!
               .copyWith(fontWeight: FontWeight.w400, color: firstBtnTextColor),
         ),

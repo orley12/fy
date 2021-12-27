@@ -1,4 +1,5 @@
 class Dimens {
+  static const double k56 = 56.0;
   static const double k568 = 568.0;
   static const double k405 = 405.0;
   static const double k327 = 327.0;
@@ -49,4 +50,9 @@ class Dimens {
   static const double k108 = 108.0;
   static const double k222 = 222.0;
   static const double k17 = 17.0;
+  static const double k33_9 = 33.9;
+  static const double k165 = 165.0;
+  static const double k26_94 = 26.94;
+  static const double k49 = 49.0;
+  static const double k44 = 44.0;
 }

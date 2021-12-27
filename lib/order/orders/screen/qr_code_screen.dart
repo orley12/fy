@@ -8,7 +8,6 @@ import 'package:food_yours_customer/order/orders/controller/qr_code_screen_contr
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
@@ -24,12 +23,16 @@ class QRCodeScreen extends StatelessWidget {
     return Container(
       color: context.theme.backgroundColor,
       child: Scaffold(
-        appBar: PreferredSize(preferredSize: Size(20, sh(46.41)), child: SecondaryAppBar(title: "Scan QR")),
+        appBar: PreferredSize(
+            preferredSize: Size(20, sh(46.41)),
+            child: SecondaryAppBar(title: "Scan QR")),
         body: ListView(padding: EdgeInsets.zero, children: [
           Stack(
             children: [
-              Image.asset(Images.qr_image, height: sh(384), width: double.infinity),
-              Image.asset(Images.qr_overlay, height: sh(384), width: double.infinity),
+              Image.asset(Images.qr_image,
+                  height: sh(384), width: double.infinity),
+              Image.asset(Images.qr_overlay,
+                  height: sh(384), width: double.infinity),
             ],
           ),
           SizedBox(height: sh(24)),
@@ -40,14 +43,18 @@ class QRCodeScreen extends StatelessWidget {
               children: [
                 Text(
                   "Having trouble scanning?",
-                  style: context.theme.textTheme.caption!
-                      .copyWith(fontSize: Dimens.k16, fontWeight: FontWeight.w600, color: FYColors.darkerBlack2),
+                  style: context.theme.textTheme.caption!.copyWith(
+                      fontSize: Dimens.k16,
+                      fontWeight: FontWeight.w600,
+                      color: FYColors.darkerBlack2),
                 ),
                 SizedBox(height: sh(8)),
                 Text(
                   "Enter driver’s delivery ID manually to continue",
-                  style: context.theme.textTheme.caption!
-                      .copyWith(fontSize: Dimens.k12, fontWeight: FontWeight.w400, color: FYColors.darkerBlack),
+                  style: context.theme.textTheme.caption!.copyWith(
+                      fontSize: Dimens.k12,
+                      fontWeight: FontWeight.w400,
+                      color: FYColors.darkerBlack),
                 ),
                 SizedBox(height: sh(16)),
                 SecondaryTextField(
@@ -61,10 +68,13 @@ class QRCodeScreen extends StatelessWidget {
                       text: "Submit and Verify",
                       onPressed: widgetCtrl.gotoChefRatingScreen,
                     ),
-                    buttonStyle:
-                        subTextButtonStyle.copyWith(backgroundColor: MaterialStateProperty.all<Color>(FYColors.lighterBlack2)),
+                    // buttonStyle:
+                    //     subTextButtonStyle.copyWith(backgroundColor: MaterialStateProperty.all<Color>(FYColors.lighterBlack2)),
                     buttonTextStyle: context.theme.textTheme.headline3!
-                        .copyWith(fontSize: Dimens.k16, color: Colors.white, fontWeight: FontWeight.w400),
+                        .copyWith(
+                            fontSize: Dimens.k16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
                   ),
                 ),
               ],

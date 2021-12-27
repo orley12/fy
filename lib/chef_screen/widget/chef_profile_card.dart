@@ -6,7 +6,6 @@ import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/home/widget/fy_chip.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
@@ -74,13 +73,15 @@ class ChefProfileCard extends StatelessWidget {
                   text: "Follow Chef",
                   onPressed: widgetCtrl.toggleFollowingStatus,
                 ),
-                buttonStyle: subTextButtonStyle.copyWith(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        widgetCtrl.isFollowed.value
-                            ? FYColors.subtleGreen1
-                            : FYColors.subtleBlue2),
-                    minimumSize:
-                        MaterialStateProperty.all<Size>(Size(sw(88), sh(37)))),
+                // buttonStyle: subTextButtonStyle.copyWith(
+                //   backgroundColor: MaterialStateProperty.all<Color>(
+                //       widgetCtrl.isFollowed.value
+                //           ? FYColors.subtleGreen1
+                //           : FYColors.subtleBlue2),
+                //   minimumSize: MaterialStateProperty.all<Size>(
+                //     Size(sw(88), sh(37)),
+                //   ),
+                // ),
                 buttonTextStyle: context.theme.textTheme.headline3!.copyWith(
                     fontSize: Dimens.k16,
                     color: widgetCtrl.isFollowed.value

@@ -7,7 +7,6 @@ import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/home/view_model/meal_search_view_model.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
@@ -55,9 +54,9 @@ class FoodDetailQuantityControl extends StatelessWidget {
               onPressed: () => widgetCtrl.loadMeal(mealSearchViewModel),
               decoration: TextDecoration.underline,
             ),
-            buttonStyle: whiteTextButtonStyle.copyWith(
-                minimumSize:
-                    MaterialStateProperty.all<Size>(Size(sw(88), sh(37)))),
+            // buttonStyle: whiteTextButtonStyle.copyWith(
+            //     minimumSize:
+            //         MaterialStateProperty.all<Size>(Size(sw(88), sh(37)))),
             buttonTextStyle: context.theme.textTheme.headline3!.copyWith(
                 color: FYColors.mainBlue,
                 fontSize: sh(15.25),

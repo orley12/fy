@@ -1,21 +1,14 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/cart/controller/delivery_time_controller.dart';
 import 'package:food_yours_customer/common/view_model/global_objects.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
-import 'package:food_yours_customer/common/widget/date_picker.dart';
-import 'package:food_yours_customer/common/widget/fy_country_code_picker.dart';
-import 'package:food_yours_customer/common/widget/fy_drop_down.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
 import 'package:food_yours_customer/common/widget/loader.dart';
-import 'package:food_yours_customer/common/widget/local_theme.dart';
-import 'package:food_yours_customer/common/widget/option_item.dart';
 import 'package:food_yours_customer/common/widget/secondary_app_bar.dart';
 import 'package:food_yours_customer/common/widget/secondary_text_input_field.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
-import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';

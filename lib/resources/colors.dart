@@ -8,6 +8,7 @@ class FYColors {
   static const Color lighterRed2 = Color(0xFFF0376E);
   static const Color subtleRed = Color(0xFFFFECEC);
   static const subtleRed2 = Color(0xFFFF9A9F);
+  static const subtleRed3 = Color(0xFFFFE9EB);
 
   //Error Color Color
   static const Color mainYellow = Color(0xFFFFEC41);

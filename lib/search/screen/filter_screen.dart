@@ -132,9 +132,11 @@ class FilterScreen extends StatelessWidget {
                           onPressed: () {},
                           fontSize: sh(16),
                         ),
-                        outlineButtonStyle: whiteTextButtonStyle.copyWith(
-                            minimumSize: MaterialStateProperty.all<Size>(
-                                Size(sw(140), sh(47)))),
+                        // outlineButtonStyle: whiteTextButtonStyle.copyWith(
+                        //   minimumSize: MaterialStateProperty.all<Size>(
+                        //     Size(sw(140), sh(47)),
+                        //   ),
+                        // ),
                         buttonTextStyle:
                             labelTextStyle.copyWith(fontSize: sh(16)),
                       ),

@@ -5,7 +5,6 @@ import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/order/orders/controller/order_summary_screen_controller.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/instance_manager.dart';
@@ -212,9 +211,9 @@ class OrderSummaryScreen extends StatelessWidget {
                     text: "Re-order",
                     onPressed: () {},
                   ),
-                  buttonStyle: subTextButtonStyle.copyWith(
-                      minimumSize: MaterialStateProperty.all<Size>(
-                          Size(sw(122), sh(47)))),
+                  // buttonStyle: subTextButtonStyle.copyWith(
+                  //     minimumSize: MaterialStateProperty.all<Size>(
+                  //         Size(sw(122), sh(47)))),
                   buttonTextStyle: context.theme.textTheme.headline3!
                       .copyWith(fontSize: Dimens.k16),
                 ),

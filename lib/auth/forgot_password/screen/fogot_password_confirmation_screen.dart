@@ -7,7 +7,6 @@ import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
-import 'package:food_yours_customer/resources/style.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
@@ -54,7 +53,7 @@ class ForgotPasswordConfirmationScreen extends StatelessWidget {
                         .gotoRegistrationScreen,
                     decoration: TextDecoration.underline,
                   ),
-                  buttonStyle: whiteTextButtonStyle,
+                  // buttonStyle: whiteTextButtonStyle,
                   buttonTextStyle: context.theme.textTheme.headline3,
                 ),
               ),

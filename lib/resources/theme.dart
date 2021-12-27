@@ -10,20 +10,19 @@ class Themes {
     primaryColor: FYColors.mainRed,
     scaffoldBackgroundColor: Colors.white,
     backgroundColor: Colors.white,
-    buttonColor: FYColors.subtleRed2,
+    // buttonColor: FYColors.subtleRed2,
     textTheme: TextTheme(
-      headline6: textStyleH6,
+      // headline6: textStyleH6,
       headline1: textStyleH1,
       headline2: textStyleH2,
       headline3: textStyleH3,
-      headline4: textStyleH4,
-      headline5: textStyleH5,
-      bodyText1: bodyStyle1,
-      bodyText2: bodyStyle2,
-      subtitle2: leadParagraph,
-      subtitle1: display2,
-      caption: labelText,
-      button: buttonTextStyle,
+      // headline5: textStyleH5,
+      // bodyText1: bodyStyle1,
+      // bodyText2: bodyStyle2,
+      // subtitle2: leadParagraph,
+      // subtitle1: display2,
+      // caption: labelText,
+      // button: buttonTextStyle,
     ),
     radioTheme: RadioThemeData(
         fillColor: MaterialStateProperty.all<Color>(FYColors.mainRed)),
@@ -47,7 +46,7 @@ class Themes {
       padding: EdgeInsets.all(Dimens.k8),
       backgroundColor: Colors.white,
     ),
-    textButtonTheme: TextButtonThemeData(style: mainTextButtonStyle),
+    textButtonTheme: TextButtonThemeData(style: textButtonStyle),
     outlinedButtonTheme: OutlinedButtonThemeData(style: mainOutlineButtonStyle),
     inputDecorationTheme: InputDecorationTheme(
         hintStyle: hintTextStyle,
@@ -65,7 +64,10 @@ class Themes {
       disabledColor: FYColors.subtleBlack,
       splashColor: FYColors.darkerRed,
     ),
-    colorScheme:
-        ColorScheme.fromSwatch().copyWith(secondary: FYColors.mainGreen),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: FYColors.mainGreen,
+      primary: FYColors.lighterBlack2,
+      primaryVariant: Colors.grey,
+    ),
   );
 }
