@@ -9,7 +9,6 @@ import 'package:food_yours_customer/home/view_model/chef_review_view_modal.dart'
 import 'package:food_yours_customer/home/view_model/chef_view_model.dart';
 import 'package:food_yours_customer/home/view_model/food_category_view_model.dart';
 import 'package:food_yours_customer/home/view_model/meal_search_view_model.dart';
-import 'package:food_yours_customer/home/view_model/meal_view_model.dart';
 import 'package:food_yours_customer/product_screen/screen/product_screen.dart';
 import 'package:food_yours_customer/product_screen/service/product_service.dart';
 import 'package:food_yours_customer/resources/enums.dart';
@@ -49,7 +48,7 @@ class ChefScreenController extends GetxController
 
   Rx<ChefViewModel> chef = ChefViewModel().obs;
   RxList<MealSearchViewModel> chefMeals = <MealSearchViewModel>[].obs;
-  MealViewModel meal = MealViewModel();
+  MealSearchViewModel meal = MealSearchViewModel();
 
   RxList tags = [].obs;
 
@@ -227,7 +226,7 @@ class ChefScreenController extends GetxController
     Map<String, dynamic> requestInformation =
         setRequestMealInformation(selectedMeal.id);
 
-    AppResponse<MealViewModel> response =
+    AppResponse<MealSearchViewModel> response =
         await productService.loadMeal(requestInformation);
 
     isLoading.value = false;

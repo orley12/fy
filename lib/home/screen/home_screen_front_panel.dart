@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/view_model/global_objects.dart';
-import 'package:food_yours_customer/common/widget/shimmer_widget.dart';
+import 'package:food_yours_customer/common/widget/text/mulish_700_text.dart';
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/home/controller/home_tab_front_panel_controller.dart';
 import 'package:food_yours_customer/home/widget/ad_space.dart';
-import 'package:food_yours_customer/home/widget/food_category_item.dart';
+import 'package:food_yours_customer/home/widget/food_category_list.dart';
 import 'package:food_yours_customer/home/widget/large_order_banner.dart';
-import 'package:food_yours_customer/home/widget/popular_chef_item.dart';
+import 'package:food_yours_customer/home/widget/popular_chefs_list.dart';
+import 'package:food_yours_customer/home/widget/large_order_banner_loading_item.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -26,102 +27,89 @@ class HomeScreenFrontPanel extends StatelessWidget {
     return Container(
       color: context.theme.backgroundColor,
       child: ListView(padding: EdgeInsets.zero, children: [
-        SizedBox(height: sh(10.59)),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: sw(25)),
-          child: Text("Food Categories",
-              style: context.theme.textTheme.headline5!.copyWith(
-                  fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700)),
+        SizedBox(
+          height: sh(Dimens.k10_59),
         ),
-        SizedBox(height: sh(Dimens.k8)),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: sw(Dimens.k25)),
+          child: Mulish700Text(
+            text: "Food Categories",
+            fontSize: Dimens.k16,
+          ),
+        ),
+        SizedBox(
+          height: sh(Dimens.k8),
+        ),
         Obx(
-          () => GridView.count(
-            shrinkWrap: true,
-            childAspectRatio: 2.5,
-            crossAxisSpacing: sw(6.8),
-            mainAxisSpacing: sw(5.0),
-            crossAxisCount: 3,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: sw(25)),
-            semanticChildCount: 6,
-            children: List.generate(
-                foodCategories.value.length,
-                (index) => homeTabCrtl.isLoadingFoodCategories.value
-                    ? ShimmerWidget()
-                    : FoodCategoryItem(foodCategories.value[index],
-                        onSelected: homeTabCrtl.onCategorySelected,
-                        isSelected: index ==
-                            homeTabCrtl.selectedFoodCategoryIndex.value,
-                        selectedFoodCategoryIndex: index)),
+          () => FoodCategoryList(
+            selectedCategoryIndex: homeTabCrtl.selectedFoodCategoryIndex.value,
+            onCategorySelected: homeTabCrtl.onCategorySelected,
+            isLoading: homeTabCrtl.isLoadingFoodCategories.value,
+            foodCategories: foodCategories.value,
           ),
         ),
-        SizedBox(height: sh(Dimens.k16)),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: sw(25)),
-          child: Text("Popular chefs around you",
-              style: context.theme.textTheme.headline5!.copyWith(
-                  fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700)),
+        SizedBox(
+          height: sh(Dimens.k16),
         ),
-        SizedBox(height: sh(Dimens.k10)),
         Container(
-          height: sh(141.18),
-          padding: EdgeInsets.only(left: sw(25)),
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext buildContext, int index) =>
-                Obx(() => homeTabCrtl.isLoadingFoodCategories.value
-                    ? PopularChefLoadingItem()
-                    : PopularChefItem(
-                        homeTabFrontPanelCrtl
-                            .homeTabCrtl.popularChefs.value[index],
-                      )),
-            itemCount:
-                homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value.length,
-            separatorBuilder: (BuildContext context, int index) =>
-                SizedBox(width: sw(Dimens.k16)),
+          padding: EdgeInsets.symmetric(horizontal: sw(Dimens.k25)),
+          child: Mulish700Text(
+            text: "Popular chefs around you",
+            fontSize: Dimens.k16,
           ),
         ),
-        SizedBox(height: sh(23.82)),
+        SizedBox(
+          height: sh(Dimens.k8),
+        ),
+        Obx(
+          () => PopularChefList(
+            isLoading: homeTabCrtl.isLoadingFoodCategories.value,
+            popularChefs: homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value,
+            onChefSelected: homeTabCrtl.onChefSelected,
+          ),
+        ),
+        SizedBox(
+          height: sh(15.82),
+        ),
         Container(
-          child: AdSpace(/* widgetCrtl.homeTabCrtl.openAlertDialog */ null),
+          child: AdSpace(/* widgetCrtl.homeTabCrtl.openAlertDialog */),
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: sw(24)),
         ),
-        SizedBox(height: sh(13)),
+        SizedBox(
+          height: sh(Dimens.k13),
+        ),
         Container(
-            padding: EdgeInsets.symmetric(horizontal: sw(25)),
-            child: Text("Top chefs in your city",
-                style: context.theme.textTheme.headline5!.copyWith(
-                    fontSize: sh(Dimens.k16), fontWeight: FontWeight.w700))),
-        SizedBox(height: sh(Dimens.k8)),
-        Obx(
-          () => Container(
-            height: sh(141.18),
-            padding: EdgeInsets.only(left: sw(25)),
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext buildContext, int index) =>
-                  Obx(() => homeTabCrtl.isLoadingFoodCategories.value
-                      ? PopularChefLoadingItem()
-                      : PopularChefItem(
-                          homeTabFrontPanelCrtl
-                              .homeTabCrtl.popularChefs.value[index],
-                        )),
-              itemCount:
-                  homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value.length,
-              separatorBuilder: (BuildContext context, int index) =>
-                  SizedBox(width: sw(Dimens.k16)),
-            ),
+          padding: EdgeInsets.symmetric(horizontal: sw(25)),
+          child: Mulish700Text(
+            text: "Top chefs in your city",
+            fontSize: Dimens.k16,
           ),
         ),
-        SizedBox(height: sh(43.82)),
-        Obx(() => Container(
-              child: homeTabCrtl.isLoadingFoodCategories.value
-                  ? LargeOrderBannerLoadingItem()
-                  : LargeOrderBanner(),
-              width: sw(Dimens.k327),
-            )),
-        SizedBox(height: sh(28)),
+        SizedBox(
+          height: sh(Dimens.k8),
+        ),
+        Obx(
+          () => PopularChefList(
+            isLoading: homeTabCrtl.isLoadingFoodCategories.value,
+            popularChefs: homeTabFrontPanelCrtl.homeTabCrtl.popularChefs.value,
+            onChefSelected: homeTabCrtl.onChefSelected,
+          ),
+        ),
+        SizedBox(
+          height: sh(35.82),
+        ),
+        Obx(
+          () => Container(
+            child: homeTabCrtl.isLoadingFoodCategories.value
+                ? LargeOrderBannerLoadingItem()
+                : LargeOrderBanner(),
+            width: sw(Dimens.k327),
+          ),
+        ),
+        SizedBox(
+          height: sh(28),
+        ),
       ]),
     );
   }

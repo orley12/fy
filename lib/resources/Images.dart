@@ -18,8 +18,8 @@ class Images {
   static final warning_symbol = "assets/images/warning_symbol.svg";
   static final notification_symbol = "assets/images/notification_symbol.svg";
   static final settings = "assets/images/settings.svg";
-  static final search_result = "assets/images/search_result.jpg";
-  static final chef = "assets/images/chef.jpg";
+  static final search_result = "assets/images/search_result.png";
+  static final chef = "assets/images/chef.png";
   static final back = "assets/images/back.svg";
   static final cart = "assets/images/cart.svg";
   static final chef_bg_image = "assets/images/chef_bg_image.jpg";

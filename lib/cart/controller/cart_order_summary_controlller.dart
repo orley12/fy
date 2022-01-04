@@ -84,7 +84,7 @@ class CartOrderSummaryScreenController extends GetxController
     pop();
   }
 
-  onCartItemOrder(CartModel value) {
+  onCartItemSelected(CartModel value) {
     selectedCartItem.chefDeliveryDays = value.chefDeliveryDays;
   }
 

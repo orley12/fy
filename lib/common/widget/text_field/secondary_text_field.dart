@@ -72,7 +72,6 @@ class SecondaryTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sh = sHeight(context);
-    final sw = sWidth(context);
 
     return TextField(
       inputFormatters: inputFormatters,
@@ -85,26 +84,42 @@ class SecondaryTextField extends StatelessWidget {
       keyboardType: keyboardType,
       maxLength: maxLength,
       maxLines: maxLines,
+      style: context.theme.textTheme.headline2!
+          .copyWith(fontSize: Dimens.k16, color: FYColors.darkerBlack2),
       decoration: InputDecoration(
         labelText: labelText,
         filled: true,
         fillColor: Colors.white,
-        hintStyle: context.theme.textTheme.caption!.copyWith(fontSize: Dimens.k16, color: hintTextColor),
-        errorText: errorMessage == "" || errorMessage == null ? null : errorMessage,
+        hintStyle: context.theme.textTheme.caption!
+            .copyWith(fontSize: Dimens.k16, color: hintTextColor),
+        errorText:
+            errorMessage == "" || errorMessage == null ? null : errorMessage,
         counterText: "",
         errorStyle: TextStyle(fontSize: sh(12)),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(color: FYColors.subtleBlack4, width: Dimens.k05)),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide:
+                BorderSide(color: FYColors.subtleBlack4, width: Dimens.k05)),
         errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(color: FYColors.lighterOrange, width: Dimens.k05)),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide:
+                BorderSide(color: FYColors.lighterOrange, width: Dimens.k05)),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(color: FYColors.lighterRed, width: Dimens.k05)),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide:
+                BorderSide(color: FYColors.lighterRed, width: Dimens.k05)),
         focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(color: FYColors.lighterRed, width: Dimens.k05)),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide:
+                BorderSide(color: FYColors.lighterRed, width: Dimens.k05)),
         disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(color: FYColors.subtleBlack, width: Dimens.k05)),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide:
+                BorderSide(color: FYColors.subtleBlack, width: Dimens.k05)),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0), borderSide: BorderSide(color: FYColors.subtleBlack4, width: Dimens.k05)),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide:
+                BorderSide(color: FYColors.subtleBlack4, width: Dimens.k05)),
         hintText: hintText,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

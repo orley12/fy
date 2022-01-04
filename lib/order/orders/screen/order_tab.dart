@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_yours_customer/common/widget/primary_app_bar.dart';
+import 'package:food_yours_customer/common/widget/app_bar/primary_app_bar.dart';
 import 'package:food_yours_customer/order/orders/controller/orders_tab_controller.dart';
 import 'package:food_yours_customer/order/orders/widget/order_card.dart';
 import 'package:food_yours_customer/resources/colors.dart';

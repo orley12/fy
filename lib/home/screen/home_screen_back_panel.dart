@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_yours_customer/common/service/hive_service.dart';
 import 'package:food_yours_customer/common/view_model/global_objects.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
 import 'package:food_yours_customer/common/widget/auto_complete_input_field.dart';
@@ -8,7 +7,7 @@ import 'package:food_yours_customer/common/widget/loader.dart';
 import 'package:food_yours_customer/home/controller/home_tab_back_panel_controller.dart';
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
 import 'package:food_yours_customer/home/view_model/meal_search_view_model.dart';
-import 'package:food_yours_customer/home/widget/food_category_item.dart';
+import 'package:food_yours_customer/home/widget/food_category_list.dart';
 import 'package:food_yours_customer/home/widget/fy_chip.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
@@ -115,24 +114,12 @@ class HomeScreenBackPanel extends StatelessWidget {
                           fontWeight: FontWeight.w700)),
                   SizedBox(height: sh(Dimens.k8)),
                   Obx(
-                    () => GridView.count(
-                      shrinkWrap: true,
-                      childAspectRatio: 2.5,
-                      crossAxisSpacing: sw(6.8),
-                      mainAxisSpacing: sw(5.0),
-                      crossAxisCount: 3,
-                      physics: NeverScrollableScrollPhysics(),
-                      semanticChildCount: 6,
-                      children: List.generate(
-                          foodCategories.length,
-                          (index) => FoodCategoryItem(
-                              foodCategories.value[index],
-                              onSelected: homeTabBackPanelCrtl
-                                  .homeTabCrtl.onCategorySelected,
-                              isSelected: index ==
-                                  homeTabBackPanelCrtl.homeTabCrtl
-                                      .selectedFoodCategoryIndex.value,
-                              selectedFoodCategoryIndex: index)),
+                    () => FoodCategoryList(
+                      selectedCategoryIndex:
+                          homeTabCrtl.selectedFoodCategoryIndex.value,
+                      onCategorySelected: homeTabCrtl.onCategorySelected,
+                      isLoading: homeTabCrtl.isLoadingFoodCategories.value,
+                      foodCategories: foodCategories,
                     ),
                   ),
                 ],

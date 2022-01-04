@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/api/api.dart';
 import 'package:food_yours_customer/app/app.dart';
@@ -20,7 +20,7 @@ void mainCommon(AppConfig config) async {
     ..setBaseOptions()
     ..setInterceptors();
 
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   await Hive.initFlutter();
 
   HiveService.setUpHiveAdapters();

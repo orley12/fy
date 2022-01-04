@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
 import 'package:food_yours_customer/common/widget/secondary_app_bar.dart';
-import 'package:food_yours_customer/common/widget/secondary_text_input_field.dart';
+import 'package:food_yours_customer/common/widget/text_field/secondary_text_field.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/fund_wallet/widget/credit_card_front.dart';
 import 'package:food_yours_customer/resources/Images.dart';
@@ -22,7 +22,9 @@ class FundWalletScreen extends StatelessWidget {
       color: context.theme.backgroundColor,
       child: Scaffold(
         backgroundColor: FYColors.subtleBlack5,
-        appBar: PreferredSize(preferredSize: Size(sw(20), sh(46.41)), child: SecondaryAppBar(title: "Fund Wallet")),
+        appBar: PreferredSize(
+            preferredSize: Size(sw(20), sh(46.41)),
+            child: SecondaryAppBar(title: "Fund Wallet")),
         body: ListView(
           physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: sw(24)),
@@ -38,23 +40,29 @@ class FundWalletScreen extends StatelessWidget {
                 Positioned(
                     bottom: 4,
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50), child: Divider(thickness: 20, color: FYColors.subtleBlue7))),
+                        borderRadius: BorderRadius.circular(50),
+                        child: Divider(
+                            thickness: 20, color: FYColors.subtleBlue7))),
               ],
             ),
             SizedBox(height: sh(32)),
             InputFieldWrapper(
               labelText: "Amount to topup",
-              child: SecondaryTextField(hintText: "0.00", hintTextColor: FYColors.subtleBlack),
+              child: SecondaryTextField(
+                  hintText: "0.00", hintTextColor: FYColors.subtleBlack),
             ),
             SizedBox(height: sh(16)),
             InputFieldWrapper(
               labelText: "Card Name",
-              child: SecondaryTextField(hintText: "John Doe", hintTextColor: FYColors.subtleBlack),
+              child: SecondaryTextField(
+                  hintText: "John Doe", hintTextColor: FYColors.subtleBlack),
             ),
             SizedBox(height: sh(16)),
             InputFieldWrapper(
               labelText: "Card Number",
-              child: SecondaryTextField(hintText: "0000 0000 0000 0000", hintTextColor: FYColors.subtleBlack),
+              child: SecondaryTextField(
+                  hintText: "0000 0000 0000 0000",
+                  hintTextColor: FYColors.subtleBlack),
             ),
             SizedBox(height: sh(16)),
             // InputFieldWrapper(
@@ -65,13 +73,16 @@ class FundWalletScreen extends StatelessWidget {
                   Expanded(
                     child: InputFieldWrapper(
                         labelText: "Expiry Date",
-                        child: SecondaryTextField(hintText: "12/25", hintTextColor: FYColors.subtleBlack)),
+                        child: SecondaryTextField(
+                            hintText: "12/25",
+                            hintTextColor: FYColors.subtleBlack)),
                   ),
                   SizedBox(width: sw(15)),
                   Expanded(
                     child: InputFieldWrapper(
                       labelText: "CVV",
-                      child: SecondaryTextField(hintText: "000", hintTextColor: FYColors.subtleBlack),
+                      child: SecondaryTextField(
+                          hintText: "000", hintTextColor: FYColors.subtleBlack),
                     ),
                   ),
                 ],

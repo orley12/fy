@@ -1,17 +1,16 @@
-import 'package:auto_size_text/auto_size_text.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_yours_customer/common/widget/fy_outline_button.dart';
+import 'package:food_yours_customer/common/widget/button/fy_outline_button.dart';
+import 'package:food_yours_customer/common/widget/text/mulish_700_text.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class AdSpace extends StatelessWidget {
   final Function? adAction;
 
-  AdSpace(this.adAction);
+  AdSpace([this.adAction]);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class AdSpace extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: sw(500),
+          width: double.infinity,
           child: SvgPicture.asset(
             Images.ad_banner,
             fit: BoxFit.fitWidth,
@@ -32,7 +31,7 @@ class AdSpace extends StatelessWidget {
           margin: EdgeInsets.zero,
           padding: EdgeInsets.only(left: sw(Dimens.k15), right: sw(Dimens.k19)),
           height: sh(Dimens.k89),
-          width: sw(500),
+          width: double.infinity,
           child: buildAdContent(context, sw, sh),
         ),
       ],
@@ -47,22 +46,28 @@ class AdSpace extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AutoSizeText("Free delivery on orders \nabove N7K",
-                minFontSize: Dimens.k8,
-                maxLines: 2,
-                style: context.theme.textTheme.button!.copyWith(fontSize: Dimens.k16, fontWeight: FontWeight.w700)),
+            Mulish700Text(
+              text: "Free delivery on orders \nabove N7K",
+              fontSize: Dimens.k16,
+              color: Colors.white,
+            ),
           ],
         ),
-        SizedBox(width: sw(17)),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FYOutlineButton(
-              text: "Start Ordering",
-              onPressed: () => adAction == null ? null : adAction!(),
-            ),
-            // SizedBox(height: sh(Dimens.k8)),
-          ],
+        SizedBox(
+          width: sw(17),
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FYOutlinedButton(
+                text: "Start Ordering",
+                textSize: Dimens.k8,
+                size: Size(double.infinity, Dimens.k32),
+                onPressed: () => adAction == null ? null : adAction!(),
+              ),
+            ],
+          ),
         ),
       ],
     );

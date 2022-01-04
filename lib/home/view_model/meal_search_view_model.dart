@@ -32,7 +32,7 @@ class MealSearchViewModel implements Selectable {
         name = json?["mealName"] ?? "",
         mealImage = json?["mealPic"] ?? "",
         lowestPrice = json?["lowestPrice"] ?? "",
-        deliveryDays = json?["deliveryDays"]
+        deliveryDays = (json?["deliveryDays"] as List)
             .map((e) => (e as String).toUpperCase().first)
             .join(", "),
         chefName = json?["chefName"] ?? "",

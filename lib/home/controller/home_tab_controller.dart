@@ -79,8 +79,6 @@ class HomeTabController extends GetxController
     loadAllMealUnderSelectedCategory();
   }
 
-  // openAlertDialog() => showAlertDialog();
-
   @override
   void onReady() async {
     await loadUserData();
@@ -125,10 +123,9 @@ class HomeTabController extends GetxController
 
     if (response.responseGrades == ResponseGrades.ERROR) return;
 
-    isLoadingFoodCategories.value = false;
-
     foodCategories.assignAll(response.data!);
-    // foodCategories.value.
+
+    isLoadingFoodCategories.value = false;
   }
 
   loadAllMealUnderSelectedCategory() async {
@@ -163,4 +160,6 @@ class HomeTabController extends GetxController
         "meals": meals,
         "searchQuery": searchQuery,
       });
+
+  onChefSelected(PopularChefViewModel value) {}
 }

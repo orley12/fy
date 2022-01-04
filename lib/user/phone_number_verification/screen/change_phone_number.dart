@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
-import 'package:food_yours_customer/common/widget/primary_app_bar.dart';
-import 'package:food_yours_customer/common/widget/secondary_text_input_field.dart';
+import 'package:food_yours_customer/common/widget/app_bar/primary_app_bar.dart';
+import 'package:food_yours_customer/common/widget/text_field/secondary_text_field.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/controller/dashbard/dashboard_screen_controller.dart';
 import 'package:food_yours_customer/resources/colors.dart';
@@ -30,12 +30,16 @@ class ChangePhoneNumberScreen extends StatelessWidget {
               SizedBox(height: sh(16)),
               InputFieldWrapper(
                 labelText: "Enter New Phone Number",
-                child: SecondaryTextField(hintText: "07123456789", hintTextColor: FYColors.subtleBlack),
+                child: SecondaryTextField(
+                    hintText: "07123456789",
+                    hintTextColor: FYColors.subtleBlack),
               ),
               SizedBox(height: sh(16)),
               InputFieldWrapper(
                 labelText: "Enter Password",
-                child: SecondaryTextField(hintText: "*************", hintTextColor: FYColors.subtleBlack),
+                child: SecondaryTextField(
+                    hintText: "*************",
+                    hintTextColor: FYColors.subtleBlack),
               ),
               SizedBox(height: sh(24)),
               FYTextButton(

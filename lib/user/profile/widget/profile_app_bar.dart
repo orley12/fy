@@ -16,7 +16,7 @@ class ProfileAppBar extends StatelessWidget {
       color: FYColors.subtleBlack5,
       padding: EdgeInsets.symmetric(horizontal: sw(25)),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        RoundImage(height: sh(40), width: sw(40)),
+        // RoundImage(height: sh(40), width: sw(40)),
         SizedBox(width: sw(12)),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -5,7 +5,7 @@ import 'package:food_yours_customer/resources/font_family.dart';
 
 TextStyle textStyleH6 = TextStyle(
   color: FYColors.mainBlack,
-  fontWeight: FontWeight.w700,
+  fontWeight: FontWeight.w400,
   fontFamily: FontFamily.inter,
 );
 
@@ -35,14 +35,14 @@ TextStyle textStyleH4 = TextStyle(
 
 TextStyle textStyleH5 = TextStyle(
   color: FYColors.darkerBlack2,
-  fontWeight: FontWeight.w400,
-  fontFamily: FontFamily.mulish,
+  fontWeight: FontWeight.w500,
+  fontFamily: FontFamily.inter,
 );
 
 TextStyle bodyStyle1 = TextStyle(
   color: FYColors.mainBlack,
-  fontWeight: FontWeight.w400,
-  fontFamily: FontFamily.mulish,
+  fontWeight: FontWeight.w800,
+  fontFamily: FontFamily.inter,
 );
 
 TextStyle bodyStyle2 = TextStyle(

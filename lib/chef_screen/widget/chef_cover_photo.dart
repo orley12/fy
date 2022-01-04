@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/chef_screen/controller/chef_screen_controller.dart';
-import 'package:food_yours_customer/common/widget/round_image.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
@@ -36,9 +35,9 @@ class ChefCoverPhoto extends StatelessWidget {
                       borderRadius: BorderRadius.circular(9.85)),
                 ),
               )),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: RoundImage(height: sh(139), width: sw(139)))
+          // Align(
+          //     alignment: Alignment.bottomCenter,
+          //     child: RoundImage(height: sh(139), width: sw(139)))
         ],
       ),
     );

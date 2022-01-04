@@ -109,7 +109,7 @@ class HomeTabBackPanelController extends GetxController {
     });
   }
 
-  void gotoProductDetailsScreen(MealSearchViewModel value) {
+  void gotoProductDetailsScreen(MealViewModel value) {
     Get.to(() => ProductScreen(), arguments: {
       "meal": value,
     });

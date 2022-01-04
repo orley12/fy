@@ -63,8 +63,11 @@ class FYColors {
   static const Color darkerBlack4 = Color(0xffB2B3B9);
   static const Color darkerBlack5 = Color(0xff395185);
   static const Color darkerBlack6 = Color(0xffC7C9D9);
+  static const Color darkerBlack7 = Color(0xff333333);
 
   //Background Color
   static const Color mainBackground = Color(0xFFFAFAFC);
   static const Color subtleBackground = Color(0xFFFFF6F7);
+
+  static var brandPrimary;
 }

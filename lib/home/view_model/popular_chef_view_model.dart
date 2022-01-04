@@ -1,4 +1,3 @@
-import 'package:food_yours_customer/resources/Images.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class PopularChefViewModel {
@@ -20,15 +19,18 @@ class PopularChefViewModel {
         ratings = json?["ratings"] ?? 0.0;
 
   static getList(List<dynamic>? json) {
-    List<Map<String, dynamic>> popularChefs = List<Map<String, dynamic>>.from(json ?? listPopularChefs);
-    return List.generate(popularChefs.length, (index) => PopularChefViewModel.fromJson(popularChefs[index])).obs;
+    List<Map<String, dynamic>> popularChefs =
+        List<Map<String, dynamic>>.from(json ?? listPopularChefs);
+    return List.generate(popularChefs.length,
+        (index) => PopularChefViewModel.fromJson(popularChefs[index])).obs;
   }
 }
 
 List listPopularChefs = [
   {
     "chefName": "Omowunmi O.",
-    "popularChefImagePath": Images.popular_chef,
+    "popularChefImagePath":
+        "https://foodyours.com/views/vendors/images/FoodFolderPICSonly/Foodyours2143921999-egusi-soup.jpg",
     "foodCategory": "African",
     "kitchenAddress": "Gwarinpa, Abuja.",
     "ratings": 5.0,
@@ -36,7 +38,8 @@ List listPopularChefs = [
   },
   {
     "chefName": "Emmanuel A.",
-    "popularChefImagePath": Images.popular_chef,
+    "popularChefImagePath":
+        "https://foodyours.com/views/vendors/images/FoodFolderPICSonly/Foodyours3107337599-egusi.jpeg",
     "foodCategory": "African",
     "kitchenAddress": "Gwarinpa, Abuja.",
     "ratings": 5.0,
@@ -44,7 +47,8 @@ List listPopularChefs = [
   },
   {
     "chefName": "Juliet R.",
-    "popularChefImagePath": Images.popular_chef,
+    "popularChefImagePath":
+        "https://foodyours.com/views/vendors/images/FoodFolderPICSonly/Foodyours2143921999-egusi-soup.jpg",
     "foodCategory": "African",
     "kitchenAddress": "Gwarinpa, Abuja.",
     "ratings": 5.0,
@@ -52,7 +56,8 @@ List listPopularChefs = [
   },
   {
     "chefName": "Omowunmi O.",
-    "popularChefImagePath": Images.popular_chef,
+    "popularChefImagePath":
+        "https://foodyours.com/views/vendors/images/FoodFolderPICSonly/Foodyours3107337599-egusi.jpeg",
     "foodCategory": "African",
     "kitchenAddress": "Gwarinpa, Abuja.",
     "ratings": 5.0,
@@ -60,7 +65,8 @@ List listPopularChefs = [
   },
   {
     "chefName": "Emmanuel A.",
-    "popularChefImagePath": Images.popular_chef,
+    "popularChefImagePath":
+        "https://foodyours.com/views/vendors/images/FoodFolderPICSonly/Foodyours2143921999-egusi-soup.jpg",
     "foodCategory": "African",
     "kitchenAddress": "Gwarinpa, Abuja.",
     "ratings": 5.0,
@@ -68,7 +74,8 @@ List listPopularChefs = [
   },
   {
     "chefName": "Juliet R.",
-    "popularChefImagePath": Images.popular_chef,
+    "popularChefImagePath":
+        "https://foodyours.com/views/vendors/images/FoodFolderPICSonly/Foodyours3107337599-egusi.jpeg",
     "foodCategory": "African",
     "kitchenAddress": "Gwarinpa, Abuja.",
     "ratings": 5.0,

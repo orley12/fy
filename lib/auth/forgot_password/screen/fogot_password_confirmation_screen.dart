@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/auth/forgot_password/controller/forgot_password_confirmation_screen_controller.dart';
-import 'package:food_yours_customer/common/widget/auth_pages_bacground_image.dart';
+import 'package:food_yours_customer/common/widget/auth_pages_background_image.dart';
 import 'package:food_yours_customer/common/widget/food_yours_logo.dart';
 import 'package:food_yours_customer/common/widget/local_theme.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';

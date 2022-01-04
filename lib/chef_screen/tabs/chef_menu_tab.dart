@@ -38,13 +38,14 @@ class ChefMenuTab extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             semanticChildCount: 3,
             children: List.generate(
-                widgetCtrl.foodCategories.length,
-                (index) => FoodCategoryItem(
-                    widgetCtrl.foodCategories.value[index],
-                    onSelected: widgetCtrl.onCategorySelected,
-                    isSelected:
-                        index == widgetCtrl.selectedFoodCategoryIndex.value,
-                    selectedFoodCategoryIndex: index)),
+              widgetCtrl.foodCategories.length,
+              (index) => FoodCategoryItem(
+                widgetCtrl.foodCategories.value[index],
+                onSelected: widgetCtrl.onCategorySelected,
+                isSelected: index == widgetCtrl.selectedFoodCategoryIndex.value,
+                index: widgetCtrl.selectedFoodCategoryIndex.value,
+              ),
+            ),
           ),
         ),
         SizedBox(height: sh(40)),
@@ -64,7 +65,6 @@ class ChefMenuTab extends StatelessWidget {
                       (element) =>
                           element.id == widgetCtrl.chefMeals.value[index].id,
                       orElse: () => CartModel());
-                  print("zzzzzzzzzzzzzz${cartModel.toString()}");
                   return FoodDetailsCard(
                     widgetCtrl.chefMeals.value[index],
                     cartModel.count,

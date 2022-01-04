@@ -5,7 +5,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:food_yours_customer/common/service/hive_service.dart';
 import 'package:food_yours_customer/common/widget/fy_switch.dart';
 import 'package:food_yours_customer/common/widget/loader.dart';
-import 'package:food_yours_customer/common/widget/primary_app_bar.dart';
+import 'package:food_yours_customer/common/widget/app_bar/primary_app_bar.dart';
 import 'package:food_yours_customer/notification/controller/notification_screen_controller.dart';
 import 'package:food_yours_customer/notification/widget/notification_card.dart';
 import 'package:food_yours_customer/resources/colors.dart';

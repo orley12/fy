@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/widget/app_button.dart';
+import 'package:food_yours_customer/common/widget/button/fy_icon_button.dart';
+import 'package:food_yours_customer/common/widget/text/mulish_400_text.dart';
+import 'package:food_yours_customer/common/widget/text/mulish_700_text.dart';
 import 'package:food_yours_customer/home/controller/home_tab_controller.dart';
+import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/user/view_model/user_view_model.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:get/instance_manager.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -17,28 +20,37 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Function sh = sHeight(context);
     Function sw = sWidth(context);
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: sw(25)),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Text(
-            "Hello, ${user.firstName}",
-            style: context.theme.textTheme.headline2!.copyWith(fontSize: sh(Dimens.k16)),
-          ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Mulish700Text(
+              text: "Hello, ${user.firstName}",
+              fontSize: Dimens.k16,
+            ),
+            Mulish400Text(
+              text: "What would you like to order?",
+              fontSize: Dimens.k12,
+            ),
+          ]),
           Expanded(child: Container()),
-          FYButton(child: Icon(FYIcons.search), onTap: widgetController.openSearchBackDrop),
+          FYIconButton(
+            icon: FYIcons.search,
+            color: FYColors.darkerBlack2,
+            onPressed: widgetController.openSearchBackDrop,
+          ),
           SizedBox(width: sw(Dimens.k48)),
-          Icon(FYIcons.bell),
-        ]),
-        SizedBox(height: sh(Dimens.k4)),
-        Text(
-          "What would you like to order?",
-          style: context.theme.textTheme.caption!.copyWith(fontSize: sh(13)),
-        ),
-      ]),
+          FYIconButton(
+            icon: FYIcons.bell,
+            color: FYColors.darkerBlack2,
+            onPressed: () {},
+          )
+        ],
+      ),
     );
   }
 }

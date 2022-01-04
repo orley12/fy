@@ -21,7 +21,6 @@ class FYOutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Function sh = sHeight(context);
-    Function sw = sWidth(context);
 
     return OutlinedButton(
       onPressed: onPressed,

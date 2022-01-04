@@ -7,6 +7,7 @@ class FYFlatButton extends StatelessWidget {
   final Function()? onPressed;
   final Color backgroundColor;
   final Size size;
+  final EdgeInsets padding;
 
   const FYFlatButton({
     Key? key,
@@ -14,6 +15,7 @@ class FYFlatButton extends StatelessWidget {
     this.onPressed,
     this.backgroundColor = Colors.white,
     this.size = const Size(double.infinity, Dimens.k56),
+    this.padding = const EdgeInsets.all(Dimens.k8),
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class FYFlatButton extends StatelessWidget {
       onPressed: onPressed,
       child: child,
       style: context.theme.textButtonTheme.style!.copyWith(
-        // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.zero),
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(padding),
         minimumSize: MaterialStateProperty.all<Size>(size),
         backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(

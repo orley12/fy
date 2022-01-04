@@ -4,7 +4,7 @@ import 'package:food_yours_customer/common/widget/fy_country_code_picker.dart';
 import 'package:food_yours_customer/common/widget/input_field_wrapper.dart';
 import 'package:food_yours_customer/common/widget/local_theme.dart';
 import 'package:food_yours_customer/common/widget/secondary_app_bar.dart';
-import 'package:food_yours_customer/common/widget/secondary_text_input_field.dart';
+import 'package:food_yours_customer/common/widget/text_field/secondary_text_field.dart';
 import 'package:food_yours_customer/common/widget/text_button.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';

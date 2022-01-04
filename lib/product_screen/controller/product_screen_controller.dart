@@ -17,7 +17,8 @@ import 'package:get/instance_manager.dart';
 import 'package:get/utils.dart';
 import 'package:hive/hive.dart';
 
-class ProductScreenController extends GetxController {
+class ProductScreenController extends GetxController
+    with SingleGetTickerProviderMixin {
   ProductService productService = Get.find();
 
   Rx<MealViewModel> meal = MealViewModel().obs;
@@ -27,6 +28,12 @@ class ProductScreenController extends GetxController {
   RxSet<FYOptionItem> selectedSuppliments = RxSet<FYOptionItem>();
 
   TextEditingController noteTextController = TextEditingController();
+
+  late AnimationController animationCtrl =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+
+  late Animation<double> animation =
+      CurvedAnimation(parent: animationCtrl, curve: Curves.easeInOutCirc);
 
   List deliveryDays = [];
   String chefId = "";

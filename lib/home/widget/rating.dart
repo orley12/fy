@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:food_yours_customer/common/widget/text/mulish_600_text.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/resources/icons.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
-import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class Rating extends StatelessWidget {
-  double ratings;
+  final double ratings;
 
   Rating(this.ratings);
 
   @override
   Widget build(BuildContext context) {
     Function sh = sHeight(context);
-    Function sw = sWidth(context);
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(
           FYIcons.star,
           size: Dimens.k14,
-          color: context.theme.textTheme.button!.color,
+          color: Colors.white,
         ),
-        Text(ratings.toString(), style: context.theme.textTheme.button!.copyWith(fontWeight: FontWeight.w600, fontSize: sh(9.85)))
+        Mulish600Text(
+          text: ratings.toString(),
+          color: Colors.white,
+          fontSize: sh(9.85),
+        )
       ],
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_yours_customer/common/widget/option_item.dart';
+import 'package:food_yours_customer/common/widget/text/mulish_600_text.dart';
+import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
 import 'package:food_yours_customer/util/responsive_screen_util.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
@@ -26,9 +28,11 @@ class MealCustomizationOptions extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) => ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-        leading: Text("${listItems[index].name}",
-            style: context.theme.textTheme.headline2!.copyWith(
-                fontSize: sh(Dimens.k16), fontWeight: FontWeight.w600)),
+        leading: Mulish600Text(
+          text: "${listItems[index].name}",
+          color: FYColors.darkerBlack7,
+          fontSize: sh(Dimens.k16),
+        ),
         trailing: Checkbox(
           value: selectedItems.contains(listItems[index]),
           onChanged: (_) => onSelected(listItems[index]),

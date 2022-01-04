@@ -5,7 +5,7 @@ import 'package:food_yours_customer/auth/login/controller/login_screen_controlle
 import 'package:food_yours_customer/auth/registration/screen/registration_screen.dart';
 import 'package:food_yours_customer/auth/widget/auth_card.dart';
 import 'package:food_yours_customer/auth/widget/text_obscure_button.dart';
-import 'package:food_yours_customer/common/widget/auth_pages_bacground_image.dart';
+import 'package:food_yours_customer/common/widget/auth_pages_background_image.dart';
 import 'package:food_yours_customer/common/widget/button/fy_flat_button.dart';
 import 'package:food_yours_customer/common/widget/button/fy_icon_button.dart';
 import 'package:food_yours_customer/common/widget/button/fy_text_button.dart';
@@ -15,7 +15,7 @@ import 'package:food_yours_customer/common/widget/loader.dart';
 import 'package:food_yours_customer/common/widget/text/mulish_400_text.dart';
 import 'package:food_yours_customer/common/widget/text/mulish_600_text.dart';
 import 'package:food_yours_customer/common/widget/text/mulish_700_text.dart';
-import 'package:food_yours_customer/common/widget/primary_text_input_field.dart';
+import 'package:food_yours_customer/common/widget/text_field/primary_text_field.dart';
 import 'package:food_yours_customer/resources/Images.dart';
 import 'package:food_yours_customer/resources/colors.dart';
 import 'package:food_yours_customer/resources/dimens.dart';
