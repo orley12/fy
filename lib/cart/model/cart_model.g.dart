@@ -20,7 +20,7 @@ class CartModelAdapter extends TypeAdapter<CartModel> {
       id: fields[8] as String,
       mealName: fields[0] as String,
       quantity: (fields[1] as Map).cast<dynamic, dynamic>(),
-      suppliments: (fields[2] as List)
+      supplements: (fields[2] as List)
           .map((dynamic e) => (e as Map).cast<dynamic, dynamic>())
           .toList(),
       extras: (fields[3] as List)
@@ -48,7 +48,7 @@ class CartModelAdapter extends TypeAdapter<CartModel> {
       ..writeByte(1)
       ..write(obj.quantity)
       ..writeByte(2)
-      ..write(obj.suppliments)
+      ..write(obj.supplements)
       ..writeByte(3)
       ..write(obj.extras)
       ..writeByte(4)
